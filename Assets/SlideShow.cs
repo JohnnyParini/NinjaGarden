@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
+
 public class SlideShow : MonoBehaviour
 {
     public Texture[] imageArray;
-    public int currentImage;
+    public int currentImage = 0;
 
     float deltaTime = 0.0f;
 
@@ -26,7 +27,7 @@ public class SlideShow : MonoBehaviour
 
         if(currentImage >= imageArray.Length) //resets the slideshow, loads the main menu
         {
-            SceneManager.LoadScene(0);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
         
     }
@@ -48,10 +49,21 @@ public class SlideShow : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            if (EditorApplication.isPlaying)
-            {
-                EditorApplication.isPlaying = false;
-            }
+
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            //if (EditorApplication.isPlaying)
+            //{
+            //   EditorApplication.isPlaying = false;
+            //}
         }
+
+       if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("SpaceBar");
+            currentImage++;
+        }
+
+
+
     }
 }
