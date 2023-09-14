@@ -26,13 +26,18 @@ public class Movement : MonoBehaviour
     {
         if(animator != null)
         {
-            if(direction.magnitude > 0)
+            if(direction.magnitude > 0) //moving
             {
                 animator.SetBool("isMoving", true);
-            }
-            else
-            {
 
+                animator.SetFloat("horizontal", direction.x); 
+                animator.SetFloat("vertical", direction.y);
+
+
+            }
+            else //not moving
+            {
+                animator.SetBool("isMoving", false);
             }
         }
     }
