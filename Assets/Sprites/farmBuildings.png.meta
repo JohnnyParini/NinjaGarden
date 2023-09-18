@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c51aa1faa06e8cd499d709e2dad3ee9e
+guid: 98ca11fe2b88827409c27023b13ebeef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -105,652 +105,568 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: realReverseResized_0
+      name: farmBuildings_0
       rect:
         serializedVersion: 2
-        x: 391
-        y: 767
-        width: 82
-        height: 154
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c9f268c85a06fde4f862576c3effb982
-      internalID: 373508241
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_1
-      rect:
-        serializedVersion: 2
-        x: 534
-        y: 769
-        width: 82
-        height: 154
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 150367927a4115840a1cd822b1fe4304
-      internalID: -530686671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_2
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 767
-        width: 82
-        height: 154
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4db5fded1ed40a0449723e82b3cb2be3
-      internalID: 1316518858
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_3
-      rect:
-        serializedVersion: 2
-        x: 838
-        y: 772
-        width: 82
-        height: 154
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57aa9dc25826fb145af588eafa7afb2b
-      internalID: -755816222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_4
-      rect:
-        serializedVersion: 2
-        x: 983
-        y: 771
-        width: 82
-        height: 154
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0878ff340ab8ba34b90a967618e36d97
-      internalID: -1941926658
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_5
-      rect:
-        serializedVersion: 2
-        x: 1130
-        y: 776
-        width: 82
-        height: 154
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1a86ac9a3765db44e80233787393bd7d
-      internalID: 1646740511
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_6
-      rect:
-        serializedVersion: 2
-        x: 1282
-        y: 766
-        width: 82
-        height: 154
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aa3addabc28abd34284e01a505451f1f
-      internalID: 708540788
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_7
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 606
-        width: 114
-        height: 126
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5962fa5371e6b304cbfd0b581a094a6e
-      internalID: 742486763
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_8
-      rect:
-        serializedVersion: 2
-        x: 1112
-        y: 609
-        width: 127
-        height: 118
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7540decb7dc292c44b2dc7bba1bbb1a2
-      internalID: 360253762
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_9
-      rect:
-        serializedVersion: 2
-        x: 994
-        y: 605
-        width: 91
-        height: 126
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fa31416622ffd64e95ff2fe920453a2
-      internalID: 1782483079
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_10
-      rect:
-        serializedVersion: 2
-        x: 840
-        y: 602
-        width: 100
+        x: 0
+        y: 282
+        width: 117
         height: 130
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b4d4131a628edd48b6e1101293fdd62
-      internalID: -1077977762
+      spriteID: 15599b4c95504d944a65611b1439c463
+      internalID: -906307759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_11
+      name: farmBuildings_1
       rect:
         serializedVersion: 2
-        x: 709
-        y: 601
-        width: 86
-        height: 132
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 67ebfc32dcd4c7d49b4711c942068785
-      internalID: -1654823438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_12
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 604
-        width: 77
-        height: 121
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d36f9e6ca8136f4485cb2550e09e839
-      internalID: 1041248674
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: realReverseResized_13
-      rect:
-        serializedVersion: 2
-        x: 404
-        y: 601
-        width: 79
+        x: 122
+        y: 284
+        width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c12bbe651f5c5eb459e7aa028340bf03
-      internalID: -243424572
+      spriteID: 2856300deac89eb44a8d225e40381b82
+      internalID: 860646660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_14
+      name: farmBuildings_2
       rect:
         serializedVersion: 2
-        x: 228
-        y: 413
-        width: 119
-        height: 121
+        x: 258
+        y: 282
+        width: 123
+        height: 130
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77e41cb9d9e75be409dbac45eacf5deb
-      internalID: -384113768
+      spriteID: bc167d48e0b41264398c8fe4cc2c9610
+      internalID: -1711261302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_15
+      name: farmBuildings_3
       rect:
         serializedVersion: 2
-        x: 369
-        y: 409
-        width: 134
-        height: 118
+        x: 448
+        y: 301
+        width: 59
+        height: 83
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9ec1b82404198d4ab380bfeb6537eb5
-      internalID: -673027092
+      spriteID: e165d5f451215a0429992d6c0434e24b
+      internalID: 819072993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_16
+      name: farmBuildings_4
       rect:
         serializedVersion: 2
-        x: 523
-        y: 414
-        width: 136
-        height: 121
+        x: 384
+        y: 285
+        width: 59
+        height: 127
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 659ceefc3c754b54cbc51979a62fb77b
-      internalID: 1983947755
+      spriteID: de103b4544088fd42955f11611c29c42
+      internalID: -610548050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_17
+      name: farmBuildings_5
       rect:
         serializedVersion: 2
-        x: 673
-        y: 424
-        width: 153
-        height: 110
+        x: 0
+        y: 159
+        width: 104
+        height: 124
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e49659062ca8ac9489600df15bf2e88b
-      internalID: 767543737
+      spriteID: a38e24818f0a00144aa89727616b8c84
+      internalID: -1454412040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_18
+      name: farmBuildings_6
       rect:
         serializedVersion: 2
-        x: 832
-        y: 415
-        width: 125
-        height: 121
+        x: 129
+        y: 155
+        width: 117
+        height: 130
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d042003057134f345a06f9a414ddbe99
-      internalID: 734443956
+      spriteID: 312eeb293ea4db446a8e74b82834104e
+      internalID: -730369736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_19
+      name: farmBuildings_7
       rect:
         serializedVersion: 2
-        x: 967
-        y: 423
+        x: 255
+        y: 156
+        width: 113
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a923e8370e404b1449745abd837c70e9
+      internalID: -1066486850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: farmBuildings_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
         width: 148
-        height: 114
+        height: 143
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77e26de724ef7b748a2aa0d96d098135
-      internalID: 749813039
+      spriteID: deb8f21930eb4a24bad3c6a2071f5f4a
+      internalID: 1691829349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_20
+      name: farmBuildings_9
       rect:
         serializedVersion: 2
-        x: 1123
-        y: 422
-        width: 147
-        height: 114
+        x: 597
+        y: 262
+        width: 188
+        height: 148
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40485823ad206d54db31e55404e41ee9
-      internalID: 1018910063
+      spriteID: 120ffc11942221846bdda9c1d37c83c3
+      internalID: -885167353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_21
+      name: farmBuildings_10
       rect:
         serializedVersion: 2
-        x: 1283
-        y: 415
-        width: 137
-        height: 115
+        x: 376
+        y: 175
+        width: 71
+        height: 95
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 751ae82a13162bd4d9b0396fba3eb404
-      internalID: 929401704
+      spriteID: 868f60dfd442ad740a895f8362fbd7cb
+      internalID: 1833365835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_22
+      name: farmBuildings_11
       rect:
         serializedVersion: 2
-        x: 688
-        y: 257
-        width: 127
-        height: 110
+        x: 151
+        y: 9
+        width: 157
+        height: 141
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f217697ecefbe8f4083c1c34b13c5753
-      internalID: -229657732
+      spriteID: ce5cc0bc4eb13084b92e31339c32e0ad
+      internalID: -1200143602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_23
+      name: farmBuildings_12
       rect:
         serializedVersion: 2
-        x: 841
-        y: 250
-        width: 112
-        height: 121
+        x: 310
+        y: 9
+        width: 155
+        height: 142
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0da5285a70d85aa4f841bad7b2efffad
-      internalID: 1881654143
+      spriteID: 30fdd65426df8924086b87453bd4d7bc
+      internalID: 1023569726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_24
+      name: farmBuildings_13
       rect:
         serializedVersion: 2
-        x: 961
-        y: 256
-        width: 129
-        height: 112
+        x: 679
+        y: 11
+        width: 24
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47f68b264bd5d8d4780974ba41e73ae7
-      internalID: 1204827967
+      spriteID: de8e9cf7b6a231747bca5b5576294b8c
+      internalID: 1991569038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_25
+      name: farmBuildings_14
       rect:
         serializedVersion: 2
-        x: 1116
-        y: 260
-        width: 119
-        height: 110
+        x: 478
+        y: 181
+        width: 117
+        height: 116
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b97a696feb17ff429ed6000419f3766
-      internalID: -1702676199
+      spriteID: 7833d980f3ee47546a40bf991a29982d
+      internalID: -829485141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_26
+      name: farmBuildings_15
       rect:
         serializedVersion: 2
-        x: 1268
-        y: 257
-        width: 118
-        height: 114
+        x: 608
+        y: 175
+        width: 46
+        height: 61
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 850ca1f88a6e462449b555667968c2ce
-      internalID: 41773987
+      spriteID: 264f836a3e00ce84f8fa04c7422db219
+      internalID: -268212506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_27
+      name: farmBuildings_16
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 173
+        width: 43
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5eb61d9eb7f6ff42b5566ad6d2e83a3
+      internalID: 268391904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: farmBuildings_17
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 174
+        width: 41
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 451dba84a6536a446a75841c40945661
+      internalID: -1751297228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: farmBuildings_18
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 166
+        width: 46
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24bce247330a4d84580fde1d0151cce9
+      internalID: 1088779776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: farmBuildings_19
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 218
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4d51491df64f744ba6b5c506955e728
+      internalID: -1096092222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: farmBuildings_20
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 175
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f89bc420beeb4f74fa8ba9cdb1b8f3c5
+      internalID: 481036256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: farmBuildings_21
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 170
+        width: 60
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83cac8b4ea8200c4a94824cde43c8859
+      internalID: -488172454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: farmBuildings_22
       rect:
         serializedVersion: 2
         x: 805
-        y: 93
-        width: 130
-        height: 115
+        y: 264
+        width: 47
+        height: 135
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e873ea6d6400e9748b07af5d7e6b0466
-      internalID: -1511968113
+      spriteID: 0c28a17ecb95d004fbbc30399b18b9f9
+      internalID: 1486224494
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_28
+      name: farmBuildings_23
       rect:
         serializedVersion: 2
-        x: 960
-        y: 92
-        width: 124
-        height: 112
+        x: 867
+        y: 269
+        width: 46
+        height: 126
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90bd250489c67964283898ecf1bd8fac
-      internalID: -111910256
+      spriteID: ec3616c0871d4a44894c4a4aee0670fe
+      internalID: 1358633912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_29
+      name: farmBuildings_24
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 95
-        width: 101
-        height: 110
+        x: 481
+        y: 9
+        width: 116
+        height: 160
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01d184be3ca05354ea2fa5d262989a7b
-      internalID: -974680157
+      spriteID: 3e8b39abcab16b54db6c6a8629d01dfd
+      internalID: -2067001864
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: realReverseResized_30
+      name: farmBuildings_25
       rect:
         serializedVersion: 2
-        x: 1276
-        y: 89
-        width: 129
-        height: 114
+        x: 606
+        y: 8
+        width: 66
+        height: 130
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d40a344e41a3d7e40941bb1741184c6c
-      internalID: -683772383
+      spriteID: f73fd9e581f44c444a07b95869b57e42
+      internalID: -1363402407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: farmBuildings_26
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 55
+        width: 154
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e87b9f5a4e90ff44c8acfd9277bdd206
+      internalID: -611611495
       vertices: []
       indices: 
       edges: []
@@ -766,37 +682,33 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      realReverseResized_27: -1511968113
-      realReverseResized_6: 708540788
-      realReverseResized_29: -974680157
-      realReverseResized_8: 360253762
-      realReverseResized_9: 1782483079
-      realReverseResized_17: 767543737
-      realReverseResized_20: 1018910063
-      realReverseResized_12: 1041248674
-      realReverseResized_10: -1077977762
-      realReverseResized_2: 1316518858
-      realReverseResized_11: -1654823438
-      realReverseResized_13: -243424572
-      realReverseResized_30: -683772383
-      realReverseResized_14: -384113768
-      realReverseResized_16: 1983947755
-      realReverseResized_1: -530686671
-      realReverseResized_5: 1646740511
-      realReverseResized_18: 734443956
-      realReverseResized_23: 1881654143
-      realReverseResized_26: 41773987
-      realReverseResized_0: 373508241
-      realReverseResized_25: -1702676199
-      realReverseResized_3: -755816222
-      realReverseResized_28: -111910256
-      realReverseResized_4: -1941926658
-      realReverseResized_7: 742486763
-      realReverseResized_19: 749813039
-      realReverseResized_15: -673027092
-      realReverseResized_24: 1204827967
-      realReverseResized_21: 929401704
-      realReverseResized_22: -229657732
+      farmBuildings_12: 1023569726
+      farmBuildings_4: -610548050
+      farmBuildings_26: -611611495
+      farmBuildings_19: -1096092222
+      farmBuildings_24: -2067001864
+      farmBuildings_11: -1200143602
+      farmBuildings_2: -1711261302
+      farmBuildings_20: 481036256
+      farmBuildings_10: 1833365835
+      farmBuildings_22: 1486224494
+      farmBuildings_17: -1751297228
+      farmBuildings_5: -1454412040
+      farmBuildings_23: 1358633912
+      farmBuildings_18: 1088779776
+      farmBuildings_15: -268212506
+      farmBuildings_1: 860646660
+      farmBuildings_25: -1363402407
+      farmBuildings_13: 1991569038
+      farmBuildings_3: 819072993
+      farmBuildings_9: -885167353
+      farmBuildings_21: -488172454
+      farmBuildings_14: -829485141
+      farmBuildings_8: 1691829349
+      farmBuildings_16: 268391904
+      farmBuildings_7: -1066486850
+      farmBuildings_0: -906307759
+      farmBuildings_6: -730369736
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
