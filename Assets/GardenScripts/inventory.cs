@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+[System.Serializable]
 public class inventory 
 {
+
+    [System.Serializable]
    public class Slot
     {
         public CollectableType type;
         public int count;
         public int maxAllowed;
+
+        
 
         public Slot()
         {
@@ -31,7 +38,9 @@ public class inventory
 
         public void addItem(CollectableType type)
         {
+            //Debug.Log("This the the entered type " + type);
             this.type = type;
+
             count++;
         }
 
@@ -51,11 +60,22 @@ public class inventory
 
     public void Add(CollectableType typeToAdd)
     {
+        //Debug.Log("This is the type to add " + typeToAdd);
         foreach(Slot slot in slots)
         {
-            if(slot.type == typeToAdd && slot.canAddItem())
+            if(slot.type == typeToAdd && slot.canAddItem() || slot.type == CollectableType.NONE)
             {
+                if(slot.type == CollectableType.NONE){
+                    slot.type = typeToAdd;
+                    //Debug.Log("changing type");
+                    if(slot.type != typeToAdd)
+                    {
+                        Debug.Log("Something has gone wrong");
+                    }
+                    //Debug.Log("slot previous type = " + slot.type);
+                }
                 slot.addItem(typeToAdd);
+                //Debug.Log("Slot final type = " + slot.type);
                 return;
             }
         }

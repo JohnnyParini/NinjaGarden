@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int numCollectables = 0;
+    public inventory Inventory;
+
+    private void Awake()
+    {
+        Inventory = new inventory(21);
+    }
 }

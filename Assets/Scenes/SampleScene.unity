@@ -103179,7 +103179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5e6d18cc80cb145a890e9abe2e47fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numCollectables: 0
+  Inventory:
+    slots: []
 --- !u!1 &1844645880
 GameObject:
   m_ObjectHideFlags: 0
@@ -103194,7 +103195,7 @@ GameObject:
   - component: {fileID: 1844645884}
   m_Layer: 0
   m_Name: crop1
-  m_TagString: Untagged
+  m_TagString: CARROT_SEED
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103312,7 +103313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f175e52cfa404d4c913c73bf74ea465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 3
 --- !u!1 &2078356951
 GameObject:
   m_ObjectHideFlags: 0

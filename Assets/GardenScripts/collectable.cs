@@ -7,6 +7,7 @@ public class collectable : MonoBehaviour
 
     public CollectableType type;
 
+
     //player walks into collectable
     //add collectable to player
     //delete collectable
@@ -18,7 +19,8 @@ public class collectable : MonoBehaviour
 
         if (player)
         {
-            player.numCollectables++; //adds the collectable
+            
+            player.Inventory.Add(type); //adds the collectable
             Destroy(this.gameObject);
         }
     }
@@ -28,5 +30,5 @@ public class collectable : MonoBehaviour
 
 public enum CollectableType
 {
-    NONE, CARROT_SEED
+    NONE, CARROT_SEED, TEST, TURNIP
 }
