@@ -7,6 +7,7 @@ public class collectable : MonoBehaviour
 
     public CollectableType type;
 
+    public Sprite icon;
 
     //player walks into collectable
     //add collectable to player
@@ -20,7 +21,7 @@ public class collectable : MonoBehaviour
         if (player)
         {
             
-            player.Inventory.Add(type); //adds the collectable
+            player.Inventory.Add(this); //adds the collectable
             Destroy(this.gameObject);
         }
     }

@@ -15,7 +15,7 @@ public class inventory
         public int count;
         public int maxAllowed;
 
-        
+        public Sprite icon;
 
         public Slot()
         {
@@ -36,10 +36,11 @@ public class inventory
             }
         }
 
-        public void addItem(CollectableType type)
+        public void addItem(collectable item)
         {
             //Debug.Log("This the the entered type " + type);
-            this.type = type;
+            this.type = item.type;
+            this.icon = item.icon;
 
             count++;
         }
@@ -58,23 +59,23 @@ public class inventory
     }
 
 
-    public void Add(CollectableType typeToAdd)
+    public void Add(collectable item)
     {
         //Debug.Log("This is the type to add " + typeToAdd);
         foreach(Slot slot in slots)
         {
-            if(slot.type == typeToAdd && slot.canAddItem() || slot.type == CollectableType.NONE)
+            if(slot.type == item.type && slot.canAddItem() || slot.type == CollectableType.NONE)
             {
                 if(slot.type == CollectableType.NONE){
-                    slot.type = typeToAdd;
+                    slot.type = item.type;
                     //Debug.Log("changing type");
-                    if(slot.type != typeToAdd)
+                    if(slot.type != item.type)
                     {
                         Debug.Log("Something has gone wrong");
                     }
                     //Debug.Log("slot previous type = " + slot.type);
                 }
-                slot.addItem(typeToAdd);
+                slot.addItem(item);
                 //Debug.Log("Slot final type = " + slot.type);
                 return;
             }
