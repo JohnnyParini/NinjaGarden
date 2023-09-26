@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     public float speed;
 
     public Animator animator;
+    public SpriteRenderer spriteR;
 
     private Vector3 direction; 
 
@@ -17,8 +18,11 @@ public class Movement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical"); //w,s, up, down
 
         direction = new Vector3(horizontal, vertical,0);
+        //Debug.Log(direction);
 
         AnimateMovement(direction);
+
+
 
         
 
@@ -39,6 +43,18 @@ public class Movement : MonoBehaviour
 
                 animator.SetFloat("horizontal", direction.x); 
                 animator.SetFloat("vertical", direction.y);
+
+                if (direction.x > 0)
+                {
+                    Debug.Log("flip false");
+                    spriteR.flipX = false;
+                }
+
+                else if (direction.x < 0)
+                {
+                    Debug.Log("flip true");
+                    spriteR.flipX = true;
+                }
 
 
             }
