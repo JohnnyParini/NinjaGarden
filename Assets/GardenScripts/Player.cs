@@ -5,9 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public inventory Inventory;
+    
 
     private void Awake()
     {
-        Inventory = new inventory(21);
+        Inventory = new inventory(32);
+     
     }
 }
