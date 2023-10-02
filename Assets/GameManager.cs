@@ -4,6 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
+    //single design sytem so that it isn't called multiple times
+    public static GameManager instance;
+
+    public GardenItemManager itemManager;
+
+    private void Awake()
+    {
+        if(instance != null && instance != this) //if an instance already exists
+        {
+            Destroy(this.gameObject); //to make sure that only one GameManager exists
+        }
+        else //if an instance doesn't already exists.
+        {
+            instance = this;
+        }
+
+        DontDestroyOnLoad(this); //makes sure that it stays between scenes 
+
+        itemManager = GetComponent<GardenItemManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +37,15 @@ public class GameManager : MonoBehaviour
         
     }
 
+
+
+
     public void loadLevel(int num)
     {
         SceneManager.LoadScene(num);
     }
+
+
 
 
 }

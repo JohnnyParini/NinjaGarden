@@ -45,6 +45,20 @@ public class inventory
             count++;
         }
 
+        public void removeItem()
+        {
+            if (count > 0) //at least 1 item to remove
+            {
+                count--; //remove an item
+
+                if(count == 0)
+                {
+                    icon = null;
+                    type = CollectableType.NONE;
+                }
+            }
+        }
+
     }
 
     public List<Slot> slots = new List<Slot>();
@@ -81,5 +95,11 @@ public class inventory
             }
         }
     }
+
+    public void Remove(int index)
+    {
+        slots[index].removeItem();
+    }
+
 
 }

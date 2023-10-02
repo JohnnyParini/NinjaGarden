@@ -9,6 +9,8 @@ public class Inventory_UI : MonoBehaviour
     public Player player;
     public Movement move;
 
+    public Animator animate;
+
     public List<Slot_UI> slots = new List<Slot_UI>();
     void Start()
     {
@@ -28,17 +30,19 @@ public class Inventory_UI : MonoBehaviour
         if (!inventoryPanel.activeSelf) //if inventory panel is turned off
         {
             inventoryPanel.SetActive(true); //toggle it on
-            player.GetComponent<Movement>().enabled = false; //need to set the bool "isMoving" to false"
-            Setup();    
+            player.GetComponent<Movement>().enabled = false; //Disables movement 
+            animate.SetBool("isMoving", false);
+            Refresh();    
         }
         else //if inventory panel is turned on
         {
             inventoryPanel.SetActive(false); //toggle it off
-            player.GetComponent<Movement>().enabled = true;
+            player.GetComponent<Movement>().enabled = true; //enables movement
+            //move.animator.SetBool("isMoving", true);
         }
     }
 
-    public void Setup()
+    public void Refresh()
     {
         Debug.Log(player.Inventory.slots.Count + "player slots");
         Debug.Log(slots.Count + "Slots");
@@ -68,5 +72,18 @@ public class Inventory_UI : MonoBehaviour
             Debug.Log("Your code sucks idiot");
         }
     }
+
+    public void Remove(int SlotID)
+    {
+        collectable itemToDrop = GameManager.instance.itemManager.GetItemByType(player.Inventory.slots[SlotID].type); //gets the type of the item we are removing
+        
+        if(itemToDrop != null)
+        {
+            player.Inventory.Remove(SlotID);
+            Refresh();
+        }
+        
+    }
+
 
 }
