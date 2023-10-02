@@ -46,13 +46,13 @@ public class Movement : MonoBehaviour
 
                 if (direction.x > 0)
                 {
-                    Debug.Log("flip false");
+                    //Debug.Log("flip false");
                     spriteR.flipX = false;
                 }
 
                 else if (direction.x < 0)
                 {
-                    Debug.Log("flip true");
+                    //Debug.Log("flip true");
                     spriteR.flipX = true;
                 }
 
