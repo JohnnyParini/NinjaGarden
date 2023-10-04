@@ -53,7 +53,7 @@ public class Inventory_UI : MonoBehaviour
             {
                 Debug.Log("iteration " + i);
                 Debug.Log("slot " + i + " type = " + player.Inventory.slots[i].type);
-                if(player.Inventory.slots[i].type != CollectableType.NONE) 
+                if(player.Inventory.slots[i].type != CollectableType.NONE) //if the slot isn't NONE
                     
                 {
                     slots[i].SetItem(player.Inventory.slots[i]);
@@ -61,8 +61,8 @@ public class Inventory_UI : MonoBehaviour
                 }
                 else
                 {
-                    slots[i].SetEmpty(); //error that doesn't matter here. It still function perfectly. "object reference not set to instance of object" doesn't matter
-                    Debug.Log("Setting up slot " + i);
+                    slots[i].SetEmpty();
+                    Debug.Log("Setting empty slot " + i);
                 }
 
             }
@@ -79,8 +79,10 @@ public class Inventory_UI : MonoBehaviour
         
         if(itemToDrop != null)
         {
-            player.Inventory.Remove(SlotID);
-            Refresh();
+
+            player.DropItem(itemToDrop); //drops item
+            player.Inventory.Remove(SlotID); //removes item
+            Refresh(); //refreshes inventory
         }
         
     }

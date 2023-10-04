@@ -50,6 +50,8 @@ public class inventory
             if (count > 0) //at least 1 item to remove
             {
                 count--; //remove an item
+                Debug.Log("the count has gone down");
+                Debug.Log("the count is currently " + count);
 
                 if(count == 0)
                 {

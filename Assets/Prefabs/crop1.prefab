@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6482947833432172976}
   - component: {fileID: 6482947833432172978}
   - component: {fileID: 6482947833432172981}
+  - component: {fileID: -396150693842503098}
   m_Layer: 0
   m_Name: crop1
   m_TagString: CARROT_SEED
@@ -133,3 +134,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  icon: {fileID: 0}
+  rb2d: {fileID: 0}
+--- !u!50 &-396150693842503098
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482947833432172977}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 2
+  m_LinearDrag: 0.75
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
