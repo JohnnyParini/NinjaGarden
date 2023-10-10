@@ -9,6 +9,13 @@ public class collectable : MonoBehaviour
 
     public Sprite icon;
 
+    public Rigidbody2D rb2d;
+
+    private void Awake()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
+
     //player walks into collectable
     //add collectable to player
     //delete collectable
