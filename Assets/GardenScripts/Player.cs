@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     {
         Vector3 spawnLocation = transform.position; //the location of the player when the player drops the item
 
-        Vector3 spawnOffset = Random.insideUnitCircle * 10.25f; //so it doesn't spawn on the player, make an offset
+        Vector3 spawnOffset = Random.insideUnitCircle * 6.75f; //so it doesn't spawn on the player, make an offset
 
         collectable droppedItem = Instantiate(item, spawnLocation + spawnOffset, Quaternion.identity); //spawn at location + offset
 

@@ -117,6 +117,7 @@ public class inventory
 
     public void Remove(int index)
     {
+        Debug.Log("Calling Remove");
         slots[index].removeItem();
         Debug.Log("removing an item from " + index);
     }
