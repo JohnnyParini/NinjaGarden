@@ -16,9 +16,16 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        
-       //need to get the count variable from inventory and update it. 
-       //never mind, I fixed it
+        if (Input.GetKeyDown(KeyCode.Space)) //if space bar is pressed
+        {
+            Vector3Int position = new Vector3Int((int)transform.position.x, (int)transform.position.y, 0); //coverts the player position to an int, not a float. 
+
+            if (GameManager.instance.tileManager.IsInteractable(position))
+            {
+                Debug.Log("Tile is Interactable");
+                GameManager.instance.tileManager.SetInteracted(position); //set the tile to a plowed tile
+            }
+        }
     }
 
     public void DropItem(collectable item)
