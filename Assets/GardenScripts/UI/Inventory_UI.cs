@@ -25,7 +25,7 @@ public class Inventory_UI : MonoBehaviour
         }
     }
 
-    public void ToggleInventory()
+    public void ToggleInventory() //turns on and off the inventory
     {
         if (!inventoryPanel.activeSelf) //if inventory panel is turned off
         {
@@ -75,11 +75,13 @@ public class Inventory_UI : MonoBehaviour
 
     public void Remove(int SlotID)
     {
-        collectable itemToDrop = GameManager.instance.itemManager.GetItemByType(player.Inventory.slots[SlotID].type); //gets the type of the item we are removing
-        
+        Debug.Log("Inventory_UI remove has been called");
+        collectable itemToDrop = GameManager.instance.itemManager.GetItemByType(player.Inventory.slots[SlotID].type); //gets the type of the item we are removing (problem here, everything but the turnip is null)
+        //Debug.Log(itemToDrop.ToString()); //doesn't work
+         
         if(itemToDrop != null)
         {
-
+            Debug.Log("called item isn't null");
             player.DropItem(itemToDrop); //drops item
             player.Inventory.Remove(SlotID); //removes item
             Refresh(); //refreshes inventory

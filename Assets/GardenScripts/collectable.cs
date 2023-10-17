@@ -38,5 +38,5 @@ public class collectable : MonoBehaviour
 
 public enum CollectableType
 {
-    NONE, CARROT_SEED, TEST, TURNIP
+    NONE, CARROT_SEED, TEST, TURNIP, STRAWBERRY, MELON
 }

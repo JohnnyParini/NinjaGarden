@@ -7,26 +7,30 @@ using UnityEngine;
 [System.Serializable]
 public class inventory 
 {
-
+    
     [System.Serializable]
    public class Slot
     {
         public CollectableType type;
-        public int count;
+        public int numInSlot;
         public int maxAllowed;
 
+        public int check;
+
         public Sprite icon;
+
+        
 
         public Slot()
         {
             type = CollectableType.NONE;
-            count = 0;
+            numInSlot = 0;
             maxAllowed = 99; 
         }
 
         public bool canAddItem()
         {
-            if(count < maxAllowed)
+            if(numInSlot < maxAllowed)
             {
                 return true;
             }
@@ -38,25 +42,36 @@ public class inventory
 
         public void addItem(collectable item)
         {
-            //Debug.Log("This the the entered type " + type);
+            Debug.Log("This the the entered type " + type);
+            Debug.Log("This is the entered item " + item);
             this.type = item.type;
             this.icon = item.icon;
 
-            count++;
+            numInSlot++;
+            check++;
+            //Debug.Log("something has entered the inventory");
         }
 
         public void removeItem()
         {
-            if (count > 0) //at least 1 item to remove
+            Debug.Log("inventory removeItem has been called"); //THIS IS REALLY HUGE! I FOUND OUT THAT THIS REMOVEITEM FUNCTION ISN'T CALLED FOR THE MELON OR STRAWBERRY 
+            
+            if (numInSlot > 0)//at least 1 item to remove
             {
-                count--; //remove an item
-                Debug.Log("the count has gone down");
-                Debug.Log("the count is currently " + count);
+                
+                numInSlot--; //remove an item
+                check--;
+                Debug.Log("the numInSlot has gone down");
+                Debug.Log("the numInSlot is currently " + numInSlot);
+                //check = numInSlot;
+                Debug.Log("check = " + check);
 
-                if(count == 0)
+
+                if (numInSlot == 0) //if the number goes to 0
                 {
-                    icon = null;
-                    type = CollectableType.NONE;
+                    this.icon = null;
+                    this.type = CollectableType.NONE;
+                    Debug.Log("I hath set the icon to null");
                 }
             }
         }
@@ -77,14 +92,16 @@ public class inventory
 
     public void Add(collectable item)
     {
-        //Debug.Log("This is the type to add " + typeToAdd);
+        Debug.Log("This is the type to add " + item.type);
         foreach(Slot slot in slots)
         {
             if(slot.type == item.type && slot.canAddItem() || slot.type == CollectableType.NONE)
             {
                 if(slot.type == CollectableType.NONE){
                     slot.type = item.type;
-                    //Debug.Log("changing type");
+                    Debug.Log("changing type to "+ item.type);
+                    slot.icon = item.icon;
+                    Debug.Log("changing icon to " + item.icon); //THIS IS HUGE. I FOUND OUT THAT WHEN YOU PICK UP A DROPPED ITEM, THE TYPE IS NULL
                     if(slot.type != item.type)
                     {
                         Debug.Log("Something has gone wrong");
@@ -92,7 +109,7 @@ public class inventory
                     //Debug.Log("slot previous type = " + slot.type);
                 }
                 slot.addItem(item);
-                //Debug.Log("Slot final type = " + slot.type);
+                Debug.Log("Slot final type = " + slot.type);
                 return;
             }
         }
@@ -100,7 +117,9 @@ public class inventory
 
     public void Remove(int index)
     {
+        Debug.Log("Calling Remove");
         slots[index].removeItem();
+        Debug.Log("removing an item from " + index);
     }
 
 
