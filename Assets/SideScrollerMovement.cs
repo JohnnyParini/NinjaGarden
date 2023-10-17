@@ -12,6 +12,7 @@ public class SideScrollerMovement : MonoBehaviour
     private new Vector2 directionCheck;
     private Vector3 direction;
     public BoxCollider2D coll;
+    public Animator anim;
     [SerializeField] private LayerMask jumpableGround; 
     //[SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
@@ -28,6 +29,7 @@ public class SideScrollerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -48,6 +50,12 @@ public class SideScrollerMovement : MonoBehaviour
             rb.velocity = new Vector3(0, jumpForce, 0);
         }
 
+        if (Input.GetButtonDown("Attack"))
+        {
+            Debug.Log("ATTACKING RN");
+            anim.SetTrigger("Attack");
+        }
+
         
         //isGrounded = Physics2D.OverlapBox(groundCheck.position, new Vector2(0.7f, 0.09f), 0, jumpableGround);
        // isOnWall = Physics2D.OverlapBox(wallCheck.position, new Vector2(0.15f, 1.35f), 0, wallLayer);
@@ -61,6 +69,7 @@ public class SideScrollerMovement : MonoBehaviour
             //Debug.Log("flip false");
             spriteR.flipX = false;
             orientation = Vector2.right;
+            anim.SetBool("running", true);
         }
 
         else if (direction.x < 0)
@@ -68,6 +77,12 @@ public class SideScrollerMovement : MonoBehaviour
             //Debug.Log("flip true");
             spriteR.flipX = true;
             orientation = Vector2.left;
+            anim.SetBool("running", true);
+        }
+
+        else
+        {
+            anim.SetBool("running", false);
         }
 
         if (isGrounded)
@@ -77,7 +92,7 @@ public class SideScrollerMovement : MonoBehaviour
 
         if (IsTouchingWall() == true)
         {
-            Debug.Log(isOnWall + " WALL CHECK");
+           // Debug.Log(isOnWall + " WALL CHECK");
         }
         //Debug.Log(isGrounded + " GROUND CHECK");
         //Debug.Log(isOnWall + " WALL CHECK");
