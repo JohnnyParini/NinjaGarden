@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public GardenItemManager itemManager;
 
+    public TileManager tileManager;
+
     private void Awake()
     {
         if(instance != null && instance != this) //if an instance already exists
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this); //makes sure that it stays between scenes 
 
         itemManager = GetComponent<GardenItemManager>();
+        tileManager = GetComponent<TileManager>();
     }
 
     // Start is called before the first frame update

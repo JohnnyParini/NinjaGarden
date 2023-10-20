@@ -2,24 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+[RequireComponent (typeof(Item))]
 public class collectable : MonoBehaviour
-{
-
-    public CollectableType type;
-
-    public Sprite icon;
-
-    public Rigidbody2D rb2d;
-
-    private void Awake()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
-
+{ 
     //player walks into collectable
     //add collectable to player
     //delete collectable
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,16 +17,15 @@ public class collectable : MonoBehaviour
 
         if (player)
         {
-            
-            player.Inventory.Add(this); //adds the collectable
-            Destroy(this.gameObject);
+            Item item = GetComponent<Item>();
+
+            if (item != null)
+            {
+                player.Inventory.Add(item); //adds the collectable
+                Destroy(this.gameObject);
+            }
         }
     }
 
 }
 
-
-public enum CollectableType
-{
-    NONE, CARROT_SEED, TEST, TURNIP, STRAWBERRY, MELON
-}

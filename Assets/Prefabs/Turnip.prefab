@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6482947833432172978}
   - component: {fileID: 6482947833432172981}
   - component: {fileID: -396150693842503098}
+  - component: {fileID: 46993702945826970}
   m_Layer: 0
   m_Name: Turnip
   m_TagString: CARROT_SEED
@@ -133,9 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f175e52cfa404d4c913c73bf74ea465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
-  icon: {fileID: 2104513637, guid: ec07f2e4e3898aa4d846f7eb4961e9dd, type: 3}
-  rb2d: {fileID: 0}
 --- !u!50 &-396150693842503098
 Rigidbody2D:
   serializedVersion: 4
@@ -157,3 +155,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &46993702945826970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482947833432172977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a20ef068095252409f1b8d1ed5bc0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 3b7821e661ba8ae49a748cc2f558c2e3, type: 2}
+  rb2d: {fileID: 0}

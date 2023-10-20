@@ -8,7 +8,7 @@ public class swiitch : MonoBehaviour
     public GameObject[] background;
     int index;
 
-
+    //THIS IS THE REAL SLIDESHOW SCRIPT USE THIS SCRIPT TO EDIT THE SLIDESHOW CODING
 
     // Start is called before the first frame update
     void Start()

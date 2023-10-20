@@ -11,7 +11,7 @@ public class inventory
     [System.Serializable]
    public class Slot
     {
-        public CollectableType type;
+        public string itemName;
         public int numInSlot;
         public int maxAllowed;
 
@@ -23,7 +23,7 @@ public class inventory
 
         public Slot()
         {
-            type = CollectableType.NONE;
+            itemName = "";
             numInSlot = 0;
             maxAllowed = 99; 
         }
@@ -40,12 +40,12 @@ public class inventory
             }
         }
 
-        public void addItem(collectable item)
+        public void addItem(Item item)
         {
-            Debug.Log("This the the entered type " + type);
+            Debug.Log("This the the entered type " + itemName);
             Debug.Log("This is the entered item " + item);
-            this.type = item.type;
-            this.icon = item.icon;
+            this.itemName = item.data.itemName;
+            this.icon = item.data.icon;
 
             numInSlot++;
             check++;
@@ -70,7 +70,7 @@ public class inventory
                 if (numInSlot == 0) //if the number goes to 0
                 {
                     this.icon = null;
-                    this.type = CollectableType.NONE;
+                    this.itemName = "";
                     Debug.Log("I hath set the icon to null");
                 }
             }
@@ -90,29 +90,45 @@ public class inventory
     }
 
 
-    public void Add(collectable item)
+    public void Add(Item item)
     {
-        Debug.Log("This is the type to add " + item.type);
-        foreach(Slot slot in slots)
+        Debug.Log("This is the type to add " + item.data.itemName);
+        foreach (Slot slot in slots)
         {
-            if(slot.type == item.type && slot.canAddItem() || slot.type == CollectableType.NONE)
+            if (slot.itemName == item.data.itemName && slot.canAddItem()) //|| slot.itemName == "" potentially needed
             {
-                if(slot.type == CollectableType.NONE){
-                    slot.type = item.type;
-                    Debug.Log("changing type to "+ item.type);
-                    slot.icon = item.icon;
-                    Debug.Log("changing icon to " + item.icon); //THIS IS HUGE. I FOUND OUT THAT WHEN YOU PICK UP A DROPPED ITEM, THE TYPE IS NULL
-                    if(slot.type != item.type)
-                    {
-                        Debug.Log("Something has gone wrong");
-                    }
-                    //Debug.Log("slot previous type = " + slot.type);
-                }
+
                 slot.addItem(item);
-                Debug.Log("Slot final type = " + slot.type);
                 return;
+
             }
         }
+
+        foreach(Slot slot in slots)
+            {
+                if(slot.itemName == "")
+                {
+                    slot.addItem(item);
+                    return;
+                }
+            }
+                //maybe this below code isn't needed
+
+               // if(slot.itemName == CollectableType.NONE){
+                 //   slot.itemName = item.type;
+                   // Debug.Log("changing type to "+ item.type);
+                    //slot.icon = item.icon;
+                    //Debug.Log("changing icon to " + item.icon); //THIS IS HUGE. I FOUND OUT THAT WHEN YOU PICK UP A DROPPED ITEM, THE TYPE IS NULL
+                    //if(slot.itemName != item.type)
+                    //{
+                     //   Debug.Log("Something has gone wrong");
+                   // }
+                    //Debug.Log("slot previous type = " + slot.type);
+                //}
+                //slot.addItem(item);
+                //Debug.Log("Slot final type = " + slot.itemName);
+                //return;
+            //}   
     }
 
     public void Remove(int index)
