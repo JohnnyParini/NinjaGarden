@@ -23,6 +23,11 @@ public class SideScrollerMovement : MonoBehaviour
     private Vector2 orientation;
     public Transform groundCheck;
     public Transform wallCheck;
+    public Transform attackPoint;
+    public float attackRange;
+    public int attackDamage;
+    public LayerMask enemyLayer;
+    public float arOffset;
     
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,7 @@ public class SideScrollerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
     }
 
     // Update is called once per frame
@@ -54,6 +60,23 @@ public class SideScrollerMovement : MonoBehaviour
         {
             Debug.Log("ATTACKING RN");
             anim.SetTrigger("Attack");
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+            Debug.Log(hitEnemies.Length);
+           // Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
+            //for (int i = 0; i < hitEnemies.Length-1; i++)
+            // {
+            //Debug.Log(hitEnemies[0]);
+            //  }
+
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                
+                Debug.Log("We hit " + enemy.name);
+                enemy.GetComponent<EnemyHealth>().takeDamage(attackDamage);
+            }
+
+            
         }
 
         
@@ -69,6 +92,7 @@ public class SideScrollerMovement : MonoBehaviour
             //Debug.Log("flip false");
             spriteR.flipX = false;
             orientation = Vector2.right;
+            attackPoint.transform.position = new Vector3(this.transform.position.x+ arOffset, this.transform.position.y, 0);
             anim.SetBool("running", true);
         }
 
@@ -77,6 +101,7 @@ public class SideScrollerMovement : MonoBehaviour
             //Debug.Log("flip true");
             spriteR.flipX = true;
             orientation = Vector2.left;
+            attackPoint.transform.position = new Vector3(this.transform.position.x- arOffset, this.transform.position.y, 0);
             anim.SetBool("running", true);
         }
 
@@ -126,5 +151,22 @@ public class SideScrollerMovement : MonoBehaviour
         {
             isOnWall = false;
         }
+    }
+
+   /* private void OnDrawGizmosSelected()
+    {
+
+        if (attackPoint == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+   */
+
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
