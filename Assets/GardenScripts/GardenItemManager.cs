@@ -5,33 +5,36 @@ using UnityEngine;
 public class GardenItemManager : MonoBehaviour
 {
     
-    public collectable[] collectableItems; //MAKE SURE THAT THE ITEM YOU WANT TO PICK UP IS IN THE COLLECTABLE ITEMS TAB
+    public Item[] items; //MAKE SURE THAT THE ITEM YOU WANT TO PICK UP IS IN THE COLLECTABLE ITEMS TAB 
 
-    private Dictionary<CollectableType, collectable> collectableItemsDict = new Dictionary<CollectableType, collectable>(); //allows for the assosiation of Keys and Values
+    //NEW: make sure that the prefab takes the "itemData" in the inspector. this is not hard
+
+    private Dictionary<string, Item> nameToItemDict = new Dictionary<string, Item>(); //allows for the assosiation of Keys and Values
+    //matchs a string and an item
 
     private void Awake()
     {
-        foreach(collectable item in collectableItems)
+        foreach(Item item in items)
         {
             AddItem(item);
         }
     }
 
-    private void AddItem(collectable item)
+    private void AddItem(Item item)
     {
-        if (!collectableItemsDict.ContainsKey(item.type)) //if the dictionary doesn't have the key type
+        if (!nameToItemDict.ContainsKey(item.data.itemName)) //if the dictionary doesn't have the key type
         {
-            collectableItemsDict.Add(item.type, item); //add to the dictionary
+            nameToItemDict.Add(item.data.itemName, item); //add to the dictionary
         }
     }
 
-    public collectable GetItemByType(CollectableType type)
+    public Item GetItemByName(string key)
     {
-        Debug.Log("The called item type is " + type);
-        if (collectableItemsDict.ContainsKey(type)) //if true, it does contain this specific key
+        Debug.Log("The called item type is " + key);
+        if (nameToItemDict.ContainsKey(key)) //if true, it does contain this specific key
         {
             Debug.Log("the called type is in the dict");
-            return collectableItemsDict[type]; //return the type
+            return nameToItemDict[key]; //return the type
         }
         else
         {

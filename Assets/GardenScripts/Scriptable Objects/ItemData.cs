@@ -11,5 +11,6 @@ public class ItemData : ScriptableObject
 
     public Sprite icon; //will replace icon
 
+   
 
 }

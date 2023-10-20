@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2412226406823560831}
   - component: {fileID: 2412226406823560824}
   - component: {fileID: 144513884830291339}
+  - component: {fileID: 3543429570128511218}
   m_Layer: 0
   m_Name: Strawberry
   m_TagString: CARROT_SEED
@@ -133,9 +134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f175e52cfa404d4c913c73bf74ea465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
-  icon: {fileID: 1394869886, guid: ec07f2e4e3898aa4d846f7eb4961e9dd, type: 3}
-  rb2d: {fileID: 0}
 --- !u!50 &144513884830291339
 Rigidbody2D:
   serializedVersion: 4
@@ -157,3 +155,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &3543429570128511218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412226406823560828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a20ef068095252409f1b8d1ed5bc0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: ac9056e7bda38764883c9da8644b5978, type: 2}
+  rb2d: {fileID: 0}

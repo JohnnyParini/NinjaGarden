@@ -28,13 +28,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void DropItem(collectable item)
+    public void DropItem(Item item)
     {
         Vector3 spawnLocation = transform.position; //the location of the player when the player drops the item
 
         Vector3 spawnOffset = Random.insideUnitCircle * 6.75f; //so it doesn't spawn on the player, make an offset
 
-        collectable droppedItem = Instantiate(item, spawnLocation + spawnOffset, Quaternion.identity); //spawn at location + offset
+        Item droppedItem = Instantiate(item, spawnLocation + spawnOffset, Quaternion.identity); //spawn at location + offset
 
         droppedItem.rb2d.AddForce(spawnOffset * .8f, ForceMode2D.Impulse); //allows it to slide with instantananeous force
          

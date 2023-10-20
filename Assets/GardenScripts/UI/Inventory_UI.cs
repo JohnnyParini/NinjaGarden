@@ -52,8 +52,8 @@ public class Inventory_UI : MonoBehaviour
             for(int i = 0; i<slots.Count; i++)
             {
                 Debug.Log("iteration " + i);
-                Debug.Log("slot " + i + " type = " + player.Inventory.slots[i].type);
-                if(player.Inventory.slots[i].type != CollectableType.NONE) //if the slot isn't NONE
+                Debug.Log("slot " + i + " type = " + player.Inventory.slots[i].itemName);
+                if(player.Inventory.slots[i].itemName != "") //if the slot isn't an empty string
                     
                 {
                     slots[i].SetItem(player.Inventory.slots[i]);
@@ -76,7 +76,7 @@ public class Inventory_UI : MonoBehaviour
     public void Remove(int SlotID)
     {
         Debug.Log("Inventory_UI remove has been called");
-        collectable itemToDrop = GameManager.instance.itemManager.GetItemByType(player.Inventory.slots[SlotID].type); //gets the type of the item we are removing (problem here, everything but the turnip is null)
+        Item itemToDrop = GameManager.instance.itemManager.GetItemByName(player.Inventory.slots[SlotID].itemName); //gets the type of the item we are removing (problem here, everything but the turnip is null)
         //Debug.Log(itemToDrop.ToString()); //doesn't work
          
         if(itemToDrop != null)
