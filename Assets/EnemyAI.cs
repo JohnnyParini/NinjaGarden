@@ -80,7 +80,7 @@ public class Enimy_AI_1 : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        //walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, 0);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
@@ -109,10 +109,10 @@ public class Enimy_AI_1 : MonoBehaviour
             if (Physics.Raycast(attackPoint.transform.position, direction, out rayHit, range))
             {
 
-                Target target = rayHit.transform.GetComponent<Target>();
-                if (target != null)
+               EnemyHealth eHealth = rayHit.transform.GetComponent<EnemyHealth>();
+                if (eHealth != null)
                 {
-                    target.TakeDamage(damage);
+                    eHealth.takeDamage(damage);
                 }
             }
 
