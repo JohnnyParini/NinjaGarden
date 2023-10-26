@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SideScrollerMovement : MonoBehaviour
+public class SidePlayerMasterScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float jumpForce;
@@ -28,10 +28,14 @@ public class SideScrollerMovement : MonoBehaviour
     public int attackDamage;
     public LayerMask enemyLayer;
     public float arOffset;
+    public int maxHealth;
+    int currentHealth;
+    float knockback;
     
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
@@ -125,6 +129,8 @@ public class SideScrollerMovement : MonoBehaviour
     }
 
 
+    
+
     private void FixedUpdate()
     {
         this.transform.position += direction * speed * Time.deltaTime;
@@ -153,16 +159,38 @@ public class SideScrollerMovement : MonoBehaviour
         }
     }
 
-   /* private void OnDrawGizmosSelected()
+    public void takeDamage(int damage)
     {
-
-        if (attackPoint == null)
+        Debug.Log(damage);
+        Debug.Log(currentHealth);
+        currentHealth -= damage;
+        Debug.Log(currentHealth);
+        //rb.AddForce(new Vector2(5,0), ForceMode2D.Impulse);
+        if (currentHealth <= 0)
         {
-            return;
+            death();
         }
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-   */
+
+    void death()
+    {
+        Debug.Log("He be ded");
+
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+
+    }
+
+    /* private void OnDrawGizmosSelected()
+     {
+
+         if (attackPoint == null)
+         {
+             return;
+         }
+         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+     }
+    */
 
     void OnDrawGizmos()
     {
