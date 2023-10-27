@@ -9,6 +9,7 @@ public class Slot_UI : MonoBehaviour
     public Image itemIcon;
     public TextMeshProUGUI quantityText;
 
+    [SerializeField] private GameObject highlight;
     public void SetItem(inventory.Slot slot)
     {
         if(slot != null)
@@ -27,6 +28,11 @@ public class Slot_UI : MonoBehaviour
         itemIcon.color = new Color(1, 1, 1, 1); //invisible image
         Debug.Log("just set the color to white");
         quantityText.text = "0"; //don't want to display text, have nothing in the slot
+    }
+
+    public void SetHighlight(bool isOn)
+    {
+        highlight.SetActive(isOn);
     }
 
 }
