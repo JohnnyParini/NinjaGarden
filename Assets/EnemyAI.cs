@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour
    // public NavMeshAgent agent;
 
     public GameObject player;
+    public SidePlayerMasterScript playerLogic;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -36,6 +37,13 @@ public class EnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
+    /*
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+    */
+
+    public bool KnockFromRight;
 
     //States
     public float sightRange, attackRange;
@@ -45,8 +53,9 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerLogic = player.GetComponent<SidePlayerMasterScript>();
         //Physics2D.IgnoreLayerCollision(9, 10);
-       // agent = GetComponent<NavMeshAgent>();
+        // agent = GetComponent<NavMeshAgent>();
 
         //readyToShoot = true;
     }
@@ -58,12 +67,12 @@ public class EnemyAI : MonoBehaviour
             //Vector3.Distance(this.transform.position, player.transform.position);
         if (distance < 0)
         {
-            orientation = 1;//run left
+            orientation = 1;//run right
         }
 
         else if (distance > 0)
         {
-            orientation = -1; //run right
+            orientation = -1; //run left
         }
 
         direction = new Vector2(orientation, this.transform.position.y);
@@ -139,7 +148,18 @@ public class EnemyAI : MonoBehaviour
         {
             //Attack code here
             //Debug.Log("We hit " + player.name);
-            player.GetComponent<SidePlayerMasterScript>().takeDamage(damage);
+            playerLogic.KBCounter = playerLogic.KBTotalTime;
+            if (orientation == 1)
+            {
+                playerLogic.KnockFromRight = true;
+            }
+            else if(orientation == -1)
+            {
+                playerLogic.KnockFromRight = false;
+            }
+            playerLogic.takeDamage(damage);
+            
+            
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
