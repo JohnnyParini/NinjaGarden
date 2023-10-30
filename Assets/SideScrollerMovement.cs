@@ -29,6 +29,7 @@ public class SideScrollerMovement : MonoBehaviour
     public LayerMask enemyLayer;
     public float arOffset;
     
+    
     // Start is called before the first frame update
     void Start()
     {
