@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour
    // public NavMeshAgent agent;
 
     public GameObject player;
+    public SidePlayerMasterScript playerLogic;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -36,16 +37,25 @@ public class EnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
+    /*
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+    */
+
+    public bool KnockFromRight;
 
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public bool dummy;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerLogic = player.GetComponent<SidePlayerMasterScript>();
         //Physics2D.IgnoreLayerCollision(9, 10);
-       // agent = GetComponent<NavMeshAgent>();
+        // agent = GetComponent<NavMeshAgent>();
 
         //readyToShoot = true;
     }
@@ -57,31 +67,38 @@ public class EnemyAI : MonoBehaviour
             //Vector3.Distance(this.transform.position, player.transform.position);
         if (distance < 0)
         {
-            orientation = 1;//run left
+            orientation = 1;//run right
         }
 
         else if (distance > 0)
         {
-            orientation = -1; //run right
+            orientation = -1; //run left
         }
 
         direction = new Vector2(orientation, this.transform.position.y);
         //Debug.Log("WHY ARE YOU DOING THIS SDF; IOVEMMTEWIT EWEIVMMRMVRTVRTIRVTIREIEMVEVEUITUIPEIUEWTIU");
         //Check for sight and attack range
         //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        Collider2D[] playerRange = Physics2D.OverlapCircleAll(detectOrigin.position, attackRange, whatIsPlayer);
+        if (dummy == false)
+        {
+            Collider2D[] playerRange = Physics2D.OverlapCircleAll(detectOrigin.position, attackRange, whatIsPlayer);
+
+            foreach (Collider2D player in playerRange)
+            {
+                AttackPlayer();
+            }
+
+            ChasePlayer();
+        }
+        
         //Debug.Log(playerRange.Length);
 
-        foreach (Collider2D player in playerRange)
-        {
-            AttackPlayer();
-        }
+        
 
         
 
        // if (!playerInSightRange && !playerInAttackRange) Patroling();
-
-        ChasePlayer();
+       
 
         //if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
@@ -131,7 +148,18 @@ public class EnemyAI : MonoBehaviour
         {
             //Attack code here
             //Debug.Log("We hit " + player.name);
-            player.GetComponent<SidePlayerMasterScript>().takeDamage(damage);
+            playerLogic.KBCounter = playerLogic.KBTotalTime;
+            if (orientation == 1)
+            {
+                playerLogic.KnockFromRight = true;
+            }
+            else if(orientation == -1)
+            {
+                playerLogic.KnockFromRight = false;
+            }
+            playerLogic.takeDamage(damage);
+            
+            
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -144,7 +172,11 @@ public class EnemyAI : MonoBehaviour
     void OnDrawGizmos()
     {
         // Draw a yellow sphere at the transform's position
-        Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
+        if (dummy == false)
+        {
+            Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
+        }
+        
     }
 
 

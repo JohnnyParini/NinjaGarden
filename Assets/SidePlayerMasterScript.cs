@@ -9,12 +9,13 @@ public class SidePlayerMasterScript : MonoBehaviour
     public float speed;
     private float horizontal;
     private float vertical;
-    //private new Vector2 directionCheck;
+    
     private Vector3 direction;
     public BoxCollider2D coll;
     public Animator anim;
+
     [SerializeField] private LayerMask jumpableGround; 
-    //[SerializeField] private Transform wallCheck;
+    
     [SerializeField] private LayerMask wallLayer;
     public SpriteRenderer spriteR;
     private bool isGrounded;
@@ -30,8 +31,13 @@ public class SidePlayerMasterScript : MonoBehaviour
     public float arOffset;
     public int maxHealth;
     int currentHealth;
-    float knockback;
-    
+
+    //knockback variables
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+    public bool KnockFromRight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -133,7 +139,25 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.transform.position += direction * speed * Time.deltaTime;
+        if (KBCounter <= 0)
+        {
+            this.transform.position += direction * speed * Time.deltaTime;
+        }
+
+        else
+        {
+            if (KnockFromRight == true)
+            {
+                rb.velocity = new Vector2(KBForce, 1);   
+            }
+            if (KnockFromRight == false)
+            {
+                rb.velocity = new Vector2(-KBForce, 1);
+            }
+
+            KBCounter -= Time.deltaTime;
+        }
+        
     }
 
     private bool IsGrounded()
