@@ -40,6 +40,7 @@ public class EnemyAI : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public bool dummy;
 
     private void Awake()
     {
@@ -69,19 +70,26 @@ public class EnemyAI : MonoBehaviour
         //Debug.Log("WHY ARE YOU DOING THIS SDF; IOVEMMTEWIT EWEIVMMRMVRTVRTIRVTIREIEMVEVEUITUIPEIUEWTIU");
         //Check for sight and attack range
         //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        Collider2D[] playerRange = Physics2D.OverlapCircleAll(detectOrigin.position, attackRange, whatIsPlayer);
+        if (dummy == false)
+        {
+            Collider2D[] playerRange = Physics2D.OverlapCircleAll(detectOrigin.position, attackRange, whatIsPlayer);
+
+            foreach (Collider2D player in playerRange)
+            {
+                AttackPlayer();
+            }
+
+            ChasePlayer();
+        }
+        
         //Debug.Log(playerRange.Length);
 
-        foreach (Collider2D player in playerRange)
-        {
-            AttackPlayer();
-        }
+        
 
         
 
        // if (!playerInSightRange && !playerInAttackRange) Patroling();
-
-        ChasePlayer();
+       
 
         //if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
@@ -144,7 +152,11 @@ public class EnemyAI : MonoBehaviour
     void OnDrawGizmos()
     {
         // Draw a yellow sphere at the transform's position
-        Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
+        if (dummy == false)
+        {
+            Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
+        }
+        
     }
 
 
