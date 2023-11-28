@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory_UI : MonoBehaviour
 {
@@ -12,6 +14,18 @@ public class Inventory_UI : MonoBehaviour
     public Animator animate;
 
     public List<Slot_UI> slots = new List<Slot_UI>();
+
+    [SerializeField] private Canvas canvas;
+
+    private Slot_UI draggedSlot;
+    private Image draggedIcon;
+
+   
+    private void Awake()
+    {
+        canvas = FindObjectOfType<Canvas>();
+    }
+
     void Start()
     {
         ToggleInventory();
@@ -91,4 +105,49 @@ public class Inventory_UI : MonoBehaviour
     }
 
 
+    public void SlotBeginDrag(Slot_UI slot)
+    {
+        draggedSlot = slot;
+        draggedIcon = Instantiate(draggedSlot.itemIcon);    
+        draggedIcon.transform.SetParent(canvas.transform); //makes the icon a child of the canvas so that it shows up properly
+        draggedIcon.raycastTarget = false; //so that it doesn't interfere with drag and drop
+        draggedIcon.rectTransform.sizeDelta = new Vector2(50,50);
+       //need to scale down the icon size to .1 here REMEMBER THIS!!!!!!
+
+        MoveToMousePosition(draggedIcon.gameObject);
+        Debug.Log("Start Drag: " + draggedSlot.name);
+    }
+
+    public void SlotDrag()
+    {
+        MoveToMousePosition(draggedIcon.gameObject);
+        Debug.Log("Dragging: " + draggedSlot.name);
+    }
+
+    public void SlotEndDrag()
+    {
+        Debug.Log("Done Dragging: " + draggedSlot.name);
+    }
+
+    public void SlotDrop(Slot_UI slot)
+    {
+        Debug.Log("Dropping:" + draggedSlot.name + " on " + slot.name); //drags draggedSlot onto Slot
+    }
+
+    private void MoveToMousePosition(GameObject toMove)
+    {
+        if(canvas != null)
+        {
+            Vector2 position;
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, null, out position); //null is the camera
+
+            toMove.transform.position = canvas.transform.TransformPoint(position); //moves the icon to mouse position
+
+           
+        }
+    }
+
+  
 }
+
