@@ -5,13 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public inventory Inventory;
-    
-   
+
+    public inventory toolbar;
 
     private void Awake()
     {
         Inventory = new inventory(32);
-     
+
+        toolbar = new inventory(9);
     }
 
     public void Update()
@@ -32,12 +33,20 @@ public class Player : MonoBehaviour
     {
         Vector3 spawnLocation = transform.position; //the location of the player when the player drops the item
 
-        Vector3 spawnOffset = Random.insideUnitCircle * 6.75f; //so it doesn't spawn on the player, make an offset
+        Vector3 spawnOffset = Random.insideUnitCircle * 5.75f; //so it doesn't spawn on the player, make an offset
 
         Item droppedItem = Instantiate(item, spawnLocation + spawnOffset, Quaternion.identity); //spawn at location + offset
 
         droppedItem.rb2d.AddForce(spawnOffset * .8f, ForceMode2D.Impulse); //allows it to slide with instantananeous force
          
+    }
+    public void DropItem(Item item, int NumToDrop)
+    {
+       for(int i = 0; i < NumToDrop; i++)
+        {
+            DropItem(item);
+        }
+
     }
 
 }

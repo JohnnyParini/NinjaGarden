@@ -86,6 +86,7 @@ public class inventory
         {
             Slot slot = new Slot();
             slots.Add(slot);
+            
         }
     }
 
@@ -137,6 +138,15 @@ public class inventory
         slots[index].removeItem();
         Debug.Log("removing an item from " + index);
     }
-
+    public void Remove(int index, int NumToRemove)
+    {
+        if(slots[index].numInSlot >= NumToRemove)
+        {
+            for(int i =0; i< NumToRemove; i++)
+            {
+                Remove(index);
+            }
+        }
+    }
 
 }

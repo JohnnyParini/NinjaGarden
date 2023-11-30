@@ -15,11 +15,12 @@ public class Inventory_UI : MonoBehaviour
 
     public List<Slot_UI> slots = new List<Slot_UI>();
 
-    [SerializeField] private Canvas canvas;
+    private Canvas canvas;
 
     private Slot_UI draggedSlot;
     private Image draggedIcon;
 
+    private bool dragAll;
    
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class Inventory_UI : MonoBehaviour
     void Start()
     {
         ToggleInventory();
+        Refresh();
     }
 
     void Update()
@@ -37,22 +39,38 @@ public class Inventory_UI : MonoBehaviour
         {
             ToggleInventory();
         }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            dragAll = true;
+           
+        }
+        else
+        {
+            dragAll = false;
+           
+        }
     }
 
     public void ToggleInventory() //turns on and off the inventory
     {
-        if (!inventoryPanel.activeSelf) //if inventory panel is turned off
+        if (inventoryPanel != null) //MAKE SURE TO LEAVE THE INVENTORY PANEL NULL FOR THE TOOLBAR //makes sure only the actual inventory toggles
         {
-            inventoryPanel.SetActive(true); //toggle it on
-            player.GetComponent<Movement>().enabled = false; //Disables movement 
-            animate.SetBool("isMoving", false);
-            Refresh();    
-        }
-        else //if inventory panel is turned on
-        {
-            inventoryPanel.SetActive(false); //toggle it off
-            player.GetComponent<Movement>().enabled = true; //enables movement
-            //move.animator.SetBool("isMoving", true);
+
+
+
+            if (!inventoryPanel.activeSelf) //if inventory panel is turned off
+            {
+                inventoryPanel.SetActive(true); //toggle it on
+                player.GetComponent<Movement>().enabled = false; //Disables movement 
+                animate.SetBool("isMoving", false);
+                Refresh();
+            }
+            else //if inventory panel is turned on
+            {
+                inventoryPanel.SetActive(false); //toggle it off
+                player.GetComponent<Movement>().enabled = true; //enables movement
+                                                                //move.animator.SetBool("isMoving", true);
+            }
         }
     }
 
@@ -82,37 +100,61 @@ public class Inventory_UI : MonoBehaviour
 
             }
         }
-        else
+        else if(slots.Count == player.toolbar.slots.Count)
         {
-            Debug.Log("Your code sucks idiot");
+            for(int i = 0; i<slots.Count; i++)
+            {
+                if(player.toolbar.slots[i].itemName != "")
+                {
+                    slots[i].SetItem(player.toolbar.slots[i]);
+                }
+                else
+                {
+                    slots[i].SetEmpty();
+                }
+            }
         }
     }
 
-    public void Remove(int SlotID)
+    public void Remove()
     {
         Debug.Log("Inventory_UI remove has been called");
-        Item itemToDrop = GameManager.instance.itemManager.GetItemByName(player.Inventory.slots[SlotID].itemName); //gets the type of the item we are removing (problem here, everything but the turnip is null)
+        Item itemToDrop = GameManager.instance.itemManager.GetItemByName(player.Inventory.slots[draggedSlot.SlotID].itemName); //gets the type of the item we are removing (problem here, everything but the turnip is null)
         //Debug.Log(itemToDrop.ToString()); //doesn't work
          
         if(itemToDrop != null)
         {
             Debug.Log("called item isn't null");
-            player.DropItem(itemToDrop); //drops item
-            player.Inventory.Remove(SlotID); //removes item
+            if (dragAll == true)
+            {
+                player.DropItem(itemToDrop, player.Inventory.slots[draggedSlot.SlotID].numInSlot); //drops all items
+                player.Inventory.Remove(draggedSlot.SlotID, player.Inventory.slots[draggedSlot.SlotID].numInSlot); //removes all items
+            }
+            else
+            {
+                player.DropItem(itemToDrop); //drops a single item
+                player.Inventory.Remove(draggedSlot.SlotID); //removes a single item
+            }
+            
             Refresh(); //refreshes inventory
         }
-        
+        draggedSlot = null;
+
     }
 
 
     public void SlotBeginDrag(Slot_UI slot)
     {
+        //get slotID somewhere here
+
         draggedSlot = slot;
-        draggedIcon = Instantiate(draggedSlot.itemIcon);    
-        draggedIcon.transform.SetParent(canvas.transform); //makes the icon a child of the canvas so that it shows up properly
+        draggedIcon = Instantiate(draggedSlot.itemIcon);
         draggedIcon.raycastTarget = false; //so that it doesn't interfere with drag and drop
-        draggedIcon.rectTransform.sizeDelta = new Vector2(50,50);
-       //need to scale down the icon size to .1 here REMEMBER THIS!!!!!!
+
+        draggedIcon.rectTransform.sizeDelta = new Vector2(50f, 50f);
+        draggedIcon.transform.SetParent(canvas.transform); //makes the icon a child of the canvas so that it shows up properly
+       
+       
 
         MoveToMousePosition(draggedIcon.gameObject);
         Debug.Log("Start Drag: " + draggedSlot.name);
@@ -126,7 +168,11 @@ public class Inventory_UI : MonoBehaviour
 
     public void SlotEndDrag()
     {
-        Debug.Log("Done Dragging: " + draggedSlot.name);
+        Destroy(draggedIcon.gameObject);
+        draggedIcon = null;
+
+
+        //Debug.Log("Done Dragging: " + draggedSlot.name);
     }
 
     public void SlotDrop(Slot_UI slot)
