@@ -6,8 +6,9 @@ using TMPro;
 
 public class Slot_UI : MonoBehaviour
 {
-
     public int SlotID;
+    public inventory Inventory;
+
     public Image itemIcon;
     public TextMeshProUGUI quantityText;
 

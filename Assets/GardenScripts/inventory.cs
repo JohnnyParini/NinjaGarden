@@ -28,9 +28,23 @@ public class inventory
             maxAllowed = 99; 
         }
 
-        public bool canAddItem()
+        public bool isEmpty()
         {
-            if(numInSlot < maxAllowed)
+                //get?
+                if(itemName == "" && numInSlot == 0)
+                {
+                Debug.Log("isEmpty is true");
+                    return true;
+                }
+            Debug.Log("isEmpty is false");
+                return false;
+            
+        }
+
+        public bool canAddItem(string itemName)
+        {
+
+            if(this.itemName == itemName && numInSlot < maxAllowed)
             {
                 return true;
             }
@@ -50,6 +64,14 @@ public class inventory
             numInSlot++;
             check++;
             //Debug.Log("something has entered the inventory");
+        }
+
+        public void addItem(string itemName, Sprite icon, int maxAllowed)
+        {
+            this.itemName = itemName;
+            this.icon = icon;
+            numInSlot++;
+            this.maxAllowed = maxAllowed;
         }
 
         public void removeItem()
@@ -96,7 +118,7 @@ public class inventory
         Debug.Log("This is the type to add " + item.data.itemName);
         foreach (Slot slot in slots)
         {
-            if (slot.itemName == item.data.itemName && slot.canAddItem()) //|| slot.itemName == "" potentially needed
+            if (slot.itemName == item.data.itemName && slot.canAddItem(item.data.itemName)) //|| slot.itemName == "" potentially needed
             {
 
                 slot.addItem(item);
@@ -147,6 +169,19 @@ public class inventory
                 Remove(index);
             }
         }
+    }
+
+    public void MoveSlot(int fromIndex, int toIndex, inventory toInventory)
+    {
+        Slot fromSlot = slots[fromIndex];
+        Slot toSlot = toInventory.slots[toIndex];
+
+        if (toSlot.isEmpty() || toSlot.canAddItem(fromSlot.itemName)); 
+        {
+            toSlot.addItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
+            fromSlot.removeItem(); //takes the item away from the old slot, and gives it to the new slot
+        }
+
     }
 
 }

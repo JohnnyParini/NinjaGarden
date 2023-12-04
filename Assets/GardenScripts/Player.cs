@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public inventory Inventory;
 
-    public inventory toolbar;
 
+    public InventoryManager inventory;
+
+
+    
     private void Awake()
     {
-        Inventory = new inventory(32);
-
-        toolbar = new inventory(9);
+        inventory = GetComponent<InventoryManager>();
     }
 
     public void Update()

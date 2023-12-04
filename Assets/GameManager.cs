@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
 
     public TileManager tileManager;
 
+    public Player player;
+
+    public UI_Manager uiManager;
+
     private void Awake()
     {
         if(instance != null && instance != this) //if an instance already exists
@@ -26,6 +30,10 @@ public class GameManager : MonoBehaviour
 
         itemManager = GetComponent<GardenItemManager>();
         tileManager = GetComponent<TileManager>();
+        uiManager = GetComponent<UI_Manager>();
+
+        player = FindObjectOfType<Player>();
+
     }
 
     // Start is called before the first frame update

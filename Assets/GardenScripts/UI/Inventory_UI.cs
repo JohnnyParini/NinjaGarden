@@ -8,7 +8,9 @@ public class Inventory_UI : MonoBehaviour
 {
     public GameObject inventoryPanel;
 
-    public Player player;
+    public GameObject player;
+    public string inventoryName;
+
     public Movement move;
 
     public Animator animate;
@@ -21,6 +23,8 @@ public class Inventory_UI : MonoBehaviour
     private Image draggedIcon;
 
     private bool dragAll;
+
+    private inventory Inventory;
    
     private void Awake()
     {
@@ -29,6 +33,8 @@ public class Inventory_UI : MonoBehaviour
 
     void Start()
     {
+        Inventory = GameManager.instance.player.inventory.GetInventoryByName(inventoryName);
+        SetUpSlots();
         ToggleInventory();
         Refresh();
     }
@@ -76,19 +82,19 @@ public class Inventory_UI : MonoBehaviour
 
     public void Refresh()
     {
-        Debug.Log(player.Inventory.slots.Count + "player slots");
+        Debug.Log(Inventory.slots.Count + "player slots");
         Debug.Log(slots.Count + "Slots");
-        if(slots.Count == player.Inventory.slots.Count) //if the player and the slots have the same number
+        if(slots.Count == Inventory.slots.Count) //if the player and the slots have the same number
         {
             //Debug.Log("TRUE TRUE TRUE");
             for(int i = 0; i<slots.Count; i++)
             {
-                Debug.Log("iteration " + i + " of" + player.Inventory.slots.Count);
-                Debug.Log("slot " + i + " type = " + player.Inventory.slots[i].itemName);
-                if(player.Inventory.slots[i].itemName != "") //if the slot isn't an empty string
+                Debug.Log("iteration " + i + " of" + Inventory.slots.Count);
+                Debug.Log("slot " + i + " type = " + Inventory.slots[i].itemName);
+                if(Inventory.slots[i].itemName != "") //if the slot isn't an empty string
                     
                 {
-                    slots[i].SetItem(player.Inventory.slots[i]);
+                    slots[i].SetItem(Inventory.slots[i]);
                     Debug.Log("Slot " + i + " is occupied");
                 }
                 else
@@ -100,26 +106,13 @@ public class Inventory_UI : MonoBehaviour
 
             }
         }
-        else if(slots.Count == player.toolbar.slots.Count)
-        {
-            for(int i = 0; i<slots.Count; i++)
-            {
-                if(player.toolbar.slots[i].itemName != "")
-                {
-                    slots[i].SetItem(player.toolbar.slots[i]);
-                }
-                else
-                {
-                    slots[i].SetEmpty();
-                }
-            }
-        }
+      
     }
 
     public void Remove()
     {
         Debug.Log("Inventory_UI remove has been called");
-        Item itemToDrop = GameManager.instance.itemManager.GetItemByName(player.Inventory.slots[draggedSlot.SlotID].itemName); //gets the type of the item we are removing (problem here, everything but the turnip is null)
+        Item itemToDrop = GameManager.instance.itemManager.GetItemByName(Inventory.slots[draggedSlot.SlotID].itemName); //gets the type of the item we are removing (problem here, everything but the turnip is null)
         //Debug.Log(itemToDrop.ToString()); //doesn't work
          
         if(itemToDrop != null)
@@ -127,13 +120,13 @@ public class Inventory_UI : MonoBehaviour
             Debug.Log("called item isn't null");
             if (dragAll == true)
             {
-                player.DropItem(itemToDrop, player.Inventory.slots[draggedSlot.SlotID].numInSlot); //drops all items
-                player.Inventory.Remove(draggedSlot.SlotID, player.Inventory.slots[draggedSlot.SlotID].numInSlot); //removes all items
+                GameManager.instance.player.DropItem(itemToDrop, Inventory.slots[draggedSlot.SlotID].numInSlot); //drops all items
+                Inventory.Remove(draggedSlot.SlotID, Inventory.slots[draggedSlot.SlotID].numInSlot); //removes all items
             }
             else
             {
-                player.DropItem(itemToDrop); //drops a single item
-                player.Inventory.Remove(draggedSlot.SlotID); //removes a single item
+                GameManager.instance.player.DropItem(itemToDrop); //drops a single item
+                Inventory.Remove(draggedSlot.SlotID); //removes a single item
             }
             
             Refresh(); //refreshes inventory
@@ -146,8 +139,8 @@ public class Inventory_UI : MonoBehaviour
     public void SlotBeginDrag(Slot_UI slot)
     {
         //get slotID somewhere here
-
-        draggedSlot = slot;
+        UI_Manager.draggedSlot = slot;
+        
         draggedIcon = Instantiate(draggedSlot.itemIcon);
         draggedIcon.raycastTarget = false; //so that it doesn't interfere with drag and drop
 
@@ -177,7 +170,9 @@ public class Inventory_UI : MonoBehaviour
 
     public void SlotDrop(Slot_UI slot)
     {
-        Debug.Log("Dropping:" + draggedSlot.name + " on " + slot.name); //drags draggedSlot onto Slot
+        //Debug.Log("Dropping:" + draggedSlot.name + " on " + slot.name); //drags draggedSlot onto Slot
+        draggedSlot.Inventory.MoveSlot(draggedSlot.SlotID, slot.SlotID, slot.Inventory);
+        Refresh();
     }
 
     private void MoveToMousePosition(GameObject toMove)
@@ -191,6 +186,17 @@ public class Inventory_UI : MonoBehaviour
             toMove.transform.position = canvas.transform.TransformPoint(position); //moves the icon to mouse position
 
            
+        }
+    }
+
+    private void SetUpSlots() //automatically sets the slotID so I dont need to manually do it
+    {
+        int counter = 0;
+        foreach(Slot_UI slot in slots)
+        {
+            slot.SlotID = counter;
+            counter++;
+            slot.Inventory = Inventory;
         }
     }
 
