@@ -48,10 +48,10 @@ public class Inventory_UI : MonoBehaviour
         Debug.Log(slots.Count + "Slots");
         if(slots.Count == player.Inventory.slots.Count) //if the player and the slots have the same number
         {
-            Debug.Log("TRUE TRUE TRUE");
+            //Debug.Log("TRUE TRUE TRUE");
             for(int i = 0; i<slots.Count; i++)
             {
-                Debug.Log("iteration " + i);
+                Debug.Log("iteration " + i + " of" + player.Inventory.slots.Count);
                 Debug.Log("slot " + i + " type = " + player.Inventory.slots[i].itemName);
                 if(player.Inventory.slots[i].itemName != "") //if the slot isn't an empty string
                     
@@ -61,6 +61,7 @@ public class Inventory_UI : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("Slot " + i + " is already empty");
                     slots[i].SetEmpty();
                     Debug.Log("Setting empty slot " + i);
                 }

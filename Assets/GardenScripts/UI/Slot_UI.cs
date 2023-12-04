@@ -15,7 +15,7 @@ public class Slot_UI : MonoBehaviour
         if(slot != null)
         {
             itemIcon.sprite = slot.icon;
-            //itemIcon.color = new Color(1, 1, 1, 250);
+            //itemIcon.color = new Color(1, 1, 1, 1);
             quantityText.text = slot.numInSlot.ToString();
             Debug.Log("the Slot_UI count variable is " + slot.numInSlot);
         }
@@ -25,7 +25,7 @@ public class Slot_UI : MonoBehaviour
     {
         Debug.Log("SETTING EMPTY EMPTY EMPTY EMPTY EMPTY");
         itemIcon.sprite = null; //display white square
-        itemIcon.color = new Color(1, 1, 1, 1); //invisible image
+        //itemIcon.color = new Color(1, 1, 1, 1); //invisible image
         Debug.Log("just set the color to white");
         quantityText.text = "0"; //don't want to display text, have nothing in the slot
     }
