@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SidePlayerMasterScript : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public float jumpForce;
     public float speed;
     private float horizontal;
@@ -31,16 +31,21 @@ public class SidePlayerMasterScript : MonoBehaviour
     public float arOffset;
     public int maxHealth;
     int currentHealth;
+    
 
     //knockback variables
-    public float KBForce;
+    //public float KBForce;
     public float KBCounter;
-    public float KBTotalTime;
+    public float KBTotalTime; //don't delete this. important in enemy ai script
     public bool KnockFromRight;
+    public bool invincible;
+    public int whatIsPlayer = 9;
+    public int enemies = 10;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
@@ -142,19 +147,11 @@ public class SidePlayerMasterScript : MonoBehaviour
         if (KBCounter <= 0)
         {
             this.transform.position += direction * speed * Time.deltaTime;
+            Vulnerable();
         }
-
         else
         {
-            if (KnockFromRight == true)
-            {
-                rb.velocity = new Vector2(KBForce, 1);   
-            }
-            if (KnockFromRight == false)
-            {
-                rb.velocity = new Vector2(-KBForce, 1);
-            }
-
+            Invincible();
             KBCounter -= Time.deltaTime;
         }
         
@@ -185,9 +182,14 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     public void takeDamage(int damage)
     {
+        
         Debug.Log(damage);
         Debug.Log(currentHealth);
-        currentHealth -= damage;
+        if (invincible == false)
+        {
+            currentHealth -= damage;
+        }
+        
         Debug.Log(currentHealth);
         //rb.AddForce(new Vector2(5,0), ForceMode2D.Impulse);
         if (currentHealth <= 0)
@@ -196,9 +198,21 @@ public class SidePlayerMasterScript : MonoBehaviour
         }
     }
 
+    public void Invincible()
+    {
+        invincible = true;
+        Physics2D.IgnoreLayerCollision(whatIsPlayer, enemies, true);
+    }
+
+    public void Vulnerable()
+    {
+        invincible = false;
+        Physics2D.IgnoreLayerCollision(whatIsPlayer, enemies, true);
+    }
+
     void death()
     {
-        Debug.Log("He be ded");
+        Debug.Log("ded");
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;

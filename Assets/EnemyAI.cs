@@ -13,8 +13,7 @@ public class EnemyAI : MonoBehaviour
     //public float health;
     //gun related variables begin here
     public int damage;
-    public float timeBetweenShooting, spread, range, timeBetweenShots;
-    public int bulletsPerTap;
+  
 
     //bool shooting, readyToShoot;
 
@@ -31,6 +30,18 @@ public class EnemyAI : MonoBehaviour
     public Vector3 direction;
     public float orientation;
     public float speed;
+    public bool accelerate;
+    public float acceleration;
+    public float deceleration;
+    public float baseSpeed;
+    public float chargeDistance;
+    public float chargeDisplacement;
+    public float maxSpeed;
+    public Vector3 chargeDir;
+    public bool firstDetect;
+    public bool charge;
+    public float chargePDistance;
+
     public Transform detectOrigin;
 
     //Attacking
@@ -44,6 +55,8 @@ public class EnemyAI : MonoBehaviour
     */
 
     public bool KnockFromRight;
+    public float KBHForce;
+    public float KBVForce;
 
     //States
     public float sightRange, attackRange;
@@ -52,6 +65,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
+        firstDetect = true;
+        baseSpeed = speed;
         player = GameObject.FindGameObjectWithTag("Player");
         playerLogic = player.GetComponent<SidePlayerMasterScript>();
         //Physics2D.IgnoreLayerCollision(9, 10);
@@ -63,6 +78,8 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         float distance = this.transform.position.x - player.transform.position.x;
+        //Debug.Log(Mathf.Abs(distance) + "ORIGINAL DISTANCE CALC");
+
 
             //Vector3.Distance(this.transform.position, player.transform.position);
         if (distance < 0)
@@ -76,6 +93,22 @@ public class EnemyAI : MonoBehaviour
         }
 
         direction = new Vector2(orientation, this.transform.position.y);
+
+        if (Mathf.Abs(distance) <= 20)
+        {
+            charge = true;
+            //Debug.Log("ITS IN HERE");
+
+            if (firstDetect)
+            {
+                //Debug.Log("Player in charge range");
+                chargeDir = new Vector2(orientation, this.transform.position.y);
+                chargeDisplacement = 0;
+                
+            }
+            
+            ChargePlayer();
+        }
         //Debug.Log("WHY ARE YOU DOING THIS SDF; IOVEMMTEWIT EWEIVMMRMVRTVRTIRVTIREIEMVEVEUITUIPEIUEWTIU");
         //Check for sight and attack range
         //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -87,58 +120,58 @@ public class EnemyAI : MonoBehaviour
             {
                 AttackPlayer();
             }
-
-            ChasePlayer();
+            if (charge == false)
+            {
+                ChasePlayer();
+            }
+            
         }
-        
-        //Debug.Log(playerRange.Length);
-
-        
-
-        
-
-       // if (!playerInSightRange && !playerInAttackRange) Patroling();
        
-
-        //if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
     
-    /*
-    private void Patroling()
-    {
-        if (!walkPointSet) SearchWalkPoint();
-
-        
-        if (walkPointSet)
-            agent.SetDestination(walkPoint);
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
-        
-    }
-    
-    private void SearchWalkPoint()
-    {
-        //Calculate random point in range
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        //walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, 0);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
-    }
-    */
     private void ChasePlayer()
     {
-       
         this.transform.position += direction * speed * Time.deltaTime;
-        
+        Debug.Log("LOOOOOOOOOOOOOOOOOL");
+    }
 
+    private void ChargePlayer()
+    {
+        chargePDistance = Mathf.Abs(this.transform.position.x - player.transform.position.x);
+        
+        
+       // Debug.Log(speed);
+        Debug.Log(Mathf.Abs(chargeDisplacement) + "DISTANCE HERE");
+        if (Mathf.Abs(chargeDisplacement) <= chargeDistance && speed <= maxSpeed)
+        {
+            Debug.Log("NOW ACCELERATING: " + speed);
+            speed += acceleration;
+        }
+        else if (Mathf.Abs(chargeDisplacement) >= chargeDistance && speed > 0)
+        {
+            Debug.Log("NOW DECELERATING: " + speed);
+            //Debug.Log(speed);
+            speed -= deceleration;
+            if (speed <= 0)
+            {
+                Debug.Log("LMAO");
+                speed = 0;
+                Invoke("chargeRecover", 2.0f);
+            }
+        }
+        this.transform.position += chargeDir * speed * Time.deltaTime;
+        chargeDisplacement += chargeDir.x * speed * Time.deltaTime;
+        firstDetect = false;
+
+    }
+
+    private void chargeRecover()
+    {
+        speed = baseSpeed;
+        firstDetect = true;
+        charge = false;
+        Debug.Log("FUCK");
     }
 
     private void AttackPlayer()
@@ -148,16 +181,22 @@ public class EnemyAI : MonoBehaviour
         {
             //Attack code here
             //Debug.Log("We hit " + player.name);
+            playerLogic.takeDamage(damage);
             playerLogic.KBCounter = playerLogic.KBTotalTime;
             if (orientation == 1)
             {
                 playerLogic.KnockFromRight = true;
+               // playerLogic.rb.gravityScale *= 2;
+                playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
             }
             else if(orientation == -1)
             {
                 playerLogic.KnockFromRight = false;
+              //  playerLogic.rb.gravityScale *= 2;
+                playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
+                //rb.velocity = new Vector3(0, jumpForce, 0);
             }
-            playerLogic.takeDamage(damage);
+            
             
             
             alreadyAttacked = true;
