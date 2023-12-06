@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Inventory_UI : MonoBehaviour
 {
-    public GameObject inventoryPanel;
+    
 
     public GameObject player;
     public string inventoryName;
@@ -19,8 +19,7 @@ public class Inventory_UI : MonoBehaviour
 
     private Canvas canvas;
 
-    private Slot_UI draggedSlot;
-    private Image draggedIcon;
+   
 
     private bool dragAll;
 
@@ -35,50 +34,13 @@ public class Inventory_UI : MonoBehaviour
     {
         Inventory = GameManager.instance.player.inventory.GetInventoryByName(inventoryName);
         SetUpSlots();
-        ToggleInventory();
+        //ToggleInventory();
         Refresh();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab)) //if the player hits the tab button
-        {
-            ToggleInventory();
-        }
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            dragAll = true;
-           
-        }
-        else
-        {
-            dragAll = false;
-           
-        }
-    }
-
-    public void ToggleInventory() //turns on and off the inventory
-    {
-        if (inventoryPanel != null) //MAKE SURE TO LEAVE THE INVENTORY PANEL NULL FOR THE TOOLBAR //makes sure only the actual inventory toggles
-        {
 
 
-
-            if (!inventoryPanel.activeSelf) //if inventory panel is turned off
-            {
-                inventoryPanel.SetActive(true); //toggle it on
-                player.GetComponent<Movement>().enabled = false; //Disables movement 
-                animate.SetBool("isMoving", false);
-                Refresh();
-            }
-            else //if inventory panel is turned on
-            {
-                inventoryPanel.SetActive(false); //toggle it off
-                player.GetComponent<Movement>().enabled = true; //enables movement
-                                                                //move.animator.SetBool("isMoving", true);
-            }
-        }
-    }
+   
 
     public void Refresh()
     {
@@ -112,26 +74,26 @@ public class Inventory_UI : MonoBehaviour
     public void Remove()
     {
         Debug.Log("Inventory_UI remove has been called");
-        Item itemToDrop = GameManager.instance.itemManager.GetItemByName(Inventory.slots[draggedSlot.SlotID].itemName); //gets the type of the item we are removing (problem here, everything but the turnip is null)
+        Item itemToDrop = GameManager.instance.itemManager.GetItemByName(Inventory.slots[UI_Manager.draggedSlot.SlotID].itemName); //gets the type of the item we are removing (problem here, everything but the turnip is null)
         //Debug.Log(itemToDrop.ToString()); //doesn't work
          
         if(itemToDrop != null)
         {
             Debug.Log("called item isn't null");
-            if (dragAll == true)
+            if (UI_Manager.dragAll == true) 
             {
-                GameManager.instance.player.DropItem(itemToDrop, Inventory.slots[draggedSlot.SlotID].numInSlot); //drops all items
-                Inventory.Remove(draggedSlot.SlotID, Inventory.slots[draggedSlot.SlotID].numInSlot); //removes all items
+                GameManager.instance.player.DropItem(itemToDrop, Inventory.slots[UI_Manager.draggedSlot.SlotID].numInSlot); //drops all items
+                Inventory.Remove(UI_Manager.draggedSlot.SlotID, Inventory.slots[UI_Manager.draggedSlot.SlotID].numInSlot); //removes all items
             }
             else
             {
                 GameManager.instance.player.DropItem(itemToDrop); //drops a single item
-                Inventory.Remove(draggedSlot.SlotID); //removes a single item
+                Inventory.Remove(UI_Manager.draggedSlot.SlotID); //removes a single item
             }
             
             Refresh(); //refreshes inventory
         }
-        draggedSlot = null;
+        UI_Manager.draggedSlot = null;
 
     }
 
@@ -141,28 +103,28 @@ public class Inventory_UI : MonoBehaviour
         //get slotID somewhere here
         UI_Manager.draggedSlot = slot;
         
-        draggedIcon = Instantiate(draggedSlot.itemIcon);
-        draggedIcon.raycastTarget = false; //so that it doesn't interfere with drag and drop
+        UI_Manager.draggedIcon = Instantiate(UI_Manager.draggedSlot.itemIcon);
+        UI_Manager.draggedIcon.raycastTarget = false; //so that it doesn't interfere with drag and drop
 
-        draggedIcon.rectTransform.sizeDelta = new Vector2(50f, 50f);
-        draggedIcon.transform.SetParent(canvas.transform); //makes the icon a child of the canvas so that it shows up properly
+        UI_Manager.draggedIcon.rectTransform.sizeDelta = new Vector2(50f, 50f);
+        UI_Manager.draggedIcon.transform.SetParent(canvas.transform); //makes the icon a child of the canvas so that it shows up properly
        
        
 
-        MoveToMousePosition(draggedIcon.gameObject);
-        Debug.Log("Start Drag: " + draggedSlot.name);
+        MoveToMousePosition(UI_Manager.draggedIcon.gameObject);
+        Debug.Log("Start Drag: " + UI_Manager.draggedSlot.name);
     }
 
     public void SlotDrag()
     {
-        MoveToMousePosition(draggedIcon.gameObject);
-        Debug.Log("Dragging: " + draggedSlot.name);
+        MoveToMousePosition(UI_Manager.draggedIcon.gameObject);
+        Debug.Log("Dragging: " + UI_Manager.draggedSlot.name);
     }
 
     public void SlotEndDrag()
     {
-        Destroy(draggedIcon.gameObject);
-        draggedIcon = null;
+        Destroy(UI_Manager.draggedIcon.gameObject);
+        UI_Manager.draggedIcon = null;
 
 
         //Debug.Log("Done Dragging: " + draggedSlot.name);
@@ -171,8 +133,18 @@ public class Inventory_UI : MonoBehaviour
     public void SlotDrop(Slot_UI slot)
     {
         //Debug.Log("Dropping:" + draggedSlot.name + " on " + slot.name); //drags draggedSlot onto Slot
-        draggedSlot.Inventory.MoveSlot(draggedSlot.SlotID, slot.SlotID, slot.Inventory);
-        Refresh();
+        if (UI_Manager.dragAll)
+        {
+            UI_Manager.draggedSlot.Inventory.MoveSlot(UI_Manager.draggedSlot.SlotID, slot.SlotID, slot.Inventory, UI_Manager.draggedSlot.Inventory.slots[UI_Manager.draggedSlot.SlotID].numInSlot);
+            //moves the whole stack when dragAll is true
+        }
+        else
+        {
+            UI_Manager.draggedSlot.Inventory.MoveSlot(UI_Manager.draggedSlot.SlotID, slot.SlotID, slot.Inventory);
+        }
+
+            GameManager.instance.uiManager.RefreshAll(); //refreshes everything
+        
     }
 
     private void MoveToMousePosition(GameObject toMove)

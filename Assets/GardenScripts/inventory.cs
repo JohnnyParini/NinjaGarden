@@ -171,15 +171,18 @@ public class inventory
         }
     }
 
-    public void MoveSlot(int fromIndex, int toIndex, inventory toInventory)
+    public void MoveSlot(int fromIndex, int toIndex, inventory toInventory, int numToMove =1)
     {
         Slot fromSlot = slots[fromIndex];
         Slot toSlot = toInventory.slots[toIndex];
 
         if (toSlot.isEmpty() || toSlot.canAddItem(fromSlot.itemName)); 
         {
-            toSlot.addItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
-            fromSlot.removeItem(); //takes the item away from the old slot, and gives it to the new slot
+            for (int i = 0; i < numToMove; i++)
+            {
+                toSlot.addItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);
+                fromSlot.removeItem(); //takes the item away from the old slot, and gives it to the new slot 
+            }
         }
 
     }

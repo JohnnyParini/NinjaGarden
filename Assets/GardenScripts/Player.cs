@@ -8,18 +8,28 @@ public class Player : MonoBehaviour
 
     public InventoryManager inventory;
 
-
+    public Vector3 mousePos;
     
     private void Awake()
     {
         inventory = GetComponent<InventoryManager>();
     }
 
+   
+
     public void Update()
     {
+        //mousePos = Input.mousePosition;
+        //{
+         //   Debug.Log(mousePos.x);
+          //  Debug.Log(mousePos.y);
+        //}
+
         if (Input.GetKeyDown(KeyCode.Space)) //if space bar is pressed
         {
             Vector3Int position = new Vector3Int((int)transform.position.x, (int)transform.position.y, 0); //coverts the player position to an int, not a float. 
+
+          
 
             if (GameManager.instance.tileManager.IsInteractable(position))
             {
@@ -33,7 +43,7 @@ public class Player : MonoBehaviour
     {
         Vector3 spawnLocation = transform.position; //the location of the player when the player drops the item
 
-        Vector3 spawnOffset = Random.insideUnitCircle * 5.75f; //so it doesn't spawn on the player, make an offset
+        Vector3 spawnOffset = Random.insideUnitCircle * 6.25f; //so it doesn't spawn on the player, make an offset
 
         Item droppedItem = Instantiate(item, spawnLocation + spawnOffset, Quaternion.identity); //spawn at location + offset
 
