@@ -56,7 +56,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(num);
     }
 
-
+    public void tillTheLand(int mousePos)
+    {
+        //get tile at mousePos
+        //if tile at mousePos == interactable tile, set it to plowed tile
+        //(tileManager.setInteracted()
+    }
 
 
 }

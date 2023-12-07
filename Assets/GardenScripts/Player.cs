@@ -19,17 +19,19 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        //mousePos = Input.mousePosition;
-        //{
-         //   Debug.Log(mousePos.x);
-          //  Debug.Log(mousePos.y);
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            float x = Input.mousePosition.x;
+            float y = Input.mousePosition.y;
+            float z = Input.mousePosition.z;
+            Debug.Log("The mouse is at " + x + ", " + y + ", "+ z);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space)) //if space bar is pressed
         {
             Vector3Int position = new Vector3Int((int)transform.position.x, (int)transform.position.y, 0); //coverts the player position to an int, not a float. 
 
-          
+            
 
             if (GameManager.instance.tileManager.IsInteractable(position))
             {

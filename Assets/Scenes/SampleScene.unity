@@ -1476,6 +1476,9 @@ MonoBehaviour:
   interactableMap: {fileID: 326734040}
   hiddenInteractableTile: {fileID: 11400000, guid: 3e330da19c1ad84499fbc4ffb25cd23b, type: 2}
   interactedTile: {fileID: 11400000, guid: 38812602f8332f743b7b4ab769d3c4c1, type: 2}
+  tilePosX: 0
+  tilePosY: 0
+  tilePosZ: 0
 --- !u!114 &115438172
 MonoBehaviour:
   m_ObjectHideFlags: 0
