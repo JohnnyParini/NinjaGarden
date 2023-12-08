@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
             float x = Input.mousePosition.x;
             float y = Input.mousePosition.y;
             float z = Input.mousePosition.z;
-            Debug.Log("The mouse is at " + x + ", " + y + ", "+ z);
+            //Debug.Log("The mouse is at " + x + ", " + y + ", "+ z);
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) //if space bar is pressed

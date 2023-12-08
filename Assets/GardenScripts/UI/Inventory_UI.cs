@@ -73,26 +73,31 @@ public class Inventory_UI : MonoBehaviour
 
     public void Remove()
     {
+
         Debug.Log("Inventory_UI remove has been called");
-        Item itemToDrop = GameManager.instance.itemManager.GetItemByName(Inventory.slots[UI_Manager.draggedSlot.SlotID].itemName); //gets the type of the item we are removing (problem here, everything but the turnip is null)
-        //Debug.Log(itemToDrop.ToString()); //doesn't work
-         
-        if(itemToDrop != null)
-        {
-            Debug.Log("called item isn't null");
-            if (UI_Manager.dragAll == true) 
+        
+        
+            Item itemToDrop = GameManager.instance.itemManager.GetItemByName(Inventory.slots[UI_Manager.draggedSlot.SlotID].itemName); //gets the type of the item we are removing (problem here, everything but the turnip is null)
+            //some problem in the tilling area. 
+            //Debug.Log(itemToDrop.ToString()); //doesn't work
+
+            if (itemToDrop != null)
             {
-                GameManager.instance.player.DropItem(itemToDrop, Inventory.slots[UI_Manager.draggedSlot.SlotID].numInSlot); //drops all items
-                Inventory.Remove(UI_Manager.draggedSlot.SlotID, Inventory.slots[UI_Manager.draggedSlot.SlotID].numInSlot); //removes all items
+                Debug.Log("called item isn't null");
+                if (UI_Manager.dragAll == true)
+                {
+                    GameManager.instance.player.DropItem(itemToDrop, Inventory.slots[UI_Manager.draggedSlot.SlotID].numInSlot); //drops all items
+                    Inventory.Remove(UI_Manager.draggedSlot.SlotID, Inventory.slots[UI_Manager.draggedSlot.SlotID].numInSlot); //removes all items
+                }
+                else
+                {
+                    GameManager.instance.player.DropItem(itemToDrop); //drops a single item
+                    Inventory.Remove(UI_Manager.draggedSlot.SlotID); //removes a single item
+                }
+
+                Refresh(); //refreshes inventory
             }
-            else
-            {
-                GameManager.instance.player.DropItem(itemToDrop); //drops a single item
-                Inventory.Remove(UI_Manager.draggedSlot.SlotID); //removes a single item
-            }
-            
-            Refresh(); //refreshes inventory
-        }
+        
         UI_Manager.draggedSlot = null;
 
     }
