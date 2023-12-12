@@ -107,7 +107,7 @@ public class SidePlayerMasterScript : MonoBehaviour
             //Debug.Log("flip false");
             spriteR.flipX = false;
             orientation = Vector2.right;
-            attackPoint.transform.position = new Vector3(this.transform.position.x+ arOffset, this.transform.position.y, 0);
+            attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
             anim.SetBool("running", true);
         }
 
@@ -116,7 +116,7 @@ public class SidePlayerMasterScript : MonoBehaviour
             //Debug.Log("flip true");
             spriteR.flipX = true;
             orientation = Vector2.left;
-            attackPoint.transform.position = new Vector3(this.transform.position.x- arOffset, this.transform.position.y, 0);
+            attackPoint.transform.position = new Vector3(this.transform.position.x - arOffset, this.transform.position.y, 0);
             anim.SetBool("running", true);
         }
 
@@ -183,7 +183,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         
-        Debug.Log(damage);
+        Debug.Log(damage + " this is dmg");
         Debug.Log(currentHealth);
         if (invincible == false)
         {
