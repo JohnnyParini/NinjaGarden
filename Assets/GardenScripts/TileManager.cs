@@ -12,6 +12,8 @@ public class TileManager : MonoBehaviour
 
     public MouseInput mouseInput;
 
+    public UI_Manager UI;
+
     private int testNum;
     public float tilePosX;
     public float tilePosY;
@@ -21,6 +23,7 @@ public class TileManager : MonoBehaviour
     private void Awake()
     {
         mouseInput = new MouseInput();
+        UI = GetComponent<UI_Manager>();
     }
 
     // Start is called before the first frame update
@@ -57,7 +60,7 @@ public class TileManager : MonoBehaviour
     }
     public void MouseClick()
     {
-        Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y); //pixel
             //mouseInput.Mouse.MouseClick.ReadValue<Vector2>(); //gets it in pixel coordinates
         Debug.Log("the pixel position is  " + mousePosition);
         mousePosition =Camera.main.ScreenToWorldPoint(mousePosition);
@@ -66,8 +69,12 @@ public class TileManager : MonoBehaviour
         Debug.Log("the world position is " + gridPosition);
         if (IsInteractable(gridPosition)) //also need to check the player distance
         {
-            Debug.Log("You are a genius");
-            SetInteracted(gridPosition); 
+            Debug.Log("You are a genius"); //i've successfully clicked on an interactable tile
+            if (!UI.inventoryIsOn)
+            {
+                Debug.Log("Everything working as planned");
+                SetInteracted(gridPosition);
+            }
 
         }
         //if (interactableMap.HasTile(gridPosition)) { }
@@ -97,6 +104,19 @@ public class TileManager : MonoBehaviour
         interactableMap.SetTile(position, interactedTile);
     }
 
-    
+    public string GetTileName(Vector3Int position)
+    {
+        if(interactableMap != null)
+        {
+            TileBase tile = interactableMap.GetTile(position);
+
+            if(tile != null)
+            {
+                return tile.name;
+            }
+            
+        }
+        return "";
+    }
   
 }

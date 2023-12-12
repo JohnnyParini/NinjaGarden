@@ -30,6 +30,8 @@ public class Toolbar_UI : MonoBehaviour
 
             SelectedSlot = toolbarSlots[index];
             SelectedSlot.SetHighlight(true);
+
+            GameManager.instance.player.inventory.toolbar.SelectSlot(index); //select the slot
         }
     }
 

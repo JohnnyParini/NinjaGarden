@@ -102,6 +102,8 @@ public class inventory
 
     public List<Slot> slots = new List<Slot>();
 
+    public Slot selectedSlot = null;
+
     public inventory(int numSlots) //constructor
     {
         for (int i = 0; i < numSlots; i++)
@@ -185,6 +187,14 @@ public class inventory
             }
         }
 
+    }
+
+    public void SelectSlot(int index)
+    {
+        if(slots != null && slots.Count >0) //if slots exist 
+        {
+            selectedSlot = slots[index];
+        }
     }
 
 }

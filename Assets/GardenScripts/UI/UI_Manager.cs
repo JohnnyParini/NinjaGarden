@@ -18,7 +18,9 @@ public class UI_Manager : MonoBehaviour
 
     public GameObject player;
 
-    public Animator animate; 
+    public Animator animate;
+
+    public bool inventoryIsOn;
 
     private void Awake()
     {
@@ -47,6 +49,7 @@ public class UI_Manager : MonoBehaviour
 
     public void ToggleInventoryUI() //turns on and off the inventory
     {
+        
         if (inventoryPanel != null) //MAKE SURE TO LEAVE THE INVENTORY PANEL NULL FOR THE TOOLBAR //makes sure only the actual inventory toggles
         {
 
@@ -55,6 +58,7 @@ public class UI_Manager : MonoBehaviour
             if (!inventoryPanel.activeSelf) //if inventory panel is turned off
             {
                 inventoryPanel.SetActive(true); //toggle it on
+                inventoryIsOn = true;
                 player.GetComponent<Movement>().enabled = false; //Disables movement 
                 animate.SetBool("isMoving", false);
                 RefreshInventory("Backpack");
@@ -62,6 +66,7 @@ public class UI_Manager : MonoBehaviour
             else //if inventory panel is turned on
             {
                 inventoryPanel.SetActive(false); //toggle it off
+                inventoryIsOn = false;
                 player.GetComponent<Movement>().enabled = true; //enables movement
                                                                 //move.animator.SetBool("isMoving", true);
             }

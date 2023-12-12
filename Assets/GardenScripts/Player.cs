@@ -8,36 +8,46 @@ public class Player : MonoBehaviour
 
     public InventoryManager inventory;
 
+    private TileManager tileManager;
+
     public Vector3 mousePos;
     
     private void Awake()
     {
         inventory = GetComponent<InventoryManager>();
+        tileManager = GetComponent<TileManager>();
     }
 
    
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            float x = Input.mousePosition.x;
-            float y = Input.mousePosition.y;
-            float z = Input.mousePosition.z;
-            //Debug.Log("The mouse is at " + x + ", " + y + ", "+ z);
-        }
-
+      
+      
         if (Input.GetKeyDown(KeyCode.Space)) //if space bar is pressed
         {
-            Vector3Int position = new Vector3Int((int)transform.position.x, (int)transform.position.y, 0); //coverts the player position to an int, not a float. 
-
-            
-
-            if (GameManager.instance.tileManager.IsInteractable(position))
+            if (tileManager != null)
             {
-                Debug.Log("Tile is Interactable");
-                GameManager.instance.tileManager.SetInteracted(position); //set the tile to a plowed tile
+                Vector3Int position = new Vector3Int((int)transform.position.x, (int)transform.position.y, 0); //coverts the player position to an int, not a float. 
+
+                string tileName = tileManager.GetTileName(position);
+
+                if (!string.IsNullOrWhiteSpace(tileName))
+                {
+                    //if we get something back that isn't empty:
+                    if(tileName == "Interactable_Invis") //&& if holding the farming staff
+                    {
+
+                    }
+                }
+
+                //if (GameManager.instance.tileManager.IsInteractable(position))
+                //{
+                 //   Debug.Log("Tile is Interactable");
+                  //  GameManager.instance.tileManager.SetInteracted(position); //set the tile to a plowed tile
+                //}
             }
+            
         }
     }
 
