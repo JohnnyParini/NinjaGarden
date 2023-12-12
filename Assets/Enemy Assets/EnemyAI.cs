@@ -62,9 +62,11 @@ public class EnemyAI : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool dummy;
+    public Vector3 force;
 
     private void Awake()
     {
+        
         firstDetect = true;
         baseSpeed = speed;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -94,7 +96,7 @@ public class EnemyAI : MonoBehaviour
 
         direction = new Vector2(orientation, this.transform.position.y);
 
-        if (Mathf.Abs(distance) <= 20)
+        if (Mathf.Abs(distance) <= attackRange)
         {
             charge = true;
             //Debug.Log("ITS IN HERE");
@@ -109,12 +111,18 @@ public class EnemyAI : MonoBehaviour
             
             ChargePlayer();
         }
+        else if(dummy == false)
+        {
+            ChasePlayer();
+        }
         //Debug.Log("WHY ARE YOU DOING THIS SDF; IOVEMMTEWIT EWEIVMMRMVRTVRTIRVTIREIEMVEVEUITUIPEIUEWTIU");
         //Check for sight and attack range
         //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         if (dummy == false)
         {
             Collider2D[] playerRange = Physics2D.OverlapCircleAll(detectOrigin.position, attackRange, whatIsPlayer);
+
+            //Debug.Log(playerRange.Length + "   FDSLKHGHGHSDHGSHHGHHGHU");
 
             foreach (Collider2D player in playerRange)
             {
@@ -136,26 +144,28 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
+    
+
     private void ChargePlayer()
     {
         chargePDistance = Mathf.Abs(this.transform.position.x - player.transform.position.x);
         
         
        // Debug.Log(speed);
-        Debug.Log(Mathf.Abs(chargeDisplacement) + "DISTANCE HERE");
+        //Debug.Log(Mathf.Abs(chargeDisplacement) + "DISTANCE HERE");
         if (Mathf.Abs(chargeDisplacement) <= chargeDistance && speed <= maxSpeed)
         {
-            Debug.Log("NOW ACCELERATING: " + speed);
+            //Debug.Log("NOW ACCELERATING: " + speed);
             speed += acceleration;
         }
         else if (Mathf.Abs(chargeDisplacement) >= chargeDistance && speed > 0)
         {
-            Debug.Log("NOW DECELERATING: " + speed);
+            //Debug.Log("NOW DECELERATING: " + speed);
             //Debug.Log(speed);
             speed -= deceleration;
             if (speed <= 0)
             {
-                Debug.Log("LMAO");
+                //Debug.Log("LMAO");
                 speed = 0;
                 Invoke("chargeRecover", 2.0f);
             }
@@ -176,24 +186,30 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackPlayer()
     {
-
+        
         if (!alreadyAttacked)
         {
             //Attack code here
             //Debug.Log("We hit " + player.name);
             playerLogic.takeDamage(damage);
             playerLogic.KBCounter = playerLogic.KBTotalTime;
+            force = new Vector3(KBHForce, KBVForce, 0);
             if (orientation == 1)
             {
                 playerLogic.KnockFromRight = true;
-               // playerLogic.rb.gravityScale *= 2;
-                playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
+                
+            // playerLogic.rb.gravityScale *= 2;
+               // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
+                playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
+                Debug.Log("ATTACK ENTER");
             }
             else if(orientation == -1)
             {
                 playerLogic.KnockFromRight = false;
               //  playerLogic.rb.gravityScale *= 2;
-                playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
+               // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
+                playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
+                Debug.Log("ATTACK ENTER");
                 //rb.velocity = new Vector3(0, jumpForce, 0);
             }
             
@@ -207,6 +223,8 @@ public class EnemyAI : MonoBehaviour
     {
         alreadyAttacked = false;
     }
+
+
 
     void OnDrawGizmos()
     {
