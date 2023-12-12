@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 public class GameManager : MonoBehaviour
 {
     //single design sytem so that it isn't called multiple times
@@ -10,6 +11,12 @@ public class GameManager : MonoBehaviour
     public GardenItemManager itemManager;
 
     public TileManager tileManager;
+
+    public Player player;
+
+    public UI_Manager uiManager;
+
+    
 
     private void Awake()
     {
@@ -26,6 +33,11 @@ public class GameManager : MonoBehaviour
 
         itemManager = GetComponent<GardenItemManager>();
         tileManager = GetComponent<TileManager>();
+        uiManager = GetComponent<UI_Manager>();
+        
+
+        player = FindObjectOfType<Player>();
+
     }
 
     // Start is called before the first frame update
@@ -33,14 +45,13 @@ public class GameManager : MonoBehaviour
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
         
     }
 
-
+    
 
 
     public void loadLevel(int num)
@@ -48,7 +59,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(num);
     }
 
-
+   
 
 
 }
