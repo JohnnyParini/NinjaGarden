@@ -56,12 +56,16 @@ public class EnemyAIJump : MonoBehaviour
     public bool KnockFromRight;
     public float KBHForce;
     public float KBVForce;
-    public GameObject splashDMG;
+   // public GameObject splashDMG;
 
+    public int right = 1;
+    public int left = -1;
+    
     //States
     public float attackRange;
     public bool dummy;
     public Vector3 force;
+    public Vector3 splashDmgAOE;
 
     private void Awake()
     {
@@ -84,6 +88,7 @@ public class EnemyAIJump : MonoBehaviour
     {
         float distance = this.transform.position.x - player.transform.position.x;
 
+
         time += Time.deltaTime;
         //Debug.Log("Time = " + time);
         //Debug.Log(Mathf.Abs(distance) + "ORIGINAL DISTANCE CALC");
@@ -98,6 +103,7 @@ public class EnemyAIJump : MonoBehaviour
         else if (distance > 0)
         {
             orientation = -1; //run left
+            //Debug.Log("RUNNING LEFT");
         }
 
         direction = new Vector2(orientation, this.transform.position.y);
@@ -131,7 +137,8 @@ public class EnemyAIJump : MonoBehaviour
 
         if (alreadyAttacked == true && IsGrounded() && firstDetect)
         {
-            Instantiate(splashDMG, dmgPoint.position, transform.rotation);
+            // Instantiate(splashDMG, dmgPoint.position, transform.rotation);
+            splashDamage();
            // Debug.Log("HAHAHAHAHAHAHAHAHAHAHAHAHAHAHA");
             firstDetect = false;
             // firstDetect = false;
@@ -155,7 +162,7 @@ public class EnemyAIJump : MonoBehaviour
         if (!alreadyAttacked && IsGrounded())
         {
           //  Debug.Log("LMAO");
-            rb.velocity = new Vector3(jumpForceH, jumpForceV, 0);
+            rb.velocity = new Vector3(jumpForceH * orientation, jumpForceV, 0); //orientation is negative or positive 1, meaning it affects left or right and thats it
             time = 0;
             alreadyAttacked = true;
         }
@@ -173,17 +180,45 @@ public class EnemyAIJump : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
     }
 
+    private void splashDamage()
+    {
+        Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(dmgPoint.position, splashDmgAOE, whatIsPlayer);
+        foreach (Collider2D player in hitPlayer)
+        {
+            Debug.Log("We hit " + player.name);
+            playerLogic.takeDamage(damage);
+            playerLogic.KBCounter = playerLogic.KBTotalTime;
+            force = new Vector3(KBHForce, KBVForce, 0);
+            if (orientation == 1)
+            {
+                playerLogic.KnockFromRight = true;
+
+                // playerLogic.rb.gravityScale *= 2;
+                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
+                playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
+                Debug.Log("ATTACK ENTER");
+            }
+            else if (orientation == -1)
+            {
+                playerLogic.KnockFromRight = false;
+                //  playerLogic.rb.gravityScale *= 2;
+                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
+                playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
+                Debug.Log("ATTACK ENTER");
+                //rb.velocity = new Vector3(0, jumpForce, 0);
+            }
+        }
+
+
+    }
+
 
     void OnDrawGizmos()
     {
-        // Draw a yellow sphere at the transform's position
-        /*
-        if (dummy == false)
-        {
-            Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
-        }
-        */
-        
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireCube(dmgPoint.position, splashDmgAOE);
+
     }
 
 

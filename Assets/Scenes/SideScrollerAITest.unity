@@ -5268,15 +5268,17 @@ MonoBehaviour:
   dmgPoint: {fileID: 836080418}
   rb: {fileID: 0}
   coll: {fileID: 0}
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 3
   time: 0
   KnockFromRight: 0
   KBHForce: 1
   KBVForce: 1
-  splashDMG: {fileID: 6106345816125055226, guid: 0049b3236d47a7b49bd0bd037ef07fe3, type: 3}
+  right: 1
+  left: -1
   attackRange: 7
   dummy: 0
   force: {x: 0, y: 0, z: 0}
+  splashDmgAOE: {x: 6, y: 0.4, z: 0}
 --- !u!50 &1247437785
 Rigidbody2D:
   serializedVersion: 4
