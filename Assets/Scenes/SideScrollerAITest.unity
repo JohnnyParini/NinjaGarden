@@ -143,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &153816129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +176,7 @@ MonoBehaviour:
   firstDetect: 0
   projectile: {fileID: 3407108643878726506, guid: 15f4c0d4a08b10d469305d027a6b5b69, type: 3}
   shootPoint: {fileID: 820724351}
+  activeProjectile: {fileID: 0}
   timeBetweenAttacks: 1
   KnockFromRight: 0
   KBHForce: 2
@@ -625,7 +626,7 @@ MonoBehaviour:
   speed: 5
   accelerate: 0
   acceleration: 0.03
-  deceleration: 0.05
+  deceleration: 0.15
   baseSpeed: 5
   chargeDistance: 15
   chargeDisplacement: 0
@@ -637,11 +638,13 @@ MonoBehaviour:
   detectOrigin: {fileID: 1078552302}
   timeBetweenAttacks: 1
   projectile: {fileID: 3407108643878726506, guid: 15f4c0d4a08b10d469305d027a6b5b69, type: 3}
+  doOffset: 1.4
   KnockFromRight: 0
   KBHForce: 0
   KBVForce: 5
   sightRange: 0
   attackRange: 1
+  attackDistance: 10
   playerInSightRange: 0
   playerInAttackRange: 0
   dummy: 0
@@ -814,7 +817,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836080417}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.12, z: 0}
+  m_LocalPosition: {x: 0, y: -4.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5102,7 +5105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078552301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.32, y: 0, z: 0}
+  m_LocalPosition: {x: 1.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5230,7 +5233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1247437784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5264,15 +5267,15 @@ MonoBehaviour:
   baseSpeed: 3
   firstDetect: 0
   jumpForceV: 3.5
-  jumpForceH: 3.5
+  jumpForceH: 7
   dmgPoint: {fileID: 836080418}
   rb: {fileID: 0}
   coll: {fileID: 0}
   timeBetweenAttacks: 3
   time: 0
   KnockFromRight: 0
-  KBHForce: 1
-  KBVForce: 1
+  KBHForce: 5
+  KBVForce: 5
   right: 1
   left: -1
   attackRange: 7
@@ -5326,18 +5329,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.029757023, y: -0.11637211}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.25, y: 2.25}
+    oldSize: {x: 7.5, y: 10}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.25, y: 2.25}
+  m_Size: {x: 7.5463867, y: 10.085747}
   m_EdgeRadius: 0
 --- !u!212 &1247437788
 SpriteRenderer:
@@ -5380,7 +5383,7 @@ SpriteRenderer:
   m_SortingLayerID: -470500587
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fe770e8e7c14a3243bc151e3125cc72d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b8e996f6746e86d4fa6d5f09d6cbbf5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5399,8 +5402,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247437783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.23, y: -0.07, z: 0}
-  m_LocalScale: {x: 0.63694924, y: 0.6715192, z: 1}
+  m_LocalPosition: {x: -7.832, y: -0.19, z: 0}
+  m_LocalScale: {x: 0.2098032, y: 0.16093218, z: 0.3764}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1835763241}

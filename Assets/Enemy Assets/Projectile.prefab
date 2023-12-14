@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 8
-  damage: 5
+  damage: 50
   enemyLayer: 9
   projectileLayer: 11
+  pLifetime: 5
