@@ -48,6 +48,7 @@ public class EnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
+    public float doOffset;
     /*
     public float KBForce;
     public float KBCounter;
@@ -59,7 +60,7 @@ public class EnemyAI : MonoBehaviour
     public float KBVForce;
 
     //States
-    public float sightRange, attackRange;
+    public float sightRange, attackRange, attackDistance;
     public bool playerInSightRange, playerInAttackRange;
     public bool dummy;
     public Vector3 force;
@@ -80,50 +81,40 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         float distance = this.transform.position.x - player.transform.position.x;
-        //Debug.Log(Mathf.Abs(distance) + "ORIGINAL DISTANCE CALC");
 
-
-            //Vector3.Distance(this.transform.position, player.transform.position);
-        if (distance < 0)
+        if (distance < 0 && !charge)
         {
             orientation = 1;//run right
+            detectOrigin.transform.position = new Vector3(this.transform.position.x + doOffset, this.transform.position.y, 0);
+
         }
 
-        else if (distance > 0)
+        else if (distance > 0 && !charge)
         {
             orientation = -1; //run left
+            detectOrigin.transform.position = new Vector3(this.transform.position.x - doOffset, this.transform.position.y, 0);
         }
 
         direction = new Vector2(orientation, this.transform.position.y);
 
-        if (Mathf.Abs(distance) <= attackRange)
+        if (Mathf.Abs(distance) <= attackDistance)
         {
-            charge = true;
             //Debug.Log("ITS IN HERE");
-
             if (firstDetect)
             {
                 //Debug.Log("Player in charge range");
                 chargeDir = new Vector2(orientation, this.transform.position.y);
                 chargeDisplacement = 0;
+                charge = true;
                 
             }
-            
-            ChargePlayer();
         }
-        else if(dummy == false)
-        {
-            ChasePlayer();
-        }
-        //Debug.Log("WHY ARE YOU DOING THIS SDF; IOVEMMTEWIT EWEIVMMRMVRTVRTIRVTIREIEMVEVEUITUIPEIUEWTIU");
-        //Check for sight and attack range
-        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+
+        if (charge) ChargePlayer();
+
         if (dummy == false)
         {
             Collider2D[] playerRange = Physics2D.OverlapCircleAll(detectOrigin.position, attackRange, whatIsPlayer);
-
-            //Debug.Log(playerRange.Length + "   FDSLKHGHGHSDHGSHHGHHGHU");
-
             foreach (Collider2D player in playerRange)
             {
                 AttackPlayer();
@@ -149,8 +140,8 @@ public class EnemyAI : MonoBehaviour
     private void ChargePlayer()
     {
         chargePDistance = Mathf.Abs(this.transform.position.x - player.transform.position.x);
-        
-        
+
+        charge = true;
        // Debug.Log(speed);
         //Debug.Log(Mathf.Abs(chargeDisplacement) + "DISTANCE HERE");
         if (Mathf.Abs(chargeDisplacement) <= chargeDistance && speed <= maxSpeed)
@@ -167,6 +158,7 @@ public class EnemyAI : MonoBehaviour
             {
                 //Debug.Log("LMAO");
                 speed = 0;
+                charge = false;
                 Invoke("chargeRecover", 2.0f);
             }
         }
@@ -180,7 +172,6 @@ public class EnemyAI : MonoBehaviour
     {
         speed = baseSpeed;
         firstDetect = true;
-        charge = false;
         Debug.Log("FUCK");
     }
 
@@ -193,21 +184,23 @@ public class EnemyAI : MonoBehaviour
             //Debug.Log("We hit " + player.name);
             playerLogic.takeDamage(damage);
             playerLogic.KBCounter = playerLogic.KBTotalTime;
-            force = new Vector3(KBHForce, KBVForce, 0);
+            
             if (orientation == 1)
             {
                 playerLogic.KnockFromRight = true;
-                
-            // playerLogic.rb.gravityScale *= 2;
-               // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
+
+                // playerLogic.rb.gravityScale *= 2;
+                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
+                force = new Vector3(KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
                 Debug.Log("ATTACK ENTER");
             }
             else if(orientation == -1)
             {
                 playerLogic.KnockFromRight = false;
-              //  playerLogic.rb.gravityScale *= 2;
-               // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
+                //  playerLogic.rb.gravityScale *= 2;
+                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
+                force = new Vector3(-KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
                 Debug.Log("ATTACK ENTER");
                 //rb.velocity = new Vector3(0, jumpForce, 0);

@@ -33,6 +33,7 @@ public class EnemyAIRanged : MonoBehaviour
     //attack variables
     public GameObject projectile;
     public Transform shootPoint;
+    public GameObject activeProjectile;
     
     
 
@@ -120,7 +121,15 @@ public class EnemyAIRanged : MonoBehaviour
         
         if (!alreadyAttacked)
         {
-            Instantiate(projectile, shootPoint.position, transform.rotation);
+            activeProjectile = Instantiate(projectile, shootPoint.position, transform.rotation);
+            if (orientation == 1)
+            {
+                activeProjectile.GetComponent<Projectile>().speed = Mathf.Abs(speed); //projectile moves right
+            }
+            else if(orientation == -1)
+            {
+                activeProjectile.GetComponent<Projectile>().speed = Mathf.Abs(speed) * -1; //projectile moves left
+            }
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }

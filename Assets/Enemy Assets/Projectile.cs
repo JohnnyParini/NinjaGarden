@@ -11,11 +11,13 @@ public class Projectile : MonoBehaviour
     public int damage;
     public int enemyLayer;
     public int projectileLayer;
+    public float pLifetime;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
         Physics2D.IgnoreLayerCollision(projectileLayer, enemyLayer, true);
+        Invoke("destroyProjectile", pLifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +28,16 @@ public class Projectile : MonoBehaviour
         {
             player.takeDamage(damage);
         }
+        destroyProjectile();
+    }
+
+    private void Update()
+    {
+        //Invoke("destroyPorjectile", pLifetime);
+    }
+
+    private void destroyProjectile()
+    {
         Destroy(gameObject);
     }
 }

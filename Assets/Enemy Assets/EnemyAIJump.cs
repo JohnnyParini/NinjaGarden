@@ -98,6 +98,7 @@ public class EnemyAIJump : MonoBehaviour
         if (distance < 0)
         {
             orientation = 1;//run right
+
         }
 
         else if (distance > 0)
@@ -135,11 +136,11 @@ public class EnemyAIJump : MonoBehaviour
             }
         }
 
-        if (alreadyAttacked == true && IsGrounded() && firstDetect)
+        if (alreadyAttacked && IsGrounded() && firstDetect && rb.velocity.y <= 0)
         {
             // Instantiate(splashDMG, dmgPoint.position, transform.rotation);
             splashDamage();
-           // Debug.Log("HAHAHAHAHAHAHAHAHAHAHAHAHAHAHA");
+            Debug.Log("HAHAHAHAHAHAHAHAHAHAHAHAHAHAHA");
             firstDetect = false;
             // firstDetect = false;
         }
@@ -165,6 +166,7 @@ public class EnemyAIJump : MonoBehaviour
             rb.velocity = new Vector3(jumpForceH * orientation, jumpForceV, 0); //orientation is negative or positive 1, meaning it affects left or right and thats it
             time = 0;
             alreadyAttacked = true;
+            
         }
     }
     private void ResetAttack()
@@ -182,19 +184,21 @@ public class EnemyAIJump : MonoBehaviour
 
     private void splashDamage()
     {
-        Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(dmgPoint.position, splashDmgAOE, whatIsPlayer);
+        
+        Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(dmgPoint.position, splashDmgAOE, 0, whatIsPlayer);
         foreach (Collider2D player in hitPlayer)
         {
             Debug.Log("We hit " + player.name);
             playerLogic.takeDamage(damage);
             playerLogic.KBCounter = playerLogic.KBTotalTime;
-            force = new Vector3(KBHForce, KBVForce, 0);
+            
             if (orientation == 1)
             {
                 playerLogic.KnockFromRight = true;
 
                 // playerLogic.rb.gravityScale *= 2;
                 // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
+                force = new Vector3(KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
                 Debug.Log("ATTACK ENTER");
             }
@@ -203,6 +207,7 @@ public class EnemyAIJump : MonoBehaviour
                 playerLogic.KnockFromRight = false;
                 //  playerLogic.rb.gravityScale *= 2;
                 // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
+                force = new Vector3(-KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
                 Debug.Log("ATTACK ENTER");
                 //rb.velocity = new Vector3(0, jumpForce, 0);
