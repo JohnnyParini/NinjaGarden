@@ -102,7 +102,7 @@ public class inventory
 
     public List<Slot> slots = new List<Slot>();
 
-    public Slot selectedSlot = null;
+    public Slot selectedSlot;
 
     public inventory(int numSlots) //constructor
     {
@@ -193,7 +193,9 @@ public class inventory
     {
         if(slots != null && slots.Count >0) //if slots exist 
         {
+            
             selectedSlot = slots[index];
+            Debug.Log("selectedSlot is equal to " + selectedSlot.itemName);
         }
     }
 

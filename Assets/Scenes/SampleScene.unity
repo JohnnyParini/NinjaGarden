@@ -1443,10 +1443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ece215aeb524943822d09be4d50177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemManager: {fileID: 0}
-  tileManager: {fileID: 0}
-  player: {fileID: 0}
-  uiManager: {fileID: 0}
+  itemManager: {fileID: 115438168}
+  tileManager: {fileID: 115438171}
+  player: {fileID: 1155989068}
+  uiManager: {fileID: 115438172}
 --- !u!4 &115438170
 Transform:
   m_ObjectHideFlags: 0
@@ -1476,7 +1476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableMap: {fileID: 326734040}
   hiddenInteractableTile: {fileID: 11400000, guid: 3e330da19c1ad84499fbc4ffb25cd23b, type: 2}
-  interactedTile: {fileID: 11400000, guid: 38812602f8332f743b7b4ab769d3c4c1, type: 2}
+  plowedTile: {fileID: 11400000, guid: 38812602f8332f743b7b4ab769d3c4c1, type: 2}
   UI: {fileID: 0}
   tilePosX: 0
   tilePosY: 0
@@ -116247,9 +116247,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backpack:
     slots: []
+    selectedSlot:
+      itemName: 
+      numInSlot: 0
+      maxAllowed: 99
+      check: 0
+      icon: {fileID: 0}
   backpackSlotsCount: 32
   toolbar:
     slots: []
+    selectedSlot:
+      itemName: 
+      numInSlot: 0
+      maxAllowed: 99
+      check: 0
+      icon: {fileID: 0}
   toolbarSlotsCount: 9
 --- !u!114 &1233154071 stripped
 MonoBehaviour:

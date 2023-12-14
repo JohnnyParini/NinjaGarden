@@ -10,15 +10,18 @@ public class Player : MonoBehaviour
 
     private TileManager tileManager;
 
+    private Toolbar_UI toolbarUI;
+
     public Vector3 mousePos;
     
     private void Awake()
     {
         inventory = GetComponent<InventoryManager>();
         tileManager = GetComponent<TileManager>();
+        toolbarUI = GetComponent<Toolbar_UI>();
     }
 
-   
+
 
     public void Update()
     {
@@ -31,13 +34,16 @@ public class Player : MonoBehaviour
                 Vector3Int position = new Vector3Int((int)transform.position.x, (int)transform.position.y, 0); //coverts the player position to an int, not a float. 
 
                 string tileName = tileManager.GetTileName(position);
+               
+                
 
                 if (!string.IsNullOrWhiteSpace(tileName))
                 {
                     //if we get something back that isn't empty:
-                    if(tileName == "Interactable_Invis") //&& if holding the farming staff
+                    if(tileName == "Interactable_Invis" && inventory.toolbar.selectedSlot.itemName == "FarmingStaff") //&& if holding the farming staff
                     {
-
+                        tileManager.SetInteracted(position);
+                        Debug.Log("Truly a coding savant");
                     }
                 }
 

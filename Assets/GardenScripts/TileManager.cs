@@ -8,11 +8,15 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tilemap interactableMap;
 
     [SerializeField] private Tile hiddenInteractableTile;
-    [SerializeField] private Tile interactedTile;
+    [SerializeField] private Tile plowedTile;
 
     public MouseInput mouseInput;
 
     public UI_Manager UI;
+
+    private InventoryManager inventoryManager;
+
+    public Player player;
 
     private int testNum;
     public float tilePosX;
@@ -22,8 +26,11 @@ public class TileManager : MonoBehaviour
 
     private void Awake()
     {
+        inventoryManager = GetComponent<InventoryManager>();
         mouseInput = new MouseInput();
         UI = GetComponent<UI_Manager>();
+        player = FindObjectOfType<Player>();
+
     }
 
     // Start is called before the first frame update
@@ -69,12 +76,37 @@ public class TileManager : MonoBehaviour
         Debug.Log("the world position is " + gridPosition);
         if (IsInteractable(gridPosition)) //also need to check the player distance
         {
-            Debug.Log("You are a genius"); //i've successfully clicked on an interactable tile
-            if (!UI.inventoryIsOn)
+
+            string tileName = GetTileName(gridPosition);
+
+            if (!string.IsNullOrWhiteSpace(tileName))
             {
-                Debug.Log("Everything working as planned");
-                SetInteracted(gridPosition);
+                //if we get something back that isn't empty:
+                if (tileName == "Interactable_Invis")
+                {
+                    
+                    Debug.Log("Truly a coding savant");
+
+                    if ( player.inventory.toolbar.selectedSlot.itemName== "FarmingStaff") //&& if holding the farming staff)
+                    {
+                        Debug.Log("farming staff being held");
+                        if (!UI.inventoryIsOn)
+                        {
+                            Debug.Log("Everything working as planned");
+                            SetInteracted(gridPosition);
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("not holding FarmingStaff");
+                    }
+                }
+                else
+                {
+                    Debug.Log(inventoryManager.toolbar.selectedSlot.itemName);
+                }
             }
+        
 
         }
         //if (interactableMap.HasTile(gridPosition)) { }
@@ -101,7 +133,7 @@ public class TileManager : MonoBehaviour
 
     public void SetInteracted(Vector3Int position)
     {
-        interactableMap.SetTile(position, interactedTile);
+        interactableMap.SetTile(position, plowedTile);
     }
 
     public string GetTileName(Vector3Int position)
