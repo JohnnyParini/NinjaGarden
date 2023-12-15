@@ -5257,7 +5257,7 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 256
-  damage: 50
+  damage: 5
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 512
@@ -5916,6 +5916,7 @@ MonoBehaviour:
     m_Bits: 512
   arOffset: 0.6
   maxHealth: 100
+  atkDownOffset: {x: 0, y: 1, z: 0}
   KBCounter: 0
   KBTotalTime: 1
   KnockFromRight: 0

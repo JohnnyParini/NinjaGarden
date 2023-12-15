@@ -31,6 +31,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     public float arOffset;
     public int maxHealth;
     int currentHealth;
+    public Vector3 atkDownOffset;
     
 
     //knockback variables
@@ -45,7 +46,6 @@ public class SidePlayerMasterScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
@@ -56,9 +56,6 @@ public class SidePlayerMasterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //float dirX = Input.GetAxisRaw("Horizontal");
-        //rb.velocity = new Vector2(dirX * speed, rb.velocity.y);
-
         horizontal = Input.GetAxisRaw("Horizontal"); //a,d,left,right
         vertical = this.transform.position.y;
 
@@ -71,37 +68,32 @@ public class SidePlayerMasterScript : MonoBehaviour
             rb.velocity = new Vector3(0, jumpForce, 0);
         }
 
+        
+
         if (Input.GetButtonDown("Attack"))
         {
-            Debug.Log("ATTACKING RN");
-            anim.SetTrigger("Attack");
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-            Debug.Log(hitEnemies.Length);
-           // Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-
-            //for (int i = 0; i < hitEnemies.Length-1; i++)
-            // {
-            //Debug.Log(hitEnemies[0]);
-            //  }
-
-            foreach (Collider2D enemy in hitEnemies)
+            if (Input.GetAxisRaw("Vertical") == -1)
             {
-                
-                Debug.Log("We hit " + enemy.name);
-                enemy.GetComponent<EnemyHealth>().takeDamage(attackDamage);
+                Debug.Log("VERTICAL ATTACKING RN");
+                anim.SetTrigger("Attack");
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position - atkDownOffset, attackRange, enemyLayer);
+                enemyTrack(hitEnemies);
+            }
+            else
+            {
+                Debug.Log("ATTACKING RN");
+                anim.SetTrigger("Attack");
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+                enemyTrack(hitEnemies);
             }
 
             
+
+            
+
         }
 
-        
-        //isGrounded = Physics2D.OverlapBox(groundCheck.position, new Vector2(0.7f, 0.09f), 0, jumpableGround);
-       // isOnWall = Physics2D.OverlapBox(wallCheck.position, new Vector2(0.15f, 1.35f), 0, wallLayer);
         WallSlide();
-
-
-
-
 
         if (direction.x > 0){
             //Debug.Log("flip false");
@@ -125,22 +117,17 @@ public class SidePlayerMasterScript : MonoBehaviour
             anim.SetBool("running", false);
         }
 
-        if (isGrounded)
-        {
-            //Debug.Log(isGrounded + " GROUND CHECK");
-        }
-
-        if (IsTouchingWall() == true)
-        {
-           // Debug.Log(isOnWall + " WALL CHECK");
-        }
-        //Debug.Log(isGrounded + " GROUND CHECK");
-        //Debug.Log(isOnWall + " WALL CHECK");
 
     }
 
-
-    
+    private void enemyTrack(Collider2D[] hitEnemies) 
+    {
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("We hit " + enemy.name);
+            enemy.GetComponent<EnemyHealth>().takeDamage(attackDamage);
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -191,7 +178,7 @@ public class SidePlayerMasterScript : MonoBehaviour
         }
         
         Debug.Log(currentHealth);
-        //rb.AddForce(new Vector2(5,0), ForceMode2D.Impulse);
+
         if (currentHealth <= 0)
         {
             death();
@@ -219,20 +206,10 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     }
 
-    /* private void OnDrawGizmosSelected()
-     {
-
-         if (attackPoint == null)
-         {
-             return;
-         }
-         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-     }
-    */
-
     void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
         // Draw a yellow sphere at the transform's position
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position - atkDownOffset, attackRange);
     }
 }
