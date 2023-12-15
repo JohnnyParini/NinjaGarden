@@ -67,7 +67,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
-        
+       // Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("whatIsEnemy"), LayerMask.NameToLayer("whatIsEnemy"), true);
         firstDetect = true;
         baseSpeed = speed;
         player = GameObject.FindGameObjectWithTag("Player");

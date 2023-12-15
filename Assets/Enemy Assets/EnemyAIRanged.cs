@@ -9,6 +9,7 @@ public class EnemyAIRanged : MonoBehaviour
     public SidePlayerMasterScript playerLogic;
 
     public LayerMask whatIsGround, whatIsPlayer;
+    public float enemyInt
 
     //public float health;
     //gun related variables begin here
@@ -61,7 +62,7 @@ public class EnemyAIRanged : MonoBehaviour
 
     private void Awake()
     {
-        
+       // Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("whatIsEnemy"), LayerMask.NameToLayer("whatIsEnemy"), true);
         firstDetect = true;
         baseSpeed = speed;
         player = GameObject.FindGameObjectWithTag("Player");

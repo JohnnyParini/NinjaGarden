@@ -69,7 +69,8 @@ public class EnemyAIJump : MonoBehaviour
 
     private void Awake()
     {
-        
+      
+        //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("whatIsEnemy"), LayerMask.NameToLayer("whatIsEnemy"), true);
         firstDetect = true;
         baseSpeed = speed;
         rb = GetComponent<Rigidbody2D>();
