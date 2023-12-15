@@ -210,6 +210,6 @@ public class SidePlayerMasterScript : MonoBehaviour
     {
         Gizmos.color = Color.red;
         // Draw a yellow sphere at the transform's position
-        Gizmos.DrawWireSphere(attackPoint.position - atkDownOffset, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
