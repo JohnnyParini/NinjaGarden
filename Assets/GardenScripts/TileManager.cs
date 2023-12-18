@@ -9,6 +9,7 @@ public class TileManager : MonoBehaviour
 
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
+    [SerializeField] private Tile plantableTile;
 
     public MouseInput mouseInput;
 
@@ -79,6 +80,7 @@ public class TileManager : MonoBehaviour
 
             string tileName = GetTileName(gridPosition);
 
+
             if (!string.IsNullOrWhiteSpace(tileName))
             {
                 //if we get something back that isn't empty:
@@ -101,13 +103,14 @@ public class TileManager : MonoBehaviour
                         Debug.Log("not holding FarmingStaff");
                     }
                 }
-                else
-                {
-                    Debug.Log(inventoryManager.toolbar.selectedSlot.itemName);
-                }
+               
             }
         
 
+        }
+        if (IsPlantable(gridPosition))
+        {
+            Debug.Log("plantable land");
         }
         //if (interactableMap.HasTile(gridPosition)) { }
     }
@@ -118,16 +121,34 @@ public class TileManager : MonoBehaviour
         TileBase tile = interactableMap.GetTile(position); //will need to get the tile at the position to determine interactability
         Debug.Log("the tile being checked is at " + position);
 
-        if(tile != null) //if the tile isn't null
+        if (tile != null) //if the tile isn't null
         {
             Debug.Log("the tile's name is " + tile.name);
             if (tile.name == "Interactable_Invis")
             {
                 return true;
             }
-                
+
         }
-        Debug.Log("Tile was null");
+        else {
+            Debug.Log("Tile was null"); 
+        }
+        return false;
+    }
+
+    public bool IsPlantable(Vector3Int position)
+    {
+        TileBase tile = interactableMap.GetTile(position); //will need to get the tile at the position to determine interactability
+        Debug.Log("the tile being checked is at " + position);
+
+        if(tile != null)
+        {
+            Debug.Log("not null tile");
+            if(tile.name == "Summer_Plowed")
+            {
+                return true;
+            }
+        }
         return false;
     }
 
