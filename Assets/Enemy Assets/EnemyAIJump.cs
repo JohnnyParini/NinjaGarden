@@ -21,8 +21,9 @@ public class EnemyAIJump : MonoBehaviour
     //public Camera fpsCam;
   
     public LayerMask whatIsEnemy;
+    public float enemyInt;
 
- 
+
     //Movement
     public Vector3 direction;
     public float orientation;

@@ -9,7 +9,7 @@ public class EnemyAIRanged : MonoBehaviour
     public SidePlayerMasterScript playerLogic;
 
     public LayerMask whatIsGround, whatIsPlayer;
-    public float enemyInt
+    public float enemyInt;
 
     //public float health;
     //gun related variables begin here

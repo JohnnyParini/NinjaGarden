@@ -21,8 +21,9 @@ public class EnemyAI : MonoBehaviour
     public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
+    public float enemyInt;
 
- 
+
     //Movement
     public Vector3 walkPoint;
     bool walkPointSet;
