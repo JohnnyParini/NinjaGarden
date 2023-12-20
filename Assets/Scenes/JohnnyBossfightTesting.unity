@@ -239,7 +239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836080417}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.97, z: 0}
+  m_LocalPosition: {x: 0.38, y: -3.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4619,7 +4619,7 @@ GameObject:
   - component: {fileID: 1247437785}
   - component: {fileID: 1247437790}
   m_Layer: 9
-  m_Name: 'Jumping Enemy '
+  m_Name: Boss 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4637,9 +4637,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2.5698166
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -4658,7 +4658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990db326f7e479b42bbd43b2f160a8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 50
 --- !u!61 &1247437787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4771,38 +4771,40 @@ MonoBehaviour:
   playerLogic: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   jumpableGround:
     serializedVersion: 2
-    m_Bits: 0
-  damage: 0
+    m_Bits: 256
+  damage: 10
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   direction: {x: 0, y: 0, z: 0}
   orientation: 0
-  speed: 0
+  speed: 1
   baseSpeed: 0
   firstDetect: 0
-  jumpForceV: 0
-  jumpForceH: 0
-  dmgPoint: {fileID: 0}
+  jumpForceV: 6
+  jumpForceH: 8
+  dmgPoint: {fileID: 836080418}
   rb: {fileID: 0}
   coll: {fileID: 0}
-  timeBetweenAttacks: 0
+  timeBetweenAttacks: 2
   time: 0
+  projectile: {fileID: 3407108643878726506, guid: 15f4c0d4a08b10d469305d027a6b5b69, type: 3}
+  activeProjectile: {fileID: 0}
   KnockFromRight: 0
-  KBHForce: 0
-  KBVForce: 0
+  KBHForce: 5
+  KBVForce: 5
   right: 1
   left: -1
-  attackRange: 0
+  attackRange: 8
   dummy: 0
   force: {x: 0, y: 0, z: 0}
-  splashDmgAOE: {x: 0, y: 0, z: 0}
+  splashDmgAOE: {x: 20, y: 0.4, z: 0}
 --- !u!1 &1554223100
 GameObject:
   m_ObjectHideFlags: 0
@@ -5270,12 +5272,14 @@ MonoBehaviour:
   wallCheck: {fileID: 0}
   attackPoint: {fileID: 1016828064}
   attackRange: 0.47
-  attackDamage: 10
+  attackDamage: 20
   enemyLayer:
     serializedVersion: 2
     m_Bits: 512
   arOffset: 0.6
   maxHealth: 100
+  atkDownOffset: {x: 0, y: 0, z: 0}
+  attackInterval: 0.1
   KBCounter: 0
   KBTotalTime: 1
   KnockFromRight: 0

@@ -32,6 +32,8 @@ public class SidePlayerMasterScript : MonoBehaviour
     public int maxHealth;
     int currentHealth;
     public Vector3 atkDownOffset;
+    bool canAttack;
+    public float attackInterval; 
     
 
     //knockback variables
@@ -46,6 +48,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canAttack = true;
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
@@ -70,7 +73,7 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         
 
-        if (Input.GetButtonDown("Attack"))
+        if (Input.GetButtonDown("Attack") && canAttack)
         {
             if (Input.GetAxisRaw("Vertical") == -1)
             {
@@ -78,6 +81,7 @@ public class SidePlayerMasterScript : MonoBehaviour
                 anim.SetTrigger("Attack");
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position - atkDownOffset, attackRange, enemyLayer);
                 enemyTrack(hitEnemies);
+                canAttack = false;
             }
             else
             {
@@ -85,12 +89,10 @@ public class SidePlayerMasterScript : MonoBehaviour
                 anim.SetTrigger("Attack");
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
                 enemyTrack(hitEnemies);
+                canAttack = false;
             }
 
-            
-
-            
-
+            Invoke("AttackReset", attackInterval);
         }
 
         WallSlide();
@@ -152,6 +154,11 @@ public class SidePlayerMasterScript : MonoBehaviour
     private bool IsTouchingWall()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, orientation, 0.1f, wallLayer);
+    }
+
+    private void AttackReset()
+    {
+        canAttack = true; 
     }
 
     private void WallSlide()

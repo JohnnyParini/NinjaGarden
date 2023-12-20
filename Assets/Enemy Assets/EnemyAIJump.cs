@@ -80,7 +80,7 @@ public class EnemyAIJump : MonoBehaviour
         time = 0;
         playerLogic = player.GetComponent<SidePlayerMasterScript>();
         
-        //Physics2D.IgnoreLayerCollision(9, 10);
+        Physics2D.IgnoreLayerCollision(9, 9);
         // agent = GetComponent<NavMeshAgent>();
 
         //readyToShoot = true;

@@ -46,7 +46,10 @@ public class BossJumping : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public float time;
-    
+    public GameObject projectile;
+    public GameObject activeProjectile;
+    Vector3 projectileDisplacement;
+
     /*
     public float KBForce;
     public float KBCounter;
@@ -69,83 +72,71 @@ public class BossJumping : MonoBehaviour
 
     private void Awake()
     {
-        
         firstDetect = true;
-        baseSpeed = speed;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         time = 0;
         playerLogic = player.GetComponent<SidePlayerMasterScript>();
-        
-        //Physics2D.IgnoreLayerCollision(9, 10);
-        // agent = GetComponent<NavMeshAgent>();
-
-        //readyToShoot = true;
+        projectileDisplacement = new Vector3(0, 0, 0);
     }
 
     private void Update()
     {
         float distance = this.transform.position.x - player.transform.position.x;
 
-
         time += Time.deltaTime;
-        //Debug.Log("Time = " + time);
-        //Debug.Log(Mathf.Abs(distance) + "ORIGINAL DISTANCE CALC");
 
-
-            //Vector3.Distance(this.transform.position, player.transform.position);
         if (distance < 0)
         {
             orientation = 1;//run right
 
-        }
-
-        else if (distance > 0)
+        }else if (distance > 0)
         {
             orientation = -1; //run left
-            //Debug.Log("RUNNING LEFT");
         }
 
         direction = new Vector2(orientation, this.transform.position.y);
 
-      
-        //Debug.Log("WHY ARE YOU DOING THIS SDF; IOVEMMTEWIT EWEIVMMRMVRTVRTIRVTIREIEMVEVEUITUIPEIUEWTIU");
-        
-        
         if (Mathf.Abs(distance) <= attackRange && IsGrounded())
         {
             AttackPlayer();
-            
-        }
-
-        else
+        }else
         {
             ChasePlayer();
         }
 
-        
-
-        if (alreadyAttacked == true)
+        if (alreadyAttacked && IsGrounded() && firstDetect && rb.velocity.y <= 0)
         {
-           // Debug.Log("FUCK");
+            splashDamage();
+            Debug.Log("wasup");
+            firstDetect = false;
+        }
+
+        if (alreadyAttacked)
+        {
             if (timeBetweenAttacks - time <= 0 && IsGrounded())
             {
-               // Debug.Log("YOOOOOOOOOOOOOO");
+                Debug.Log("HERE");
+                
+                for (int i = 0; i < 3; i++)
+                {
+                    activeProjectile = Instantiate(projectile, dmgPoint.position + projectileDisplacement, transform.rotation);
+
+                    if (orientation == 1)
+                    {
+                        activeProjectile.GetComponent<Projectile>().pSpeed = Mathf.Abs(activeProjectile.GetComponent<Projectile>().pSpeed); //projectile moves right
+                    }
+                    else if (orientation == -1)
+                    {
+                        activeProjectile.GetComponent<Projectile>().pSpeed = Mathf.Abs(activeProjectile.GetComponent<Projectile>().pSpeed) * -1; //projectile moves left
+                    }
+                    projectileDisplacement.y++;
+                }
+                projectileDisplacement.y = 0;
                 ResetAttack();
             }
         }
-
-        if (alreadyAttacked && IsGrounded() && firstDetect && rb.velocity.y <= 0)
-        {
-            // Instantiate(splashDMG, dmgPoint.position, transform.rotation);
-            splashDamage();
-            Debug.Log("HAHAHAHAHAHAHAHAHAHAHAHAHAHAHA");
-            firstDetect = false;
-            // firstDetect = false;
-        }
-
-
 
     }
 
@@ -153,28 +144,24 @@ public class BossJumping : MonoBehaviour
     private void ChasePlayer()
     {
         this.transform.position += direction * speed * Time.deltaTime;
-        //Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
 
     private void AttackPlayer()
     {
-        //Debug.Log(IsGrounded());
         if (!alreadyAttacked && IsGrounded())
         {
-          //  Debug.Log("LMAO");
             rb.velocity = new Vector3(jumpForceH * orientation, jumpForceV, 0); //orientation is negative or positive 1, meaning it affects left or right and thats it
+            Debug.Log(rb.velocity + " THIS IS THE VELOCITY");
             time = 0;
             alreadyAttacked = true;
-            
+       
         }
     }
     private void ResetAttack()
     {
         alreadyAttacked = false;
-        firstDetect = true;
-        //time = 0;
-        
+        firstDetect = true;     
     }
 
     private bool IsGrounded()
@@ -195,9 +182,6 @@ public class BossJumping : MonoBehaviour
             if (orientation == 1)
             {
                 playerLogic.KnockFromRight = true;
-
-                // playerLogic.rb.gravityScale *= 2;
-                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
                 force = new Vector3(KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
                 Debug.Log("ATTACK ENTER");
@@ -205,12 +189,9 @@ public class BossJumping : MonoBehaviour
             else if (orientation == -1)
             {
                 playerLogic.KnockFromRight = false;
-                //  playerLogic.rb.gravityScale *= 2;
-                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
                 force = new Vector3(-KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
                 Debug.Log("ATTACK ENTER");
-                //rb.velocity = new Vector3(0, jumpForce, 0);
             }
         }
 
