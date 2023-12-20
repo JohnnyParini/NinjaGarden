@@ -67,7 +67,7 @@ public class EnemyAIRanged : MonoBehaviour
         baseSpeed = speed;
         player = GameObject.FindGameObjectWithTag("Player");
         playerLogic = player.GetComponent<SidePlayerMasterScript>();
-        //Physics2D.IgnoreLayerCollision(9, 10);
+        Physics2D.IgnoreLayerCollision(9, 9);
         // agent = GetComponent<NavMeshAgent>();
 
         //readyToShoot = true;
@@ -125,11 +125,11 @@ public class EnemyAIRanged : MonoBehaviour
             activeProjectile = Instantiate(projectile, shootPoint.position, transform.rotation);
             if (orientation == 1)
             {
-                activeProjectile.GetComponent<Projectile>().speed = Mathf.Abs(speed); //projectile moves right
+                activeProjectile.GetComponent<Projectile>().pSpeed = Mathf.Abs(activeProjectile.GetComponent<Projectile>().pSpeed); //projectile moves right
             }
             else if(orientation == -1)
             {
-                activeProjectile.GetComponent<Projectile>().speed = Mathf.Abs(speed) * -1; //projectile moves left
+                activeProjectile.GetComponent<Projectile>().pSpeed = Mathf.Abs(activeProjectile.GetComponent<Projectile>().pSpeed) * -1; //projectile moves left
             }
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
