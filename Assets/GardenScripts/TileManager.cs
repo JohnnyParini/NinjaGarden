@@ -10,6 +10,8 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
     [SerializeField] private Tile plantableTile;
+    [SerializeField] List<TileData> tileDatas;
+    Dictionary<TileBase, TileData> dataFromTiles;
 
     public MouseInput mouseInput;
 
@@ -31,12 +33,22 @@ public class TileManager : MonoBehaviour
         mouseInput = new MouseInput();
         UI = GetComponent<UI_Manager>();
         player = FindObjectOfType<Player>();
+        dataFromTiles = new Dictionary<TileBase, TileData>();
 
     }
 
     // Start is called before the first frame update
     void Start()
     {
+
+       //foreach(TileData tileData in tileDatas)
+        //{
+          //  foreach(TileBase tile in tileData.tiles)
+           // {
+             //   dataFromTiles.Add(tile, tileData);
+           // }
+        //}
+
         mouseInput.Mouse.MouseClick.performed += _ => MouseClick();
 
         testNum = 0;
