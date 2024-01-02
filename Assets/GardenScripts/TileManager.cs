@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class TileManager : MonoBehaviour
 {
     [SerializeField] private Tilemap interactableMap;
+    [SerializeField] private Tilemap alphaTilemap;
 
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
@@ -14,6 +15,8 @@ public class TileManager : MonoBehaviour
     Dictionary<TileBase, TileData> dataFromTiles;
 
     public MouseInput mouseInput;
+
+   
 
     public UI_Manager UI;
 
@@ -68,6 +71,11 @@ public class TileManager : MonoBehaviour
             }
             
         }
+        foreach(var position in alphaTilemap.cellBounds.allPositionsWithin)
+        {
+            TileBase tile = alphaTilemap.GetTile(position);
+
+        }
     }
 
     private void Update()
@@ -76,6 +84,7 @@ public class TileManager : MonoBehaviour
         {
             Debug.Log("mouseClick is being called");
             MouseClick();
+            GetTileBase(Input.mousePosition);
         }
     }
     public void MouseClick()
@@ -127,6 +136,7 @@ public class TileManager : MonoBehaviour
         //if (interactableMap.HasTile(gridPosition)) { }
     }
 
+
     public bool IsInteractable(Vector3Int position)
     {
         
@@ -169,6 +179,25 @@ public class TileManager : MonoBehaviour
         interactableMap.SetTile(position, plowedTile);
     }
 
+
+    public TileBase GetTileBase(Vector2 mousePosition)
+    {
+
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        Vector3Int gridPosition = alphaTilemap.WorldToCell(worldPosition);
+
+        TileBase tile = alphaTilemap.GetTile(gridPosition);
+
+        
+        Debug.Log("The alpha tile in " + gridPosition + " is " + tile);
+        if(tile == null)
+        {
+            Debug.Log("your code sucks you dumb person");
+        }
+
+        return null;
+    }
     public string GetTileName(Vector3Int position)
     {
         if(interactableMap != null)
@@ -183,5 +212,7 @@ public class TileManager : MonoBehaviour
         }
         return "";
     }
-  
+
+
+
 }
