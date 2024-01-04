@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 
 public class GardenItemManager : MonoBehaviour
 {
     
     public Item[] items; //MAKE SURE THAT THE ITEM YOU WANT TO PICK UP IS IN THE COLLECTABLE ITEMS TAB 
+
+   
 
     //NEW: make sure that the prefab takes the "itemData" in the inspector. this is not hard
 
