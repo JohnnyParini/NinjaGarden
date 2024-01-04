@@ -14,6 +14,7 @@ public class CameraHorizontalFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(player);
         transform.position = new Vector3(player.transform.position.x, transform.position.y, zOffSet);
     }
 }
