@@ -26,6 +26,7 @@ public class GardenItemManager : MonoBehaviour
 
     private void AddItem(Item item)
     {
+        Debug.Log("the added item name is " + item.name);
         if (!nameToItemDict.ContainsKey(item.data.itemName)) //if the dictionary doesn't have the key type
         {
             nameToItemDict.Add(item.data.itemName, item); //add to the dictionary
