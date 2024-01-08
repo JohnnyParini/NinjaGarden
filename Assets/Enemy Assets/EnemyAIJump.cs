@@ -115,9 +115,11 @@ public class EnemyAIJump : MonoBehaviour
         //Debug.Log("WHY ARE YOU DOING THIS SDF; IOVEMMTEWIT EWEIVMMRMVRTVRTIRVTIREIEMVEVEUITUIPEIUEWTIU");
         
         
-        if (Mathf.Abs(distance) <= attackRange && IsGrounded())
+        if (Mathf.Abs(distance) <= attackRange && IsGrounded() && !alreadyAttacked)
         {
+            Debug.Log("FIRE IN THE HOLE");
             AttackPlayer();
+            
             
         }
 
@@ -161,22 +163,18 @@ public class EnemyAIJump : MonoBehaviour
 
     private void AttackPlayer()
     {
-        //Debug.Log(IsGrounded());
-        if (!alreadyAttacked && IsGrounded())
-        {
-          //  Debug.Log("LMAO");
-            rb.velocity = new Vector3(jumpForceH * orientation, jumpForceV, 0); //orientation is negative or positive 1, meaning it affects left or right and thats it
-            time = 0;
-            alreadyAttacked = true;
+
+        rb.velocity = new Vector3(jumpForceH * orientation, jumpForceV, 0); //orientation is negative or positive 1, meaning it affects left or right and thats it
+        time = 0;
+        firstDetect = true;
+        alreadyAttacked = true;
             
-        }
+        
     }
     private void ResetAttack()
     {
         alreadyAttacked = false;
-        firstDetect = true;
-        //time = 0;
-        
+
     }
 
     private bool IsGrounded()
@@ -186,7 +184,7 @@ public class EnemyAIJump : MonoBehaviour
 
     private void splashDamage()
     {
-        
+        Debug.Log("Splash damage called");
         Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(dmgPoint.position, splashDmgAOE, 0, whatIsPlayer);
         foreach (Collider2D player in hitPlayer)
         {
@@ -217,6 +215,11 @@ public class EnemyAIJump : MonoBehaviour
         }
 
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
     }
 
 

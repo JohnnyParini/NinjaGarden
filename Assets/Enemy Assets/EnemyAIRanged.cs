@@ -30,6 +30,10 @@ public class EnemyAIRanged : MonoBehaviour
     public float speed;
     public float baseSpeed;
     public bool firstDetect;
+    public Transform boundryLeft;
+    public Transform boundryRight;
+    public Vector3 ePosition;
+    public bool bounded;
 
     //attack variables
     public GameObject projectile;
@@ -75,37 +79,43 @@ public class EnemyAIRanged : MonoBehaviour
 
     private void Update()
     {
-        float distance = this.transform.position.x - player.transform.position.x;
+        ePosition = this.transform.position;
+        float distance = ePosition.x - player.transform.position.x;
 
-        Debug.Log(Mathf.Abs(distance));
-        //Debug.Log(Mathf.Abs(distance) + "ORIGINAL DISTANCE CALC");
-
-
-            //Vector3.Distance(this.transform.position, player.transform.position);
-        if (distance < 0)
+        if (distance < 0 && Bounded())
         {
             orientation = 1;//run right
         }
 
-        else if (distance > 0)
+        else if (distance > 0 && Bounded())
         {
             orientation = -1; //run left
         }
 
         direction = new Vector2(orientation, this.transform.position.y);
 
-      
-        //Debug.Log("WHY ARE YOU DOING THIS SDF; IOVEMMTEWIT EWEIVMMRMVRTVRTIRVTIREIEMVEVEUITUIPEIUEWTIU");
-        //Check for sight and attack range
-        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        if (Mathf.Abs(distance) <= attackRange)
+
+        /*
+         * the code below is ordered in priotirty of execution
+         * first if statement indicates the enemy should always remain in bounds, and cannot do anything else until this condition is met 
+         * second if statement indicates the enemy should attack whenever it can, so long as it is bounded
+         * third if statement indicates the enemy should move towards the player WITHIN its boundries
+         */
+        if (!Bounded())
+        {
+            returnToBounds();
+        }
+
+        else if (Mathf.Abs(distance) <= attackRange)
         {
             AttackPlayer();
         }
 
-        else {
+        else if (Bounded())
+        {
             ChasePlayer();
         }
+        
        
     }
 
@@ -113,7 +123,7 @@ public class EnemyAIRanged : MonoBehaviour
     private void ChasePlayer()
     {
         this.transform.position += direction * speed * Time.deltaTime;
-        Debug.Log("LOOOOOOOOOOOOOOOOOL");
+        //Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
 
@@ -138,6 +148,38 @@ public class EnemyAIRanged : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+
+    private bool Bounded()
+    {
+        if (ePosition.x > boundryRight.position.x || ePosition.x < boundryLeft.position.x)
+        {
+            bounded = false;
+        }
+        else if (ePosition.x <= boundryRight.position.x && ePosition.x >= boundryLeft.position.x)
+        {
+            bounded = true;
+        }
+        return bounded;
+    }
+
+    private void returnToBounds()
+    {
+        if (ePosition.x < boundryLeft.position.x)
+        {
+            direction = new Vector2(1, this.transform.position.y);
+            this.transform.position += direction * speed * Time.deltaTime;
+        }
+        else if (ePosition.x > boundryRight.position.x)
+        {
+            direction = new Vector2(-1, this.transform.position.y);
+            this.transform.position += direction * speed * Time.deltaTime;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
     }
 
     void OnDrawGizmos()

@@ -113,7 +113,7 @@ public class EnemyAI : MonoBehaviour
 
         if (charge) ChargePlayer();
 
-        if (dummy == false)
+        if (dummy == false && charge)
         {
             Collider2D[] playerRange = Physics2D.OverlapCircleAll(detectOrigin.position, attackRange, whatIsPlayer);
             foreach (Collider2D player in playerRange)
