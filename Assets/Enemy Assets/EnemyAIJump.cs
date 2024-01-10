@@ -90,6 +90,9 @@ public class EnemyAIJump : MonoBehaviour
     {
         float distance = this.transform.position.x - player.transform.position.x;
 
+        Debug.Log(rb.velocity.y + " SPEED IS ALL I NEED");
+        Debug.Log(this.transform.position.y + " AND DISTANCE IS ALL I HAVE");
+
 
         time += Time.deltaTime;
         //Debug.Log("Time = " + time);
@@ -165,6 +168,7 @@ public class EnemyAIJump : MonoBehaviour
     {
 
         rb.velocity = new Vector3(jumpForceH * orientation, jumpForceV, 0); //orientation is negative or positive 1, meaning it affects left or right and thats it
+        Debug.Log("FORCE IS BEING APPLIED");
         time = 0;
         firstDetect = true;
         alreadyAttacked = true;

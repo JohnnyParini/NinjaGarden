@@ -5829,6 +5829,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2986350726766002266, guid: 3fd26b6b38ce0a14b906534bbea786bb, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986350726766002266, guid: 3fd26b6b38ce0a14b906534bbea786bb, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986350726766002266, guid: 3fd26b6b38ce0a14b906534bbea786bb, type: 3}
       propertyPath: m_Interpolate
       value: 0
       objectReference: {fileID: 0}
@@ -5838,7 +5846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2986350726766002267, guid: 3fd26b6b38ce0a14b906534bbea786bb, type: 3}
       propertyPath: jumpForceV
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2986350726766002270, guid: 3fd26b6b38ce0a14b906534bbea786bb, type: 3}
       propertyPath: m_RootOrder
@@ -5850,7 +5858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2986350726766002270, guid: 3fd26b6b38ce0a14b906534bbea786bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.05
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 2986350726766002270, guid: 3fd26b6b38ce0a14b906534bbea786bb, type: 3}
       propertyPath: m_LocalPosition.z
