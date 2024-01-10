@@ -21,7 +21,10 @@ public class Player : MonoBehaviour
         toolbarUI = GetComponent<Toolbar_UI>();
     }
 
-
+    public void setAwake()
+    {
+        Awake();
+    }
 
     public void Update()
     {

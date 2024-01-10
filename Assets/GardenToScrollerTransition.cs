@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GardenToScrollerTransition : MonoBehaviour
 {
-
+    [SerializeField] public int numToLoad;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Portal Collision");
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(numToLoad);
 
     }
 

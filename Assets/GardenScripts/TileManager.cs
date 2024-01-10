@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using UnityEngine.SceneManagement;
 
 
 public class CropTile
@@ -46,7 +46,15 @@ public class TileManager : MonoBehaviour
     public float tilePosY;
     public float tilePosZ;
 
+    private void OnLevelWasLoaded(int level)
+    {
+        inventoryManager = GetComponent<InventoryManager>();
+        mouseInput = new MouseInput();
+        UI = GetComponent<UI_Manager>();
+        player = FindObjectOfType<Player>();
+        dataFromTiles = new Dictionary<TileBase, TileData>();
 
+    }
     private void Awake()
     {
         inventoryManager = GetComponent<InventoryManager>();
@@ -57,6 +65,10 @@ public class TileManager : MonoBehaviour
 
     }
 
+    public void setAwake()
+    {
+        Awake();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -262,6 +274,7 @@ public class TileManager : MonoBehaviour
         Debug.Log("the type is " + type);
         if (type == "Strawberry")
         {
+            //set tile type to strawberry
             interactableMap.SetTile(position, Strawberry);
         }
         if (type == "Melon")

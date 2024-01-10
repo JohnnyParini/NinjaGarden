@@ -28,6 +28,10 @@ public class UI_Manager : MonoBehaviour
         ToggleInventoryUI();
     }
 
+    public void setAwake()
+    {
+        Awake();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.I ))
