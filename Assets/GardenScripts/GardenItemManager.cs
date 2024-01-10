@@ -24,6 +24,11 @@ public class GardenItemManager : MonoBehaviour
         }
     }
 
+    public void setAwake()
+    {
+        Awake();
+    }
+
     private void AddItem(Item item)
     {
         Debug.Log("the added item name is " + item.name);

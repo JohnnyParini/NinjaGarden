@@ -16,7 +16,22 @@ public class GameManager : MonoBehaviour
 
     public UI_Manager uiManager;
 
-    
+    private void OnLevelWasLoaded(int level)
+    {
+        if(level == 1)
+        {
+            Debug.Log("Actually Loaded level 1");
+            setLevelAwake();
+        }
+    }
+    private void setLevelAwake()
+    {
+        player.setAwake();
+        tileManager.setAwake();
+        uiManager.setAwake();
+        
+        itemManager.setAwake();
+    }
 
     private void Awake()
     {
@@ -43,7 +58,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //tileManager.setAwake();
     }
     // Update is called once per frame
     void Update()
