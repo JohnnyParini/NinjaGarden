@@ -44,15 +44,15 @@ public class Inventory_UI : MonoBehaviour
 
     public void Refresh()
     {
-        Debug.Log(Inventory.slots.Count + "player slots");
-        Debug.Log(slots.Count + "Slots");
+        //Debug.Log(Inventory.slots.Count + "player slots");
+        //Debug.Log(slots.Count + "Slots");
         if(slots.Count == Inventory.slots.Count) //if the player and the slots have the same number
         {
             //Debug.Log("TRUE TRUE TRUE");
             for(int i = 0; i<slots.Count; i++)
             {
-                Debug.Log("iteration " + i + " of" + Inventory.slots.Count);
-                Debug.Log("slot " + i + " type = " + Inventory.slots[i].itemName);
+                //Debug.Log("iteration " + i + " of" + Inventory.slots.Count);
+                //Debug.Log("slot " + i + " type = " + Inventory.slots[i].itemName);
                 if(Inventory.slots[i].itemName != "") //if the slot isn't an empty string
                     
                 {
@@ -61,9 +61,9 @@ public class Inventory_UI : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Slot " + i + " is already empty");
+                    //Debug.Log("Slot " + i + " is already empty");
                     slots[i].SetEmpty();
-                    Debug.Log("Setting empty slot " + i);
+                    //Debug.Log("Setting empty slot " + i);
                 }
 
             }

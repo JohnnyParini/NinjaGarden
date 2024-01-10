@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 
 public class GardenItemManager : MonoBehaviour
 {
     
     public Item[] items; //MAKE SURE THAT THE ITEM YOU WANT TO PICK UP IS IN THE COLLECTABLE ITEMS TAB 
+
+   
 
     //NEW: make sure that the prefab takes the "itemData" in the inspector. this is not hard
 
@@ -22,6 +26,7 @@ public class GardenItemManager : MonoBehaviour
 
     private void AddItem(Item item)
     {
+        Debug.Log("the added item name is " + item.name);
         if (!nameToItemDict.ContainsKey(item.data.itemName)) //if the dictionary doesn't have the key type
         {
             nameToItemDict.Add(item.data.itemName, item); //add to the dictionary

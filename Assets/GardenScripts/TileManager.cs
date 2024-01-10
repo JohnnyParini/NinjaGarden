@@ -3,17 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
+
+public class CropTile
+{
+    public int growTimer;
+
+    public Crop crop;
+}
+
 public class TileManager : MonoBehaviour
 {
     [SerializeField] private Tilemap interactableMap;
+    //[SerializeField] private Tilemap alphaTilemap;
 
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
     [SerializeField] private Tile plantableTile;
+    [SerializeField] private Tile firstPlantedTile;
+    [SerializeField] private Tile secondPlantedTile;
+    [SerializeField] private Tile thirdPlantedTile;
+    [SerializeField] private Tile growntile;
     [SerializeField] List<TileData> tileDatas;
     Dictionary<TileBase, TileData> dataFromTiles;
+    [SerializeField] private Tile Strawberry;
+    [SerializeField] private Tile Turnip;
+    [SerializeField] private Tile Melon;
+
 
     public MouseInput mouseInput;
+
+   
 
     public UI_Manager UI;
 
@@ -68,6 +88,11 @@ public class TileManager : MonoBehaviour
             }
             
         }
+        //foreach(var position in alphaTilemap.cellBounds.allPositionsWithin)
+        //{
+         //   TileBase tile = alphaTilemap.GetTile(position);
+
+//        }
     }
 
     private void Update()
@@ -76,10 +101,14 @@ public class TileManager : MonoBehaviour
         {
             Debug.Log("mouseClick is being called");
             MouseClick();
+            //GetTileBase(Input.mousePosition);
         }
     }
     public void MouseClick()
     {
+
+        Debug.Log("Item name is " + player.inventory.toolbar.selectedSlot.itemName);
+
         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y); //pixel
             //mouseInput.Mouse.MouseClick.ReadValue<Vector2>(); //gets it in pixel coordinates
         Debug.Log("the pixel position is  " + mousePosition);
@@ -120,12 +149,27 @@ public class TileManager : MonoBehaviour
         
 
         }
-        if (IsPlantable(gridPosition))
+        if (IsPlantable(gridPosition) && player.inventory.toolbar.selectedSlot.itemName == "PlantStaff")
         {
             Debug.Log("plantable land");
+            SetPlanted(gridPosition);
         }
+        if(IsPlantable(gridPosition) && player.inventory.toolbar.selectedSlot.itemName != "FarmingStaff")
+        {
+            
+            plantType( gridPosition, player.inventory.toolbar.selectedSlot.itemName);
+            player.inventory.toolbar.selectedSlot.removeItem();
+            UI.RefreshAll();
+            
+            Debug.Log(player.inventory.toolbar.selectedSlot.itemName + " has been ticked down");
+            Debug.Log("Planted then removed");
+        }
+        
         //if (interactableMap.HasTile(gridPosition)) { }
     }
+
+
+   
 
     public bool IsInteractable(Vector3Int position)
     {
@@ -169,6 +213,34 @@ public class TileManager : MonoBehaviour
         interactableMap.SetTile(position, plowedTile);
     }
 
+    public void SetPlanted(Vector3Int position)
+    {
+        
+            Debug.Log("this area is plantable");
+            interactableMap.SetTile(position, firstPlantedTile);
+            //get something from inventory and remove it
+        
+    }
+
+
+    // public TileBase GetTileBase(Vector2 mousePosition)
+    //{
+
+    //  Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+    //        Vector3Int gridPosition = alphaTilemap.WorldToCell(worldPosition);
+
+    //      TileBase tile = alphaTilemap.GetTile(gridPosition);
+
+
+    //    Debug.Log("The alpha tile in " + gridPosition + " is " + tile);
+    //  if(tile == null)
+    //{
+    //  Debug.Log("your code sucks you dumb person");
+    //}
+
+    //return null;
+    //}
     public string GetTileName(Vector3Int position)
     {
         if(interactableMap != null)
@@ -183,5 +255,25 @@ public class TileManager : MonoBehaviour
         }
         return "";
     }
-  
+
+
+    public void plantType(Vector3Int position, string type)
+    {
+        Debug.Log("the type is " + type);
+        if (type == "Strawberry")
+        {
+            interactableMap.SetTile(position, Strawberry);
+        }
+        if (type == "Melon")
+        {
+            interactableMap.SetTile(position, Melon);
+        }
+        if (type == "Turnip")
+        {
+            interactableMap.SetTile(position, Turnip);
+        }
+
+    }
+
+
 }
