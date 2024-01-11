@@ -67,6 +67,10 @@ public class EnemyAIJump : MonoBehaviour
     public bool dummy;
     public Vector3 force;
     public Vector3 splashDmgAOE;
+    float distanceNew;
+    float distanceOld;
+    float disDif;
+    
 
     private void Awake()
     {
@@ -81,6 +85,7 @@ public class EnemyAIJump : MonoBehaviour
         playerLogic = player.GetComponent<SidePlayerMasterScript>();
         
         Physics2D.IgnoreLayerCollision(9, 9);
+        distanceOld = this.transform.position.y;
         // agent = GetComponent<NavMeshAgent>();
 
         //readyToShoot = true;
@@ -88,11 +93,18 @@ public class EnemyAIJump : MonoBehaviour
 
     private void Update()
     {
-        float distance = this.transform.position.x - player.transform.position.x;
+        distanceNew = this.transform.position.y;
+        disDif = distanceNew - distanceOld;
+        distanceOld = distanceNew;
 
+        Debug.Log(disDif +" DISTANCE IS ALL I HAVE");
+        Debug.Log(rb.velocity.y + " AND SPEED IS ALL I NEED");
+
+        float distance = this.transform.position.x - player.transform.position.x;
+        /*
         Debug.Log(rb.velocity.y + " SPEED IS ALL I NEED");
         Debug.Log(this.transform.position.y + " AND DISTANCE IS ALL I HAVE");
-
+        */
 
         time += Time.deltaTime;
         //Debug.Log("Time = " + time);
