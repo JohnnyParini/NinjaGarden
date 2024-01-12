@@ -179,10 +179,10 @@ public class EnemyAIJump : MonoBehaviour
     private void ChasePlayer()
     {
         yVel = rb.velocity.y;
-      //  vel = (speed, yVel, 0);
+        vel = new Vector3 (speed, yVel, 0);
         //this.transform.position += direction * speed * Time.deltaTime;
         //rb.velocity.x = speed;
-      //  rb.velocity.x = vel * orientation;
+        rb.velocity = vel * orientation;
         //Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
