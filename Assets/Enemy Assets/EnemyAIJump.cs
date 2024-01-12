@@ -32,7 +32,9 @@ public class EnemyAIJump : MonoBehaviour
     public bool firstDetect;
     public float jumpForceV;
     public float jumpForceH;
-
+    public Vector3 vel;
+    Vector3 noVel = new Vector3 (0,0,0);
+    float yVel;
 
     //attack variables
     //public GameObject projectile;
@@ -93,6 +95,10 @@ public class EnemyAIJump : MonoBehaviour
 
     private void Update()
     {
+        if (IsGrounded())
+        {
+            Debug.Log("I weep. for I remain chained to this material world");
+        }
         distanceNew = this.transform.position.y;
         disDif = distanceNew - distanceOld;
         distanceOld = distanceNew;
@@ -132,6 +138,7 @@ public class EnemyAIJump : MonoBehaviour
         
         if (Mathf.Abs(distance) <= attackRange && IsGrounded() && !alreadyAttacked)
         {
+            rb.velocity = noVel;
             Debug.Log("FIRE IN THE HOLE");
             AttackPlayer();
             
@@ -171,7 +178,11 @@ public class EnemyAIJump : MonoBehaviour
     
     private void ChasePlayer()
     {
-        this.transform.position += direction * speed * Time.deltaTime;
+        yVel = rb.velocity.y;
+        vel = new Vector3 (speed, yVel, 0);
+        //this.transform.position += direction * speed * Time.deltaTime;
+        //rb.velocity.x = speed;
+        rb.velocity = vel * orientation;
         //Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
