@@ -34,14 +34,17 @@ public class EnemyAIRanged : MonoBehaviour
     public Transform boundryRight;
     public Vector3 ePosition;
     public bool bounded;
+    float yVel;
+    Vector3 vel;
 
     //attack variables
     public GameObject projectile;
     public Transform shootPoint;
     public GameObject activeProjectile;
-    
-    
 
+
+    public Rigidbody2D rb;
+    public BoxCollider2D coll;
     //public Transform detectOrigin;
 
     //Attacking
@@ -122,8 +125,11 @@ public class EnemyAIRanged : MonoBehaviour
     
     private void ChasePlayer()
     {
-        this.transform.position += direction * speed * Time.deltaTime;
-        //Debug.Log("LOOOOOOOOOOOOOOOOOL");
+        yVel = rb.velocity.y;
+        vel = new Vector3(speed, yVel, 0);
+        rb.velocity = new Vector3(speed * orientation, yVel, 0);
+        //this.transform.position += direction * speed * Time.deltaTime;
+        Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
 

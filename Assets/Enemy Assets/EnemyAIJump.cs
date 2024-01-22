@@ -130,7 +130,7 @@ public class EnemyAIJump : MonoBehaviour
             //Debug.Log("RUNNING LEFT");
         }
 
-        direction = new Vector2(orientation, this.transform.position.y);
+        direction = new Vector3(orientation, this.transform.position.y, 0);
 
       
         //Debug.Log("WHY ARE YOU DOING THIS SDF; IOVEMMTEWIT EWEIVMMRMVRTVRTIRVTIREIEMVEVEUITUIPEIUEWTIU");
@@ -178,11 +178,12 @@ public class EnemyAIJump : MonoBehaviour
     
     private void ChasePlayer()
     {
-        yVel = rb.velocity.y;
-        vel = new Vector3 (speed, yVel, 0);
+       yVel = rb.velocity.y;
+       vel = new Vector3 (speed, yVel, 0);
         //this.transform.position += direction * speed * Time.deltaTime;
+       rb.velocity = new Vector3(speed * orientation, yVel, 0);
         //rb.velocity.x = speed;
-        rb.velocity = vel * orientation;
+        //rb.velocity = vel * orientation;
         //Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
