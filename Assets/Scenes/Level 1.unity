@@ -5756,6 +5756,14 @@ PrefabInstance:
       value: Ranged Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3779408957337697369, guid: 4cab784014d65d24bb9a3642e55e27f0, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1671541974}
+    - target: {fileID: 3779408957337697369, guid: 4cab784014d65d24bb9a3642e55e27f0, type: 3}
+      propertyPath: coll
+      value: 
+      objectReference: {fileID: 1671541976}
+    - target: {fileID: 3779408957337697369, guid: 4cab784014d65d24bb9a3642e55e27f0, type: 3}
       propertyPath: boundryLeft
       value: 
       objectReference: {fileID: 435318686}
@@ -6344,3 +6352,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!50 &1671541974 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3779408957337697370, guid: 4cab784014d65d24bb9a3642e55e27f0, type: 3}
+  m_PrefabInstance: {fileID: 1118987401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1671541976 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3779408957337697372, guid: 4cab784014d65d24bb9a3642e55e27f0, type: 3}
+  m_PrefabInstance: {fileID: 1118987401}
+  m_PrefabAsset: {fileID: 0}
