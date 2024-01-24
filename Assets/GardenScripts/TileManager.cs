@@ -118,8 +118,11 @@ public class TileManager : MonoBehaviour
     }
     public void MouseClick()
     {
-
-        Debug.Log("Item name is " + player.inventory.toolbar.selectedSlot.itemName);
+        if (player.inventory.toolbar.selectedSlot.itemName != "" && player.inventory.toolbar.selectedSlot.itemName != null)
+        {
+            Debug.Log("Item name is " + player.inventory.toolbar.selectedSlot.itemName);
+        }
+        
 
         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y); //pixel
             //mouseInput.Mouse.MouseClick.ReadValue<Vector2>(); //gets it in pixel coordinates
