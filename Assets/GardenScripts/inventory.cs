@@ -24,7 +24,7 @@ public class inventory
         public Slot()
         {
             itemName = "";
-            numInSlot = 0;
+            numInSlot = 0; //num in slot not working correctly (only when removing. removes an item from inventory 0 instead of toolbar)
             maxAllowed = 99; 
         }
 
@@ -124,6 +124,7 @@ public class inventory
             {
 
                 slot.addItem(item);
+                Debug.Log("added " + item.name + " to slots");
                 return;
 
             }

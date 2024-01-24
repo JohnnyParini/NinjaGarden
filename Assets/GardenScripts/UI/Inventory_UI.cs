@@ -8,7 +8,7 @@ public class Inventory_UI : MonoBehaviour
 {
     
 
-    public GameObject player;
+    public Player player;
     public string inventoryName;
 
     public Movement move;
@@ -85,16 +85,21 @@ public class Inventory_UI : MonoBehaviour
             //some problem in the tilling area. 
             //Debug.Log(itemToDrop.ToString()); //doesn't work
 
+            //item to drop doesn't work with toolbar nicely
+            //YOU NEED TO FIX THIS!!!!
+
             if (itemToDrop != null)
             {
                 Debug.Log("called item isn't null");
                 if (UI_Manager.dragAll == true)
                 {
+                Debug.Log("dragAll is true");
                     GameManager.instance.player.DropItem(itemToDrop, Inventory.slots[UI_Manager.draggedSlot.SlotID].numInSlot); //drops all items
                     Inventory.Remove(UI_Manager.draggedSlot.SlotID, Inventory.slots[UI_Manager.draggedSlot.SlotID].numInSlot); //removes all items
                 }
                 else
                 {
+                Debug.Log("dragAll isn't true");
                     GameManager.instance.player.DropItem(itemToDrop); //drops a single item
                     Inventory.Remove(UI_Manager.draggedSlot.SlotID); //removes a single item
                 }
