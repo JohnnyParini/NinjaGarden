@@ -129,7 +129,7 @@ public class EnemyAIRanged : MonoBehaviour
         vel = new Vector3(speed, yVel, 0);
         rb.velocity = new Vector3(speed * orientation, yVel, 0);
         //this.transform.position += direction * speed * Time.deltaTime;
-        Debug.Log("LOOOOOOOOOOOOOOOOOL");
+        //Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
 
