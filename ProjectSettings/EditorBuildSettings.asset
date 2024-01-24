@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestTransitionScene.unity
     guid: d0c92f459ba2c7f4bbea73c785c5ad64
+  - enabled: 1
+    path: Assets/Scenes/Level 1 Boss.unity
+    guid: d811b0250942b904c9a8f9ec627b4efc
   m_configObjects: {}

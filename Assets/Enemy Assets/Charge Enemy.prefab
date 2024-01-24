@@ -172,8 +172,13 @@ MonoBehaviour:
   firstDetect: 0
   charge: 0
   chargePDistance: 0
+  rb: {fileID: 5506352181076925457}
+  coll: {fileID: 5506352181076925458}
+  preChargePos: 0
   detectOrigin: {fileID: 5506352182671137860}
   timeBetweenAttacks: 1
+  time: 0
+  chargeTime: 1
   projectile: {fileID: 3407108643878726506, guid: 15f4c0d4a08b10d469305d027a6b5b69, type: 3}
   doOffset: 1.4
   KnockFromRight: 0

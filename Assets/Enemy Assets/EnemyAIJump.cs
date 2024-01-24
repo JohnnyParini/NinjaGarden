@@ -35,6 +35,8 @@ public class EnemyAIJump : MonoBehaviour
     public Vector3 vel;
     Vector3 noVel = new Vector3 (0,0,0);
     float yVel;
+    public Transform boundryLeft;
+    public Transform boundryRight;
 
     //attack variables
     //public GameObject projectile;
@@ -145,7 +147,7 @@ public class EnemyAIJump : MonoBehaviour
             
         }
 
-        else
+        else //if (!alreadyAttacked)
         {
             ChasePlayer();
         }
@@ -180,8 +182,8 @@ public class EnemyAIJump : MonoBehaviour
     {
        yVel = rb.velocity.y;
        vel = new Vector3 (speed, yVel, 0);
-        //this.transform.position += direction * speed * Time.deltaTime;
        rb.velocity = new Vector3(speed * orientation, yVel, 0);
+        //this.transform.position += direction * speed * Time.deltaTime;
         //rb.velocity.x = speed;
         //rb.velocity = vel * orientation;
         //Debug.Log("LOOOOOOOOOOOOOOOOOL");

@@ -42,11 +42,20 @@ public class EnemyAI : MonoBehaviour
     public bool firstDetect;
     public bool charge;
     public float chargePDistance;
+    float yVel;
+    Vector3 vel;
+    public Rigidbody2D rb;
+    public Collider2D coll;
+    public float preChargePos;
+    public Transform boundryLeft;
+    public Transform boundryRight;
 
     public Transform detectOrigin;
 
     //Attacking
     public float timeBetweenAttacks;
+    public float time;
+    public float chargeTime;
     bool alreadyAttacked;
     public GameObject projectile;
     public float doOffset;
@@ -65,6 +74,9 @@ public class EnemyAI : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
     public bool dummy;
     public Vector3 force;
+
+    
+    
 
     private void Awake()
     {
@@ -106,12 +118,15 @@ public class EnemyAI : MonoBehaviour
                 //Debug.Log("Player in charge range");
                 chargeDir = new Vector2(orientation, this.transform.position.y);
                 chargeDisplacement = 0;
+                preChargePos = this.transform.position.x;
+                time = 0;
                 charge = true;
                 
             }
         }
 
         if (charge) ChargePlayer();
+        time += Time.deltaTime;
 
         if (dummy == false && charge)
         {
@@ -120,19 +135,24 @@ public class EnemyAI : MonoBehaviour
             {
                 AttackPlayer();
             }
-            if (charge == false)
-            {
-                ChasePlayer();
-            }
+
             
         }
-       
+
+        if (charge == false && Mathf.Abs(distance) >= attackDistance)
+        {
+            ChasePlayer();
+        }
+
+
     }
 
-    
+
     private void ChasePlayer()
     {
-        this.transform.position += direction * speed * Time.deltaTime;
+        yVel = rb.velocity.y;
+        vel = new Vector3(baseSpeed, yVel, 0);
+        rb.velocity = new Vector3(baseSpeed * orientation, yVel, 0);
         Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
@@ -140,17 +160,19 @@ public class EnemyAI : MonoBehaviour
 
     private void ChargePlayer()
     {
+        //Mathf.Abs(chargeDisplacement) <= chargeDistance
+        //Mathf.Abs(chargeDisplacement) >= chargeDistance
         chargePDistance = Mathf.Abs(this.transform.position.x - player.transform.position.x);
 
         charge = true;
        // Debug.Log(speed);
         //Debug.Log(Mathf.Abs(chargeDisplacement) + "DISTANCE HERE");
-        if (Mathf.Abs(chargeDisplacement) <= chargeDistance && speed <= maxSpeed)
+        if (chargeTime - time > 0 && speed <= maxSpeed)
         {
             //Debug.Log("NOW ACCELERATING: " + speed);
             speed += acceleration;
         }
-        else if (Mathf.Abs(chargeDisplacement) >= chargeDistance && speed > 0)
+        else if (chargeTime - time <= 0 && speed > 0)
         {
             //Debug.Log("NOW DECELERATING: " + speed);
             //Debug.Log(speed);
@@ -163,10 +185,13 @@ public class EnemyAI : MonoBehaviour
                 Invoke("chargeRecover", 2.0f);
             }
         }
-        this.transform.position += chargeDir * speed * Time.deltaTime;
-        chargeDisplacement += chargeDir.x * speed * Time.deltaTime;
+        // this.transform.position += chargeDir * speed * Time.deltaTime;
+        // chargeDisplacement += chargeDir.x * speed * Time.deltaTime;
+        chargeDisplacement = preChargePos - this.transform.position.x;
+        yVel = rb.velocity.y;
+        vel = new Vector3(speed, yVel, 0);
+        rb.velocity = new Vector3(speed * orientation, yVel, 0);
         firstDetect = false;
-
     }
 
     private void chargeRecover()
