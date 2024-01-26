@@ -4659,6 +4659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  isBoss: 0
 --- !u!61 &1247437787
 BoxCollider2D:
   m_ObjectHideFlags: 0

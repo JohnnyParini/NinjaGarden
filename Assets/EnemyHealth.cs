@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     public int maxHealth;
     int currentHealth;
+    public bool isBoss;
     void Start()
     {
         currentHealth = maxHealth;
@@ -30,6 +31,11 @@ public class EnemyHealth : MonoBehaviour
     void death()
     {
         Debug.Log("He be ded");
+
+        if (isBoss)
+        {
+            //victory condition communication here 
+        }
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
