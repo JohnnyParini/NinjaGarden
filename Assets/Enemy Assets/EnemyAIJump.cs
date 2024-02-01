@@ -99,14 +99,14 @@ public class EnemyAIJump : MonoBehaviour
     {
         if (IsGrounded())
         {
-            Debug.Log("I weep. for I remain chained to this material world");
+           // Debug.Log("I weep. for I remain chained to this material world");
         }
         distanceNew = this.transform.position.y;
         disDif = distanceNew - distanceOld;
         distanceOld = distanceNew;
 
-        Debug.Log(disDif +" DISTANCE IS ALL I HAVE");
-        Debug.Log(rb.velocity.y + " AND SPEED IS ALL I NEED");
+        //Debug.Log(disDif +" DISTANCE IS ALL I HAVE");
+       // Debug.Log(rb.velocity.y + " AND SPEED IS ALL I NEED");
 
         float distance = this.transform.position.x - player.transform.position.x;
         /*
