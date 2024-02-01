@@ -167,7 +167,7 @@ public class TileManager : MonoBehaviour
         if (IsPlantable(gridPosition) && player.inventory.toolbar.selectedSlot.itemName == "PlantStaff")
         {
             Debug.Log("plantable land");
-            SetPlanted(gridPosition);
+            SetPlanted(gridPosition); 
         }
         if(IsPlantable(gridPosition) && player.inventory.toolbar.selectedSlot.itemName != "FarmingStaff")
         {

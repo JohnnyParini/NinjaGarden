@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    
 
     public InventoryManager inventory;
 
@@ -13,9 +13,12 @@ public class Player : MonoBehaviour
     private Toolbar_UI toolbarUI;
 
     public Vector3 mousePos;
+
+    public Vector3 ResetVector;
     
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         inventory = GetComponent<InventoryManager>();
         tileManager = GetComponent<TileManager>();
         toolbarUI = GetComponent<Toolbar_UI>();
@@ -24,6 +27,12 @@ public class Player : MonoBehaviour
     public void setAwake()
     {
         Awake();
+    }
+
+    public void ResetPosition()
+    {
+        //transform.SetPositionandRotation(ResetVector, 0);
+        
     }
 
     public void Update()
