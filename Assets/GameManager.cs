@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public UI_Manager uiManager;
 
+    public LevelDataStorage levelDataStorage;
+
     private void OnLevelWasLoaded(int level)
     {
         if(level == 1)
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
         itemManager = GetComponent<GardenItemManager>();
         tileManager = GetComponent<TileManager>();
         uiManager = GetComponent<UI_Manager>();
+        levelDataStorage = GetComponent<LevelDataStorage>();
         
 
         player = FindObjectOfType<Player>();
@@ -66,7 +69,8 @@ public class GameManager : MonoBehaviour
         
     }
 
-    
+    //note for level unlock storage: use dictionaries with int keys to represent level number and a tuple definition in order to store relevent data characteristics for level
+    //tuple stores lvl beaten bool, boss lvl status, cur high score 
 
 
     public void loadLevel(int num)
