@@ -14,7 +14,8 @@ public class BossJumping : MonoBehaviour
     //public float health;
     //gun related variables begin here
     public int damage;
-  
+
+    public int numOflvlCompleted;
 
     //bool shooting, readyToShoot;
 

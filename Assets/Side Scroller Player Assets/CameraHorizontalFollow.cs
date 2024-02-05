@@ -9,12 +9,13 @@ public class CameraHorizontalFollow : MonoBehaviour
 
     public float smoothSpeed = 0.125f;
     public float zOffSet;
+    public float xOffset;
     
  
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(player);
-        transform.position = new Vector3(player.transform.position.x, transform.position.y, zOffSet);
+        transform.position = new Vector3(player.transform.position.x+xOffset, transform.position.y, zOffSet);
     }
 }

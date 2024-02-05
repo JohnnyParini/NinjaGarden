@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CARROT_SEED
+  - HealthSet
   layers:
   - Default
   - TransparentFX

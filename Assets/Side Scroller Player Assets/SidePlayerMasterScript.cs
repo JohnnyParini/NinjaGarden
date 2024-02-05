@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SidePlayerMasterScript : MonoBehaviour
 {
@@ -37,7 +39,6 @@ public class SidePlayerMasterScript : MonoBehaviour
     
 
     //knockback variables
-    //public float KBForce;
     public float KBCounter;
     public float KBTotalTime; //don't delete this. important in enemy ai script
     public bool KnockFromRight;
@@ -45,15 +46,25 @@ public class SidePlayerMasterScript : MonoBehaviour
     public int whatIsPlayer = 9;
     public int enemies = 10;
 
-    // Start is called before the first frame update
+    //text storage
+    public TextMeshProUGUI healthText;
+
     void Start()
     {
         canAttack = true;
-        currentHealth = maxHealth;
+        if (GameObject.FindGameObjectWithTag("HealthSet").GetComponent<HealthResets>().healthReset == true)
+        {
+            currentHealth = maxHealth;
+            PlayerPrefs.SetInt("Health", currentHealth);
+        }
+        Debug.Log(PlayerPrefs.GetInt("Health")+ "    SAAAAAAAAAAAAAAAAA");
+        currentHealth = PlayerPrefs.GetInt("Health");
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
+        healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
+        if (healthText.text == null) { healthText.text = maxHealth.ToString(); }
     }
 
     // Update is called once per frame
@@ -185,6 +196,8 @@ public class SidePlayerMasterScript : MonoBehaviour
         }
         
         Debug.Log(currentHealth);
+        PlayerPrefs.SetInt("Health", currentHealth);
+        healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
 
         if (currentHealth <= 0)
         {
@@ -216,7 +229,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        // Draw a yellow sphere at the transform's position
+        // Draw a sphere at the transform's position
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
