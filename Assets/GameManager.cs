@@ -16,7 +16,11 @@ public class GameManager : MonoBehaviour
 
     public UI_Manager uiManager;
 
+    public SceneSwapManager sceneSwapManager;
+
     public LevelDataStorage levelDataStorage;
+
+   
 
     private void OnLevelWasLoaded(int level)
     {
