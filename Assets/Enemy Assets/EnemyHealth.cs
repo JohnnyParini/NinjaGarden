@@ -8,10 +8,12 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth;
     int currentHealth;
     public bool isBoss;
+    public bool win;
     void Start()
     {
         currentHealth = maxHealth;
         Debug.Log(maxHealth);
+        win = false;
     }
 
   
@@ -32,13 +34,21 @@ public class EnemyHealth : MonoBehaviour
     {
         Debug.Log("He be ded");
 
-        if (isBoss)
+        if (this.gameObject.tag == "Boss")
         {
-            //victory condition communication here 
+            //victory condition communication here
+            win = true;
+            Win();
+
         }
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         
+    }
+
+    void Win()
+    {
+
     }
 }
