@@ -17,17 +17,13 @@ public class WinCondition : MonoBehaviour
         boss = GameObject.FindGameObjectWithTag("Boss");
         lvl = GameObject.FindGameObjectWithTag("Level");
         curLvl = lvl.GetComponent<CurrentLevel>().thisLvl;
+        Debug.Log(curLvl);
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log(lvlData.lvls[curLvl] + " INITIAL DATA");
     }
 
-    void Win()
+    public void Win()
     {
         victory = true;
         if (hs > lvlData.lvls[curLvl].Item2)
@@ -39,5 +35,6 @@ public class WinCondition : MonoBehaviour
             hs = lvlData.lvls[curLvl].Item2;
         }
         lvlData.lvls[curLvl] = new(victory, hs, 0);
+        Debug.Log(lvlData.lvls[curLvl] + " VICTORY DATA");
     }
 }

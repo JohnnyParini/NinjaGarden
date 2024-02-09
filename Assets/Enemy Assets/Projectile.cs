@@ -32,7 +32,6 @@ public class Projectile : MonoBehaviour
     }
     private void destroyProjectile()
     {
-        Debug.Log("FATALITY!!!!!!!!!!!!");
         Destroy(gameObject);
     }
 }

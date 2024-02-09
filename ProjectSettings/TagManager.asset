@@ -6,6 +6,10 @@ TagManager:
   tags:
   - CARROT_SEED
   - HealthSet
+  - GameManager
+  - Level
+  - Boss
+  - WinCondition
   layers:
   - Default
   - TransparentFX

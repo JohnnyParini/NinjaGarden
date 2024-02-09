@@ -70,6 +70,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.FindGameObjectWithTag("Level") != null)
+        {
+            //in the future put this in onSceneLoad method
+            //much more efficient than loop check thru update
+            itemManager.enabled = false;
+            tileManager.enabled = false;
+            uiManager.enabled = false;
+            //Debug.Log("DISABLED");
+        }
+        else
+        {
+            itemManager.enabled = true;
+            tileManager.enabled = true;
+            uiManager.enabled = true;
+        }
         
     }
 
@@ -82,6 +97,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(num);
     }
 
+    
    
 
 

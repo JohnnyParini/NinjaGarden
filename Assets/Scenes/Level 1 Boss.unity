@@ -261,6 +261,147 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660451294}
   m_CullTransparentMesh: 1
+--- !u!1 &711766548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 711766555}
+  - component: {fileID: 711766554}
+  - component: {fileID: 711766553}
+  - component: {fileID: 711766552}
+  - component: {fileID: 711766551}
+  - component: {fileID: 711766550}
+  - component: {fileID: 711766549}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: GameManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &711766549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711766548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fafe9bbfabe7c254d8e8cf43e274cab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &711766550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711766548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a8a200c1620314a98edb4a83319061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableMap: {fileID: 0}
+  hiddenInteractableTile: {fileID: 0}
+  plowedTile: {fileID: 0}
+  plantableTile: {fileID: 0}
+  firstPlantedTile: {fileID: 0}
+  secondPlantedTile: {fileID: 0}
+  thirdPlantedTile: {fileID: 0}
+  growntile: {fileID: 0}
+  tileDatas: []
+  Strawberry: {fileID: 0}
+  Turnip: {fileID: 0}
+  Melon: {fileID: 0}
+  UI: {fileID: 0}
+  player: {fileID: 0}
+  tilePosX: 0
+  tilePosY: 0
+  tilePosZ: 0
+--- !u!114 &711766551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711766548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64486e59a80693e40aa8f0009a3edb15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+--- !u!114 &711766552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711766548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7399ffaaa49f7274db420057e0a9b568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory_UIs: []
+  inventoryPanel: {fileID: 0}
+  player: {fileID: 0}
+  animate: {fileID: 0}
+  inventoryIsOn: 0
+--- !u!114 &711766553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711766548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd42ad8ca39d6f41b044795529cb9a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvlCount: 0
+  curLvl: 0
+  curLvlOld: 0
+--- !u!114 &711766554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711766548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ece215aeb524943822d09be4d50177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemManager: {fileID: 0}
+  tileManager: {fileID: 0}
+  player: {fileID: 0}
+  uiManager: {fileID: 0}
+  sceneSwapManager: {fileID: 0}
+  levelDataStorage: {fileID: 711766553}
+--- !u!4 &711766555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711766548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.1123424, y: -0.25712788, z: -99.89301}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &757190540
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +525,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1247437789}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &901298326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 901298328}
+  - component: {fileID: 901298327}
+  m_Layer: 0
+  m_Name: WinCondition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &901298327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901298326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b6d5e3c92d2e945a5cd05750932561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 0}
+  gameManager: {fileID: 0}
+  lvl: {fileID: 0}
+  lvlData: {fileID: 0}
+  curLvl: 0
+  hs: 0
+  victory: 0
+--- !u!4 &901298328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901298326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.4163177, y: 0.83632916, z: -99.903305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1060897488
 GameObject:
@@ -4730,7 +4922,7 @@ GameObject:
   - component: {fileID: 1247437790}
   m_Layer: 9
   m_Name: Boss 1
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4930,7 +5122,7 @@ GameObject:
   - component: {fileID: 1532985978}
   m_Layer: 0
   m_Name: Lvl
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
