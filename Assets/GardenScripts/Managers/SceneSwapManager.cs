@@ -17,16 +17,23 @@ public class SceneSwapManager : MonoBehaviour
         }
     }
 
-    //public static void swapSceneFromDoorUse()
+    public static void swapSceneFromDoorUse(SceneField myScene, DoorTriggerInteraction.DoorToSpawnAt doorToSpawnAt)
+    {
+        _instance.StartCoroutine(_instance.FadeOutThenChangeScene(myScene, doorToSpawnAt));
+    }
 
-    //private IEnumerator FadeOutThenChangeScene(SceneField myScene, DoorTriggerInteraction.DoorToSpawnAt doorToSpawnAt = DoorTriggerInteraction.DoorToSpawnAt.None)
-    //{
-       // //start fading to black
+    private IEnumerator FadeOutThenChangeScene(SceneField myScene, DoorTriggerInteraction.DoorToSpawnAt doorToSpawnAt = DoorTriggerInteraction.DoorToSpawnAt.None)
+    {
+        //start fading to black
+        SceneFadeManager.instance.StartFadeOut();
 
-       // //keep fading out
+        while (SceneFadeManager.instance.isFadingOut)
+        {
+            yield return null;
+        }
 
-      //  _doorToSpawnTo = doorToSpawnAt;
-       // SceneManager.LoadScene(myScene);
-    //}
+        _doorToSpawnTo = doorToSpawnAt;
+        SceneManager.LoadScene(myScene);
+    }
 
 }
