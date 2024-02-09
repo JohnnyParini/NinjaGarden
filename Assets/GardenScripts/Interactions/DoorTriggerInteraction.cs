@@ -23,6 +23,7 @@ public class DoorTriggerInteraction : TriggerInteractionBase
 
     public override void Interact()
     {
-        //load new scene
+        SceneSwapManager.swapSceneFromDoorUse(_sceneToLoad, DoorToSpawnTo);
+
     }
 }
