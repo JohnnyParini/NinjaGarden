@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
         curLvl = GameObject.FindGameObjectWithTag("Level").GetComponent<CurrentLevel>().thisLvl;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
-        scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
+        //scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 
   
@@ -48,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
         curScore = lvlData.lvls[curLvl].Item3;
         lvlData.lvls[curLvl] = new (lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, curScore += score);
         Debug.Log(lvlData.lvls[curLvl] + " ALL THE DATA HERE");
-        scoreText.text = "Score: " + lvlData.lvls[curLvl].Item3;
+        //scoreText.text = "Score: " + lvlData.lvls[curLvl].Item3;
 
         if (this.CompareTag("Boss"))
         {
