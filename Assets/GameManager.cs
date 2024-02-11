@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     {
         if (GameObject.FindGameObjectWithTag("Level") != null)
         {
-            //in the future put this in onSceneLoad method
+            //in the future put this in onSceneLoad method <- this can also be used to track the active level by changing curLvl variable value whenever a new scene is loaded
             //much more efficient than loop check thru update
             itemManager.enabled = false;
             tileManager.enabled = false;
