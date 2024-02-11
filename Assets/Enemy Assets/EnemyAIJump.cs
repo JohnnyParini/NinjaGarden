@@ -141,7 +141,7 @@ public class EnemyAIJump : MonoBehaviour
         if (Mathf.Abs(distance) <= attackRange && IsGrounded() && !alreadyAttacked)
         {
             rb.velocity = noVel;
-            Debug.Log("FIRE IN THE HOLE");
+            //Debug.Log("FIRE IN THE HOLE");
             AttackPlayer();
             
             
@@ -168,7 +168,7 @@ public class EnemyAIJump : MonoBehaviour
         {
             // Instantiate(splashDMG, dmgPoint.position, transform.rotation);
             splashDamage();
-            Debug.Log("HAHAHAHAHAHAHAHAHAHAHAHAHAHAHA");
+            //Debug.Log("HAHAHAHAHAHAHAHAHAHAHAHAHAHAHA");
             firstDetect = false;
             // firstDetect = false;
         }
@@ -194,7 +194,7 @@ public class EnemyAIJump : MonoBehaviour
     {
 
         rb.velocity = new Vector3(jumpForceH * orientation, jumpForceV, 0); //orientation is negative or positive 1, meaning it affects left or right and thats it
-        Debug.Log("FORCE IS BEING APPLIED");
+        //Debug.Log("FORCE IS BEING APPLIED");
         time = 0;
         firstDetect = true;
         alreadyAttacked = true;
@@ -214,7 +214,7 @@ public class EnemyAIJump : MonoBehaviour
 
     private void splashDamage()
     {
-        Debug.Log("Splash damage called");
+        //Debug.Log("Splash damage called");
         Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(dmgPoint.position, splashDmgAOE, 0, whatIsPlayer);
         foreach (Collider2D player in hitPlayer)
         {
@@ -249,7 +249,7 @@ public class EnemyAIJump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
     }
 
 

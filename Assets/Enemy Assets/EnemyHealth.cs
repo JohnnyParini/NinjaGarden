@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -16,22 +17,21 @@ public class EnemyHealth : MonoBehaviour
     public int curLvl;
     public GameObject lvl;
     public WinCondition wc;
+    public TextMeshProUGUI scoreText;
     void Start()
     {
-        lvl = GameObject.FindGameObjectWithTag("Level");
-        wc = GameObject.FindGameObjectWithTag("WinCondition").GetComponent<WinCondition>();
-        curLvl = lvl.GetComponent<CurrentLevel>().thisLvl;
         currentHealth = maxHealth;
+        curLvl = GameObject.FindGameObjectWithTag("Level").GetComponent<CurrentLevel>().thisLvl;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
-
+        scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 
   
 
     public void takeDamage(int damage)
     {
-        Debug.Log(damage);
+        //Debug.Log(damage);
         currentHealth -= damage;
         Debug.Log(currentHealth);
         if (currentHealth <= 0)
@@ -47,9 +47,12 @@ public class EnemyHealth : MonoBehaviour
         this.enabled = false;
         curScore = lvlData.lvls[curLvl].Item3;
         lvlData.lvls[curLvl] = new (lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, curScore += score);
+        Debug.Log(lvlData.lvls[curLvl] + " ALL THE DATA HERE");
+        scoreText.text = "Score: " + lvlData.lvls[curLvl].Item3;
 
         if (this.CompareTag("Boss"))
         {
+            wc = GameObject.FindGameObjectWithTag("WinCondition").GetComponent<WinCondition>();
             wc.Win();
         }
 

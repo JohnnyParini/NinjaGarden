@@ -11,7 +11,7 @@ public class WinCondition : MonoBehaviour
     public LevelDataStorage lvlData;
     public int curLvl;
     public int hs;
-    public bool victory;
+    public bool completed;
     void Start()
     {
         boss = GameObject.FindGameObjectWithTag("Boss");
@@ -23,18 +23,18 @@ public class WinCondition : MonoBehaviour
         Debug.Log(lvlData.lvls[curLvl] + " INITIAL DATA");
     }
 
-    public void Win()
+    public void Win() //hs = highscore, the score after beating the level
     {
-        victory = true;
-        if (hs > lvlData.lvls[curLvl].Item2)
+        completed = true;
+        if (lvlData.lvls[curLvl].Item3 > lvlData.lvls[curLvl].Item2) //
         {
-            hs = hs;
+            hs = lvlData.lvls[curLvl].Item3; //new highest score recorded
         }
         else
         {
-            hs = lvlData.lvls[curLvl].Item2;
+            hs = lvlData.lvls[curLvl].Item2; //old high score is still the high score
         }
-        lvlData.lvls[curLvl] = new(victory, hs, 0);
+        lvlData.lvls[curLvl] = new(completed, hs, 0);
         Debug.Log(lvlData.lvls[curLvl] + " VICTORY DATA");
     }
 }

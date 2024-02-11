@@ -10,6 +10,7 @@ TagManager:
   - Level
   - Boss
   - WinCondition
+  - ScoreText
   layers:
   - Default
   - TransparentFX
