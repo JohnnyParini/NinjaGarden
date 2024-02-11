@@ -102,7 +102,7 @@ public class EnemyAIRanged : MonoBehaviour
          * the code below is ordered in priotirty of execution
          * first if statement indicates the enemy should always remain in bounds, and cannot do anything else until this condition is met 
          * second if statement indicates the enemy should attack whenever it can, so long as it is bounded
-         * third if statement indicates the enemy should move towards the player WITHIN its boundries
+         * third if statement indicates the enemy should move towards the player WITHIN its boundries if the player is not in attacking range
          */
         if (!Bounded())
         {
