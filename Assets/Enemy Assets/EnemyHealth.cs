@@ -44,7 +44,7 @@ public class EnemyHealth : MonoBehaviour
     {
         Debug.Log("He be ded");
         GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
+        Object.Destroy(gameObject);
         curScore = lvlData.lvls[curLvl].Item3;
         lvlData.lvls[curLvl] = new (lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, curScore += score);
         Debug.Log(lvlData.lvls[curLvl] + " ALL THE DATA HERE");

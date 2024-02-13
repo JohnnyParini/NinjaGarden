@@ -35,8 +35,12 @@ public class SidePlayerMasterScript : MonoBehaviour
     int currentHealth;
     public Vector3 atkDownOffset;
     bool canAttack;
-    public float attackInterval; 
-    
+    public float attackInterval;
+
+    //game manager stuff
+    public LevelDataStorage lvlData;
+    public GameObject gameManager;
+
 
     //knockback variables
     public float KBCounter;
@@ -46,11 +50,15 @@ public class SidePlayerMasterScript : MonoBehaviour
     public int whatIsPlayer = 9;
     public int enemies = 10;
 
-    //text storage
+    //storage
     public TextMeshProUGUI healthText;
+    public GameObject lvl;
+    public int curLvl;
 
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
         canAttack = true;
         if (GameObject.FindGameObjectWithTag("HealthSet").GetComponent<HealthResets>().healthReset == true)
         {
@@ -65,6 +73,9 @@ public class SidePlayerMasterScript : MonoBehaviour
         attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
         healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
         if (healthText.text == null) { healthText.text = maxHealth.ToString(); }
+
+        lvl = GameObject.FindGameObjectWithTag("Level");
+        curLvl = lvl.GetComponent<CurrentLevel>().thisLvl;
     }
 
     // Update is called once per frame
@@ -222,7 +233,8 @@ public class SidePlayerMasterScript : MonoBehaviour
         Debug.Log("ded");
 
         GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
+        lvlData.lvls[curLvl] = new(lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, 0);
+        SceneManager.LoadScene("Level " + curLvl + " Scene 1");
 
     }
 
