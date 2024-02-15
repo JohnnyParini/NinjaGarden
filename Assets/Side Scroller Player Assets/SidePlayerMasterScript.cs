@@ -57,8 +57,16 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     void Start()
     {
+        //attached to player already; no conflicts
+        rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
+        //gameManager and associated scripts are consistent throughout; no conflicts
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
+
+
+
         canAttack = true;
         if (GameObject.FindGameObjectWithTag("HealthSet").GetComponent<HealthResets>().healthReset == true)
         {
@@ -67,9 +75,7 @@ public class SidePlayerMasterScript : MonoBehaviour
         }
         Debug.Log(PlayerPrefs.GetInt("Health")+ "    SAAAAAAAAAAAAAAAAA");
         currentHealth = PlayerPrefs.GetInt("Health");
-        rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<BoxCollider2D>();
-        anim = GetComponent<Animator>();
+        
         attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
         healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
         if (healthText.text == null) { healthText.text = maxHealth.ToString(); }

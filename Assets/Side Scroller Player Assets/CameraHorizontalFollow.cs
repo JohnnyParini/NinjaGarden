@@ -10,9 +10,13 @@ public class CameraHorizontalFollow : MonoBehaviour
     public float smoothSpeed = 0.125f;
     public float zOffSet;
     public float xOffset;
-    
- 
+
+
     // Update is called once per frame
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     void Update()
     {
         //Debug.Log(player);
