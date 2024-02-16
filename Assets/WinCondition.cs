@@ -36,5 +36,6 @@ public class WinCondition : MonoBehaviour
         }
         lvlData.lvls[curLvl] = new(completed, hs, 0);
         Debug.Log(lvlData.lvls[curLvl] + " VICTORY DATA");
+        completed = false;
     }
 }

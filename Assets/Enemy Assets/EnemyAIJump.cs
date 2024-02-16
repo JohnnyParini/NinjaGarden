@@ -218,7 +218,7 @@ public class EnemyAIJump : MonoBehaviour
         Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(dmgPoint.position, splashDmgAOE, 0, whatIsPlayer);
         foreach (Collider2D player in hitPlayer)
         {
-            Debug.Log("We hit " + player.name);
+            //Debug.Log("We hit " + player.name);
             playerLogic.takeDamage(damage);
             playerLogic.KBCounter = playerLogic.KBTotalTime;
             
@@ -230,7 +230,7 @@ public class EnemyAIJump : MonoBehaviour
                 // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
                 force = new Vector3(KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-                Debug.Log("ATTACK ENTER");
+                //Debug.Log("ATTACK ENTER");
             }
             else if (orientation == -1)
             {
@@ -239,7 +239,7 @@ public class EnemyAIJump : MonoBehaviour
                 // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
                 force = new Vector3(-KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-                Debug.Log("ATTACK ENTER");
+               // Debug.Log("ATTACK ENTER");
                 //rb.velocity = new Vector3(0, jumpForce, 0);
             }
         }

@@ -73,7 +73,7 @@ public class SidePlayerMasterScript : MonoBehaviour
             currentHealth = maxHealth;
             PlayerPrefs.SetInt("Health", currentHealth);
         }
-        Debug.Log(PlayerPrefs.GetInt("Health")+ "    SAAAAAAAAAAAAAAAAA");
+        //Debug.Log(PlayerPrefs.GetInt("Health")+ "    SAAAAAAAAAAAAAAAAA");
         currentHealth = PlayerPrefs.GetInt("Health");
         
         attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
@@ -113,7 +113,7 @@ public class SidePlayerMasterScript : MonoBehaviour
             }
             else
             {
-                Debug.Log("ATTACKING RN");
+                //Debug.Log("ATTACKING RN");
                 anim.SetTrigger("Attack");
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
                 enemyTrack(hitEnemies);
@@ -154,7 +154,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     {
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
+            //Debug.Log("We hit " + enemy.name);
             enemy.GetComponent<EnemyHealth>().takeDamage(attackDamage);
         }
     }
@@ -205,14 +205,14 @@ public class SidePlayerMasterScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         
-        Debug.Log(damage + " this is dmg");
-        Debug.Log(currentHealth);
+        //Debug.Log(damage + " this is dmg");
+        //Debug.Log(currentHealth);
         if (invincible == false)
         {
             currentHealth -= damage;
         }
         
-        Debug.Log(currentHealth);
+        //Debug.Log(currentHealth);
         PlayerPrefs.SetInt("Health", currentHealth);
         healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
 

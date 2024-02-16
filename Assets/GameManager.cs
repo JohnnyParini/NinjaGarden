@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public LevelDataStorage levelDataStorage;
 
+    public GetActiveLevel getActiveLevel;
+
    
 
     private void OnLevelWasLoaded(int level)
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
         tileManager = GetComponent<TileManager>();
         uiManager = GetComponent<UI_Manager>();
         levelDataStorage = GetComponent<LevelDataStorage>();
+        getActiveLevel = GetComponent<GetActiveLevel>();
         
 
         player = FindObjectOfType<Player>();
