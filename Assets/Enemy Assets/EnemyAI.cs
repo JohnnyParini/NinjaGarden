@@ -153,7 +153,7 @@ public class EnemyAI : MonoBehaviour
         yVel = rb.velocity.y;
         vel = new Vector3(baseSpeed, yVel, 0);
         rb.velocity = new Vector3(baseSpeed * orientation, yVel, 0);
-        Debug.Log("LOOOOOOOOOOOOOOOOOL");
+        //Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
     
@@ -198,7 +198,7 @@ public class EnemyAI : MonoBehaviour
     {
         speed = baseSpeed;
         firstDetect = true;
-        Debug.Log("FUCK");
+        //Debug.Log("FUCK");
     }
 
     private void AttackPlayer()
@@ -219,7 +219,7 @@ public class EnemyAI : MonoBehaviour
                 // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
                 force = new Vector3(KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-                Debug.Log("ATTACK ENTER");
+                //Debug.Log("ATTACK ENTER");
             }
             else if(orientation == -1)
             {
@@ -228,7 +228,7 @@ public class EnemyAI : MonoBehaviour
                 // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
                 force = new Vector3(-KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-                Debug.Log("ATTACK ENTER");
+                //Debug.Log("ATTACK ENTER");
                 //rb.velocity = new Vector3(0, jumpForce, 0);
             }
             

@@ -688,6 +688,7 @@ GameObject:
   - component: {fileID: 643342127}
   - component: {fileID: 643342126}
   - component: {fileID: 643342125}
+  - component: {fileID: 643342132}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -799,6 +800,7 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   sceneSwapManager: {fileID: 0}
   levelDataStorage: {fileID: 643342129}
+  getActiveLevel: {fileID: 643342132}
 --- !u!4 &643342131
 Transform:
   m_ObjectHideFlags: 0
@@ -814,6 +816,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &643342132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643342124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26772319ec190384c95ab1a242bbd542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: 
+  startToken: '['
+  endToken: ']'
+  strLvl: 
+  curLvl: 0
+  ninjaPlayer: {fileID: 0}
+  ninjaLogic: {fileID: 0}
+  winCondition: {fileID: 0}
+  winConditionLogic: {fileID: 0}
 --- !u!1 &1060897488
 GameObject:
   m_ObjectHideFlags: 0

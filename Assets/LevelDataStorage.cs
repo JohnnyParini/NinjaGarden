@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelDataStorage : MonoBehaviour
 {
-    // Start is called before the first frame update
     //bool = level completions status
     //int = highscore 
     //int = active score
@@ -23,22 +22,6 @@ public class LevelDataStorage : MonoBehaviour
         {
             lvls.Add(i,(false, 0, 0));
         }
-        //curLvl = SceneManager.GetActiveScene().buildIndex;
-        //curLvlOld = curLvl;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //update method not most efficient place to check if scene has changed, use on scene was loaded instead
-        /*
-        curLvl = SceneManager.GetActiveScene().buildIndex;
-        if (curLvl != curLvlOld)
-        {
-
-        }
-        */
-    }
-
-   
 }
