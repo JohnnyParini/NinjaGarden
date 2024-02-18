@@ -16,16 +16,11 @@ public class GetActiveLevel : MonoBehaviour
     public GameObject winCondition;
     public WinCondition winConditionLogic;
 
-    //SceneManager.activeSceneChanged += GetLevel;
-
-
-    // Start is called before the first frame update
     void Start()
     {
         SceneManager.activeSceneChanged += GetLevel;
         ninjaPlayer = GameObject.FindGameObjectWithTag("Player");
         ninjaLogic = ninjaPlayer.GetComponent<SidePlayerMasterScript>();
-        
     }
     public void GetLevel(Scene current, Scene next)
     {
@@ -41,5 +36,10 @@ public class GetActiveLevel : MonoBehaviour
             ninjaLogic.curLvl = curLvl;
             winConditionLogic.curLvl = curLvl;
         }
+        else
+        {
+            curLvl = 0;
+        }
+        ninjaPlayer.transform.position = new Vector3(-4.256617f, 2.013166f, 99.96342f);
     }
 }
