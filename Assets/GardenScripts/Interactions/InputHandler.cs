@@ -42,6 +42,7 @@ public class InputHandler : MonoBehaviour
 
     private void Update()
     {
+        //something here is super wrong
         MoveInput = _moveAction.ReadValue<Vector2>();
 
         wasJumpPressed = _jumpAction.WasPressedThisFrame();
