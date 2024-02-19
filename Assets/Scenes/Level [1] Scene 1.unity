@@ -209,7 +209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -559.11273, y: -254.98169}
+  m_AnchoredPosition: {x: -558.73, y: -254.98169}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &137214454
@@ -227,7 +227,7 @@ MonoBehaviour:
   player: {fileID: 47140621}
   smoothSpeed: 0.125
   zOffSet: 0
-  xOffset: -8
+  xOffset: -5
 --- !u!114 &137214455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6951,7 +6951,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -555.61, y: -254.98169}
+  m_AnchoredPosition: {x: -553.76, y: -254.98169}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1611234532
@@ -6982,7 +6982,7 @@ MonoBehaviour:
   player: {fileID: 47140621}
   smoothSpeed: 0.125
   zOffSet: 0
-  xOffset: -3
+  xOffset: -1
 --- !u!114 &1611234534
 MonoBehaviour:
   m_ObjectHideFlags: 0

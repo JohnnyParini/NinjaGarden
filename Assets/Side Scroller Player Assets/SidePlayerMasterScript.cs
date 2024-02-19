@@ -64,6 +64,8 @@ public class SidePlayerMasterScript : MonoBehaviour
         //gameManager and associated scripts are consistent throughout; no conflicts
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
+        //shoudl remain consistent throughout; no conflicts
+        attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
 
 
 
@@ -76,7 +78,6 @@ public class SidePlayerMasterScript : MonoBehaviour
         //Debug.Log(PlayerPrefs.GetInt("Health")+ "    SAAAAAAAAAAAAAAAAA");
         currentHealth = PlayerPrefs.GetInt("Health");
         
-        attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
         healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
         if (healthText.text == null) { healthText.text = maxHealth.ToString(); }
 

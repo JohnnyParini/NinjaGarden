@@ -32,7 +32,7 @@ public class GetActiveLevel : MonoBehaviour
         if (strLvl != "")
         {
             curLvl = int.Parse(strLvl);
-            Debug.Log(curLvl + "Int form of level");
+            Debug.Log(curLvl + " Int form of level");
             ninjaLogic.curLvl = curLvl;
             winConditionLogic.curLvl = curLvl;
         }
