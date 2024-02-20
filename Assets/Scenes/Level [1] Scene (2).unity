@@ -5040,7 +5040,7 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 256
-  damage: 10
+  damage: 1
   numOflvlCompleted: 0
   whatIsEnemy:
     serializedVersion: 2

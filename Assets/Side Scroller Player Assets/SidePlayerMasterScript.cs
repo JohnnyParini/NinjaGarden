@@ -32,7 +32,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     public LayerMask enemyLayer;
     public float arOffset;
     public int maxHealth;
-    int currentHealth;
+    public int currentHealth;
     public Vector3 atkDownOffset;
     bool canAttack;
     public float attackInterval;
@@ -64,12 +64,11 @@ public class SidePlayerMasterScript : MonoBehaviour
         //gameManager and associated scripts are consistent throughout; no conflicts
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
-        //shoudl remain consistent throughout; no conflicts
+        //should remain consistent throughout; no conflicts
         attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
-
-
-
+        //initialization; no conflicts
         canAttack = true;
+
         if (GameObject.FindGameObjectWithTag("HealthSet").GetComponent<HealthResets>().healthReset == true)
         {
             currentHealth = maxHealth;
@@ -242,6 +241,11 @@ public class SidePlayerMasterScript : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         lvlData.lvls[curLvl] = new(lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, 0);
         SceneManager.LoadScene("Level " + curLvl + " Scene 1");
+
+    }
+
+    public void setHealthTxt()
+    {
 
     }
 

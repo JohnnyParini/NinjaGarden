@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
     {
         //Debug.Log(damage);
         currentHealth -= damage;
-        Debug.Log(currentHealth);
+        //Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             death();
