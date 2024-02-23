@@ -68,20 +68,17 @@ public class SidePlayerMasterScript : MonoBehaviour
         attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
         //initialization; no conflicts
         canAttack = true;
-
-        if (GameObject.FindGameObjectWithTag("HealthSet").GetComponent<HealthResets>().healthReset == true)
-        {
-            currentHealth = maxHealth;
-            PlayerPrefs.SetInt("Health", currentHealth);
-        }
-        //Debug.Log(PlayerPrefs.GetInt("Health")+ "    SAAAAAAAAAAAAAAAAA");
-        currentHealth = PlayerPrefs.GetInt("Health");
+        currentHealth = maxHealth;
+        //PlayerPrefs.SetInt("Health", maxHealth);
         
-        healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
+        //Debug.Log(PlayerPrefs.GetInt("Health")+ "    SAAAAAAAAAAAAAAAAA");
+        //currentHealth = PlayerPrefs.GetInt("Health");
+        
+        healthText.text = "Health: " + maxHealth;
         if (healthText.text == null) { healthText.text = maxHealth.ToString(); }
 
-        lvl = GameObject.FindGameObjectWithTag("Level");
-        curLvl = lvl.GetComponent<CurrentLevel>().thisLvl;
+        //lvl = GameObject.FindGameObjectWithTag("Level");
+        //curLvl = lvl.GetComponent<CurrentLevel>().thisLvl;
     }
 
     // Update is called once per frame
@@ -213,8 +210,8 @@ public class SidePlayerMasterScript : MonoBehaviour
         }
         
         //Debug.Log(currentHealth);
-        PlayerPrefs.SetInt("Health", currentHealth);
-        healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
+        //PlayerPrefs.SetInt("Health", currentHealth);
+        healthText.text = "Health: " + currentHealth;
 
         if (currentHealth <= 0)
         {
@@ -240,7 +237,7 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
         lvlData.lvls[curLvl] = new(lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, 0);
-        SceneManager.LoadScene("Level " + curLvl + " Scene 1");
+        SceneManager.LoadScene("Level [" + curLvl + "] Scene (1)");
 
     }
 

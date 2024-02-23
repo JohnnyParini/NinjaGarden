@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 137214454}
   m_Layer: 6
   m_Name: Health
-  m_TagString: Untagged
+  m_TagString: HealthText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,6 +384,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 137214455}
+    - target: {fileID: 3459170016830076231, guid: b217c7b254a19d646b538bf12b74d745, type: 3}
+      propertyPath: attackDamage
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 3459170016830076250, guid: b217c7b254a19d646b538bf12b74d745, type: 3}
       propertyPath: m_Name
       value: Player
@@ -829,14 +833,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
-  startToken: '['
-  endToken: ']'
+  startTokenL: '['
+  endTokenL: ']'
+  startTokenS: (
+  endTokenS: )
   strLvl: 
   curLvl: 0
+  strScene: 
+  curScene: 0
   ninjaPlayer: {fileID: 0}
   ninjaLogic: {fileID: 0}
   winCondition: {fileID: 0}
-  winConditionLogic: {fileID: 0}
 --- !u!1 &1060897488
 GameObject:
   m_ObjectHideFlags: 0
@@ -7205,7 +7212,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669521906}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f39a443dc93c294428b19549f64d0c1c, type: 3}

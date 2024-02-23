@@ -11,6 +11,7 @@ TagManager:
   - Boss
   - WinCondition
   - ScoreText
+  - HealthText
   layers:
   - Default
   - TransparentFX
