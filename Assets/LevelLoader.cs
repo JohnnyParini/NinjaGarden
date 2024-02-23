@@ -12,6 +12,15 @@ public class LevelLoader : MonoBehaviour
 
     public float transitionTime = 1f;
 
+    private Vector3 startPosition = new Vector3(0f,0f,0f);
+
+    public Player player;
+
+    private void Awake()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -22,10 +31,13 @@ public class LevelLoader : MonoBehaviour
         //}      
     }
 
+
+
     
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        //reset player so that it doesn't keep colliding
+        player.transform.position = startPosition;
+        Debug.Log("I have reset the player position");
         LoadLevelByNumber(LevelToLoad);
 
     }
