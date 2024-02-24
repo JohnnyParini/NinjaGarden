@@ -57,28 +57,22 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     void Start()
     {
-        //attached to player already; no conflicts
+
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-        //gameManager and associated scripts are consistent throughout; no conflicts
+
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
-        //should remain consistent throughout; no conflicts
+
         attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
-        //initialization; no conflicts
+
         canAttack = true;
         currentHealth = maxHealth;
-        //PlayerPrefs.SetInt("Health", maxHealth);
-        
-        //Debug.Log(PlayerPrefs.GetInt("Health")+ "    SAAAAAAAAAAAAAAAAA");
-        //currentHealth = PlayerPrefs.GetInt("Health");
-        
+
         healthText.text = "Health: " + maxHealth;
         if (healthText.text == null) { healthText.text = maxHealth.ToString(); }
         curLvl = gameManager.GetComponent<GameManager>().getActiveLevel.curLvl;
-        //lvl = GameObject.FindGameObjectWithTag("Level");
-        //curLvl = lvl.GetComponent<CurrentLevel>().thisLvl;
     }
 
     // Update is called once per frame
@@ -143,8 +137,6 @@ public class SidePlayerMasterScript : MonoBehaviour
         {
             anim.SetBool("running", false);
         }
-
-
     }
 
     private void enemyTrack(Collider2D[] hitEnemies) 
