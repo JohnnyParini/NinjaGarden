@@ -76,7 +76,7 @@ public class SidePlayerMasterScript : MonoBehaviour
         
         healthText.text = "Health: " + maxHealth;
         if (healthText.text == null) { healthText.text = maxHealth.ToString(); }
-
+        curLvl = gameManager.GetComponent<GameManager>().getActiveLevel.curLvl;
         //lvl = GameObject.FindGameObjectWithTag("Level");
         //curLvl = lvl.GetComponent<CurrentLevel>().thisLvl;
     }
@@ -235,8 +235,9 @@ public class SidePlayerMasterScript : MonoBehaviour
     {
         Debug.Log("ded");
 
-        GetComponent<Collider2D>().enabled = false;
+        //GetComponent<Collider2D>().enabled = false;
         lvlData.lvls[curLvl] = new(lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, 0);
+        Debug.Log(curLvl + " WHAT COULD IT BE? ANOTHER BUG, NATUTARLLY");
         SceneManager.LoadScene("Level [" + curLvl + "] Scene (1)");
 
     }

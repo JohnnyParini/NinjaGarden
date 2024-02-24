@@ -47,7 +47,7 @@ public class GetActiveLevel : MonoBehaviour
         }
         else
         {
-            curLvl = 0; //default level for the garden scene
+            curLvl = 1; //default level should be 0 for garden scene
         }
         ninjaPlayer.transform.position = new Vector3(-4f, 2f, 99.96342f); //transform player to same position in every new scene for consistency
 
