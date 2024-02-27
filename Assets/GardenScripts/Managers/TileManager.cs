@@ -217,6 +217,7 @@ public class TileManager : MonoBehaviour
             Debug.Log("not null tile");
             if(tile.name == "Summer_Plowed")
             {
+               
                 return true;
             }
         }

@@ -29,13 +29,13 @@ public class InputHandler : MonoBehaviour
     {
         _mainCamera = Camera.main;
 
-        PlayerInput = GetComponent<PlayerInput>();
+        //PlayerInput = GetComponent<PlayerInput>();
 
-        _moveAction = PlayerInput.actions["Movement"];
-        _jumpAction = PlayerInput.actions["Jump"];
-        _attackAction = PlayerInput.actions["Attack"];
-        _dashAction = PlayerInput.actions["Dash"];
-        _interactAction = PlayerInput.actions["Interact"];
+        //_moveAction = PlayerInput.actions["Movement"];
+        //_jumpAction = PlayerInput.actions["Jump"];
+        //_attackAction = PlayerInput.actions["Attack"];
+        //_dashAction = PlayerInput.actions["Dash"];
+        //_interactAction = PlayerInput.actions["Interact"];
 
     }
 
@@ -43,14 +43,14 @@ public class InputHandler : MonoBehaviour
     private void Update()
     {
         //something here is super wrong
-        MoveInput = _moveAction.ReadValue<Vector2>();
+        //MoveInput = _moveAction.ReadValue<Vector2>();
 
-        wasJumpPressed = _jumpAction.WasPressedThisFrame();
-        isJumpBeingPressed = _jumpAction.IsPressed();
-        wasJumpReleased = _jumpAction.WasReleasedThisFrame();
-        wasAttackPressed = _attackAction.WasPressedThisFrame();
-        wasDashPressed = _dashAction.WasPressedThisFrame();
-        wasInteractPressed = _interactAction.WasPressedThisFrame();
+        //wasJumpPressed = _jumpAction.WasPressedThisFrame();
+        //isJumpBeingPressed = _jumpAction.IsPressed();
+        //wasJumpReleased = _jumpAction.WasReleasedThisFrame();
+        //wasAttackPressed = _attackAction.WasPressedThisFrame();
+        //wasDashPressed = _dashAction.WasPressedThisFrame();
+        //wasInteractPressed = _interactAction.WasPressedThisFrame();
     }
 
     public void onClick(InputAction.CallbackContext context)
