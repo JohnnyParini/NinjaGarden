@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GetActiveLevel : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GetActiveLevel : MonoBehaviour
     public GameObject ninjaPlayer;
     public SidePlayerMasterScript ninjaLogic;
     public GameObject winCondition;
-    public WinCondition winConditionLogic;
+    //public WinCondition winConditionLogic;
 
     void Start()
     {
@@ -28,8 +29,9 @@ public class GetActiveLevel : MonoBehaviour
     }
     public void GetLevel(Scene current, Scene next)
     {
+        ninjaLogic.healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<TextMeshProUGUI>();
         winCondition = GameObject.FindGameObjectWithTag("WinCondition");
-        winConditionLogic = winCondition.GetComponent<WinCondition>();
+        //winConditionLogic = winCondition.GetComponent<WinCondition>();
         sceneName = next.name;
         strLvl = StringParsing.getBetween(sceneName, startTokenL, endTokenL);
         strScene = StringParsing.getBetween(sceneName, startTokenS, endTokenS);
@@ -41,21 +43,21 @@ public class GetActiveLevel : MonoBehaviour
             Debug.Log(curLvl + " Int form of level");
             Debug.Log(curScene + " Int form of scene");
             ninjaLogic.curLvl = curLvl;
-            winConditionLogic.curLvl = curLvl;
+            //winConditionLogic.curLvl = curLvl;
         }
         else
         {
-            curLvl = 0;
+            curLvl = 1; //default level should be 0 for garden scene
         }
-        ninjaPlayer.transform.position = new Vector3(-4f, 2f, 99.96342f);
+        ninjaPlayer.transform.position = new Vector3(-4f, 2f, 99.96342f); //transform player to same position in every new scene for consistency
 
-        if (curScene == 1)
+       
+        if (curScene == 1) //if the scene is the start of the level, reset player health to max
         {
             ninjaLogic.currentHealth = ninjaLogic.maxHealth;
+            Debug.Log("HEALTH SET TO MAX");
         }
-        else
-        {
-            //ninjaLogic.healthText = 
-        }
+
+        ninjaLogic.healthText.text = "Health: " + ninjaLogic.currentHealth;
     }
 }

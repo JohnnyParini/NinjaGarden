@@ -110,7 +110,7 @@ public class BossJumping : MonoBehaviour
         if (alreadyAttacked && IsGrounded() && firstDetect && rb.velocity.y <= 0)
         {
             splashDamage();
-            Debug.Log("wasup");
+            //Debug.Log("wasup");
             firstDetect = false;
         }
 
@@ -118,7 +118,7 @@ public class BossJumping : MonoBehaviour
         {
             if (timeBetweenAttacks - time <= 0 && IsGrounded())
             {
-                Debug.Log("HERE");
+                
                 
                 for (int i = 0; i < 3; i++)
                 {
@@ -153,7 +153,7 @@ public class BossJumping : MonoBehaviour
         if (!alreadyAttacked && IsGrounded())
         {
             rb.velocity = new Vector3(jumpForceH * orientation, jumpForceV, 0); //orientation is negative or positive 1, meaning it affects left or right and thats it
-            Debug.Log(rb.velocity + " THIS IS THE VELOCITY");
+            //Debug.Log(rb.velocity + " THIS IS THE VELOCITY");
             time = 0;
             alreadyAttacked = true;
        
@@ -176,7 +176,7 @@ public class BossJumping : MonoBehaviour
         Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(dmgPoint.position, splashDmgAOE, 0, whatIsPlayer);
         foreach (Collider2D player in hitPlayer)
         {
-            Debug.Log("We hit " + player.name);
+            //Debug.Log("We hit " + player.name);
             playerLogic.takeDamage(damage);
             playerLogic.KBCounter = playerLogic.KBTotalTime;
             
@@ -185,14 +185,14 @@ public class BossJumping : MonoBehaviour
                 playerLogic.KnockFromRight = true;
                 force = new Vector3(KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-                Debug.Log("ATTACK ENTER");
+                //Debug.Log("ATTACK ENTER");
             }
             else if (orientation == -1)
             {
                 playerLogic.KnockFromRight = false;
                 force = new Vector3(-KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-                Debug.Log("ATTACK ENTER");
+                //Debug.Log("ATTACK ENTER");
             }
         }
 

@@ -104,6 +104,13 @@ public class EnemyAIRanged : MonoBehaviour
          * second if statement indicates the enemy should attack whenever it can, so long as it is bounded
          * third if statement indicates the enemy should move towards the player WITHIN its boundries if the player is not in attacking range
          */
+
+
+        //NOTE: bounding system needs to be reworked
+        //its current state is a) not adequately functional due to border stuttering and b) not comparable to systems in other games
+        //in the reworked system, the enemy should chase the player until the player exits their chase range, at which point they return to a given origin coordinate
+        //the enemy should remain at said coordinate until the player re-enters their detection range, which will low them to chase the player once again
+        //this should be less buggy and will be more fun
         if (!Bounded())
         {
             returnToBounds();
@@ -114,7 +121,7 @@ public class EnemyAIRanged : MonoBehaviour
             AttackPlayer();
         }
 
-        else if (Bounded())
+        else if (Bounded() && ePosition.x != boundryRight.position.x && ePosition.x != boundryLeft.position.x)
         {
             ChasePlayer();
         }
@@ -166,6 +173,7 @@ public class EnemyAIRanged : MonoBehaviour
         {
             bounded = true;
         }
+        //Debug.Log(bounded);
         return bounded;
     }
 
@@ -173,32 +181,15 @@ public class EnemyAIRanged : MonoBehaviour
     {
         if (ePosition.x < boundryLeft.position.x)
         {
-            direction = new Vector2(1, this.transform.position.y);
-            this.transform.position += direction * speed * Time.deltaTime;
+            //direction = new Vector2(1, this.transform.position.y);
+            //this.transform.position += direction * speed * Time.deltaTime;
+            rb.velocity = new Vector3(speed, yVel, 0);
         }
         else if (ePosition.x > boundryRight.position.x)
         {
-            direction = new Vector2(-1, this.transform.position.y);
-            this.transform.position += direction * speed * Time.deltaTime;
+            //direction = new Vector2(-1, this.transform.position.y);
+            //this.transform.position += direction * speed * Time.deltaTime;
+            rb.velocity = new Vector3(speed * -1, yVel, 0);
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Debug.Log(collision.gameObject.name);
-    }
-
-    void OnDrawGizmos()
-    {
-        // Draw a yellow sphere at the transform's position
-        /*
-        if (dummy == false)
-        {
-            Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
-        }
-        */
-        
-    }
-
-
 }

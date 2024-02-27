@@ -57,31 +57,22 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     void Start()
     {
-        //attached to player already; no conflicts
+
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-        //gameManager and associated scripts are consistent throughout; no conflicts
+
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
-        //should remain consistent throughout; no conflicts
+
         attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
-        //initialization; no conflicts
+
         canAttack = true;
+        currentHealth = maxHealth;
 
-        if (GameObject.FindGameObjectWithTag("HealthSet").GetComponent<HealthResets>().healthReset == true)
-        {
-            currentHealth = maxHealth;
-            PlayerPrefs.SetInt("Health", currentHealth);
-        }
-        //Debug.Log(PlayerPrefs.GetInt("Health")+ "    SAAAAAAAAAAAAAAAAA");
-        currentHealth = PlayerPrefs.GetInt("Health");
-        
-        healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
+        healthText.text = "Health: " + maxHealth;
         if (healthText.text == null) { healthText.text = maxHealth.ToString(); }
-
-        lvl = GameObject.FindGameObjectWithTag("Level");
-        curLvl = lvl.GetComponent<CurrentLevel>().thisLvl;
+        curLvl = gameManager.GetComponent<GameManager>().getActiveLevel.curLvl;
     }
 
     // Update is called once per frame
@@ -146,8 +137,6 @@ public class SidePlayerMasterScript : MonoBehaviour
         {
             anim.SetBool("running", false);
         }
-
-
     }
 
     private void enemyTrack(Collider2D[] hitEnemies) 
@@ -213,8 +202,8 @@ public class SidePlayerMasterScript : MonoBehaviour
         }
         
         //Debug.Log(currentHealth);
-        PlayerPrefs.SetInt("Health", currentHealth);
-        healthText.text = "Health: " + PlayerPrefs.GetInt("Health").ToString();
+        //PlayerPrefs.SetInt("Health", currentHealth);
+        healthText.text = "Health: " + currentHealth;
 
         if (currentHealth <= 0)
         {
@@ -238,9 +227,10 @@ public class SidePlayerMasterScript : MonoBehaviour
     {
         Debug.Log("ded");
 
-        GetComponent<Collider2D>().enabled = false;
+        //GetComponent<Collider2D>().enabled = false;
         lvlData.lvls[curLvl] = new(lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, 0);
-        SceneManager.LoadScene("Level " + curLvl + " Scene 1");
+        Debug.Log(curLvl + " WHAT COULD IT BE? ANOTHER BUG, NATUTARLLY");
+        SceneManager.LoadScene("Level [" + curLvl + "] Scene (1)");
 
     }
 

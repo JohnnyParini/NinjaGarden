@@ -16,14 +16,15 @@ public class EnemyHealth : MonoBehaviour
     public int curScore;
     public int curLvl;
     public GameObject lvl;
-    public WinCondition wc;
+    //public WinCondition wc;
     public TextMeshProUGUI scoreText;
     void Start()
     {
         currentHealth = maxHealth;
-        curLvl = GameObject.FindGameObjectWithTag("Level").GetComponent<CurrentLevel>().thisLvl;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
+        curLvl = gameManager.GetComponent<GameManager>().getActiveLevel.curLvl;
+        Debug.Log(curLvl + " IS THE CURRET LEVEL");
         //scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 
@@ -46,14 +47,15 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         Object.Destroy(gameObject);
         curScore = lvlData.lvls[curLvl].Item3;
+        Debug.Log(curScore);
         lvlData.lvls[curLvl] = new (lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, curScore += score);
         Debug.Log(lvlData.lvls[curLvl] + " ALL THE DATA HERE");
+        //Debug.Log(curLvl + " IS THE CURRET LEVEL");
         //scoreText.text = "Score: " + lvlData.lvls[curLvl].Item3;
 
         if (this.CompareTag("Boss"))
         {
-            wc = GameObject.FindGameObjectWithTag("WinCondition").GetComponent<WinCondition>();
-            wc.Win();
+            WinCondition.Win();
         }
 
     }
