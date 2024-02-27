@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class GetActiveLevel : MonoBehaviour
@@ -19,6 +20,7 @@ public class GetActiveLevel : MonoBehaviour
     public GameObject ninjaPlayer;
     public SidePlayerMasterScript ninjaLogic;
     public GameObject winCondition;
+    public GameObject winScreen;
     //public WinCondition winConditionLogic;
 
     void Start()
@@ -30,7 +32,6 @@ public class GetActiveLevel : MonoBehaviour
     public void GetLevel(Scene current, Scene next)
     {
         ninjaLogic.healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<TextMeshProUGUI>();
-        winCondition = GameObject.FindGameObjectWithTag("WinCondition");
         //winConditionLogic = winCondition.GetComponent<WinCondition>();
         sceneName = next.name;
         strLvl = StringParsing.getBetween(sceneName, startTokenL, endTokenL);
@@ -59,5 +60,8 @@ public class GetActiveLevel : MonoBehaviour
         }
 
         ninjaLogic.healthText.text = "Health: " + ninjaLogic.currentHealth;
+
+        winScreen = GameObject.FindGameObjectWithTag("CompletionScreen");
+        winScreen.SetActive(false);
     }
 }

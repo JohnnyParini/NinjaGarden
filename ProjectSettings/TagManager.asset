@@ -12,6 +12,7 @@ TagManager:
   - WinCondition
   - ScoreText
   - HealthText
+  - CompletionScreen
   layers:
   - Default
   - TransparentFX

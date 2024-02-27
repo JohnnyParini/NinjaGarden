@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public static class WinCondition
 {
@@ -18,9 +20,13 @@ public static class WinCondition
     {
         int hs;
         bool completed = true;
+        GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        int curLvl = gm.getActiveLevel.curLvl;
+        LevelDataStorage lvlData = gm.GetComponent<GameManager>().levelDataStorage;
+        GameObject completeLvlUI = gm.getActiveLevel.winScreen;
 
-        int curLvl = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().getActiveLevel.curLvl;
-        LevelDataStorage lvlData = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().levelDataStorage;
+        completeLvlUI.SetActive(true);
+        
 
         if (lvlData.lvls[curLvl].Item3 > lvlData.lvls[curLvl].Item2)
         {
