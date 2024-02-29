@@ -45,6 +45,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        
     }
 
     public void LoadLevelByNumber(int numToLoad)
@@ -56,7 +57,7 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadLevel(int LevelIndex)
     {
         //Play animation
-        transition.SetTrigger("Start");
+        //transition.SetTrigger("Start");
         Debug.Log("animation triggered");
 
         //wait for animation to stop playing
@@ -65,7 +66,8 @@ public class LevelLoader : MonoBehaviour
 
 
         //load scene
-        SceneManager.LoadScene(LevelIndex);
+        //SceneManager.LoadScene(LevelIndex);
+        SceneManager.LoadScene(LevelIndex, LoadSceneMode.Additive);
     }
 
 

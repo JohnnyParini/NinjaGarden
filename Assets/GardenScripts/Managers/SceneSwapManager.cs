@@ -44,7 +44,7 @@ public class SceneSwapManager : MonoBehaviour
     private IEnumerator FadeOutThenChangeScene(SceneField myScene, DoorTriggerInteraction.DoorToSpawnAt doorToSpawnAt = DoorTriggerInteraction.DoorToSpawnAt.None)
     {
         //start fading to black
-        SceneFadeManager.instance.StartFadeOut();
+        //SceneFadeManager.instance.StartFadeOut();
 
         while (SceneFadeManager.instance.isFadingOut)
         {
@@ -58,7 +58,7 @@ public class SceneSwapManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene,LoadSceneMode mode)
     {
-        SceneFadeManager.instance.StartFadeIn();
+        //SceneFadeManager.instance.StartFadeIn(); //enable this to enable the screen fade
 
         if (_loadFromDoor)
         {

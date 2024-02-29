@@ -33,8 +33,8 @@ public class SceneFadeManager : MonoBehaviour
         {
             if(_fadeOutImage.color.a < 1f)
             {
-                _fadeOutStartColor.a += Time.deltaTime * _fadeOutSpeed;
-                _fadeOutImage.color = _fadeOutStartColor;
+                //_fadeOutStartColor.a += Time.deltaTime * _fadeOutSpeed; //enable these
+                //_fadeOutImage.color = _fadeOutStartColor;
             }
             else
             {
@@ -45,8 +45,8 @@ public class SceneFadeManager : MonoBehaviour
         {
             if(_fadeOutImage.color.a > 0f)
             {
-                _fadeOutStartColor.a -= Time.deltaTime * _fadeInSpeed;
-                _fadeOutImage.color = _fadeOutStartColor;
+                //_fadeOutStartColor.a -= Time.deltaTime * _fadeInSpeed; //enable these
+                //_fadeOutImage.color = _fadeOutStartColor;
             }
             else
             {

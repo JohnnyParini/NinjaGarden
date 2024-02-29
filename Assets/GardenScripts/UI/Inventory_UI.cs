@@ -39,6 +39,7 @@ public class Inventory_UI : MonoBehaviour
         Inventory = GameManager.instance.player.inventory.GetInventoryByName(inventoryName);
         SetUpSlots();
         //ToggleInventory();
+        Debug.Log("Calling refresh");
         Refresh();
     }
 
@@ -48,8 +49,8 @@ public class Inventory_UI : MonoBehaviour
 
     public void Refresh()
     {
-        Debug.Log(Inventory.slots.Count + "player slots");
-        Debug.Log(slots.Count + "Slots");
+        ///Debug.Log(Inventory.slots.Count + "player slots");
+        //Debug.Log(slots.Count + "Slots");
         if(slots.Count == Inventory.slots.Count) //if the player and the slots have the same number
         {
             Debug.Log("TRUE TRUE TRUE");
@@ -180,9 +181,11 @@ public class Inventory_UI : MonoBehaviour
         int counter = 0;
         foreach(Slot_UI slot in slots)
         {
+
             slot.SlotID = counter;
             counter++;
             slot.Inventory = Inventory;
+            Debug.Log("Slot " + slot + " has been set up");
         }
     }
 
