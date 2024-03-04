@@ -24,7 +24,6 @@ public class EnemyHealth : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
         curLvl = gameManager.GetComponent<GameManager>().getActiveLevel.curLvl;
-        Debug.Log(curLvl + " IS THE CURRET LEVEL");
         //scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 

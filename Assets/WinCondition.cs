@@ -23,10 +23,13 @@ public static class WinCondition
         GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         int curLvl = gm.getActiveLevel.curLvl;
         LevelDataStorage lvlData = gm.GetComponent<GameManager>().levelDataStorage;
-        GameObject completeLvlUI = gm.getActiveLevel.winScreen;
+        GameObject winScreen = gm.getActiveLevel.winScreen;
+        winScreen.SetActive(true);
 
-        completeLvlUI.SetActive(true);
-        
+        TextMeshProUGUI st = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI hst = GameObject.Find("High Score Text").GetComponent<TextMeshProUGUI>();
+        st.text = "Score: " + lvlData.lvls[curLvl].Item3;
+        //winScreen.GetComponentInChildren<TextMeshProUGUI>().text
 
         if (lvlData.lvls[curLvl].Item3 > lvlData.lvls[curLvl].Item2)
         {
@@ -36,8 +39,10 @@ public static class WinCondition
         {
             hs = lvlData.lvls[curLvl].Item2; //old high score is still the high score
         }
+        hst.text = "High Score: " + hs;
         lvlData.lvls[curLvl] = new(completed, hs, 0);
         Debug.Log(lvlData.lvls[curLvl] + " VICTORY DATA");
+
         completed = false;
     }
 }
