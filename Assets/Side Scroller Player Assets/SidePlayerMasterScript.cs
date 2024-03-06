@@ -72,19 +72,22 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         healthText.text = "Health: " + maxHealth;
         if (healthText.text == null) { healthText.text = maxHealth.ToString(); }
-        curLvl = gameManager.GetComponent<GameManager>().getActiveLevel.curLvl;
+        curLvl = GetActiveLevel.curLvl;
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal"); //a,d,left,right
-        vertical = this.transform.position.y;
+        if (!PauseMenu.isPaused)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal"); //a,d,left,right
+            vertical = this.transform.position.y;
 
-        direction = new Vector2(horizontal, vertical); //this looks redundant, might comment it out later
+            direction = new Vector2(horizontal, vertical); //this looks redundant, might comment it out later
 
-        direction = new Vector2(horizontal, rb.velocity.y);
-
+            direction = new Vector2(horizontal, rb.velocity.y);
+        }
+        
         if (Input.GetButtonDown("Jump") && IsGrounded() || Input.GetButtonDown("Jump") && IsTouchingWall())
         {
             rb.velocity = new Vector3(0, jumpForce, 0);
@@ -92,7 +95,7 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         
 
-        if (Input.GetButtonDown("Attack") && canAttack)
+        if (Input.GetButtonDown("Attack") && canAttack && !PauseMenu.isPaused)
         {
             if (Input.GetAxisRaw("Vertical") == -1)
             {

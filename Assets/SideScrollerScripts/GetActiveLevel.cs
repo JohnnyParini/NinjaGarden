@@ -14,7 +14,7 @@ public class GetActiveLevel : MonoBehaviour
     public string startTokenS = "(";
     public string endTokenS = ")";
     public string strLvl;
-    public int curLvl;
+    public static int curLvl;
     public string strScene;
     public int curScene;
     public GameObject ninjaPlayer;

@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public GetActiveLevel getActiveLevel;
 
+    public PauseMenu pauseMenu;
+
    
 
     private void OnLevelWasLoaded(int level)
@@ -59,6 +61,8 @@ public class GameManager : MonoBehaviour
         uiManager = GetComponent<UI_Manager>();
         levelDataStorage = GetComponent<LevelDataStorage>();
         getActiveLevel = GetComponent<GetActiveLevel>();
+        pauseMenu = GetComponent<PauseMenu>();
+        
         
 
         player = FindObjectOfType<Player>();

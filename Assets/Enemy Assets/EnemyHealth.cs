@@ -23,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         lvlData = gameManager.GetComponent<GameManager>().levelDataStorage;
-        curLvl = gameManager.GetComponent<GameManager>().getActiveLevel.curLvl;
+        curLvl = GetActiveLevel.curLvl;
         //scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 

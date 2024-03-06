@@ -21,7 +21,7 @@ public static class WinCondition
         int hs;
         bool completed = true;
         GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        int curLvl = gm.getActiveLevel.curLvl;
+        int curLvl = GetActiveLevel.curLvl;
         LevelDataStorage lvlData = gm.GetComponent<GameManager>().levelDataStorage;
         GameObject winScreen = gm.getActiveLevel.winScreen;
         winScreen.SetActive(true);

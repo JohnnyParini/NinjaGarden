@@ -15,7 +15,7 @@ public class ScoreSet : MonoBehaviour
     {
         lvlData = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().levelDataStorage;
         scoreText = this.GetComponent<TextMeshProUGUI>();
-        curLvl = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().getActiveLevel.curLvl;
+        curLvl = GetActiveLevel.curLvl;
     }
 
     // Update is called once per frame
