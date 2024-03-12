@@ -232,7 +232,7 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         //GetComponent<Collider2D>().enabled = false;
         lvlData.lvls[curLvl] = new(lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, 0);
-        Debug.Log(curLvl + " WHAT COULD IT BE? ANOTHER BUG, NATUTARLLY");
+        Debug.Log(curLvl + " WHAT COULD IT BE? ANOTHER BUG, NATURALLY");
         SceneManager.LoadScene("Level [" + curLvl + "] Scene (1)");
 
     }

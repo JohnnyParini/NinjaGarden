@@ -21,12 +21,13 @@ public class GetActiveLevel : MonoBehaviour
     public SidePlayerMasterScript ninjaLogic;
     public GameObject winCondition;
     public GameObject winScreen;
+    public GameObject ninjaPersistentObjects;
+    public GameObject gardenPersistentObjects;
     //public WinCondition winConditionLogic;
 
     void Start()
     {
         SceneManager.activeSceneChanged += GetLevel;
-        ninjaPlayer = GameObject.FindGameObjectWithTag("Player");
         ninjaLogic = ninjaPlayer.GetComponent<SidePlayerMasterScript>();
     }
     public void GetLevel(Scene current, Scene next)
@@ -44,11 +45,15 @@ public class GetActiveLevel : MonoBehaviour
             Debug.Log(curLvl + " Int form of level");
             Debug.Log(curScene + " Int form of scene");
             ninjaLogic.curLvl = curLvl;
+            ninjaPersistentObjects.SetActive(true);
+            gardenPersistentObjects.SetActive(false);
             //winConditionLogic.curLvl = curLvl;
         }
         else
         {
-            curLvl = 1; //default level should be 0 for garden scene
+            curLvl = 0; //default level should be 0 for garden scene
+            ninjaPersistentObjects.SetActive(false);
+            gardenPersistentObjects.SetActive(true);
         }
         ninjaPlayer.transform.position = new Vector3(-4f, 2f, 99.96342f); //transform player to same position in every new scene for consistency
 
@@ -58,6 +63,7 @@ public class GetActiveLevel : MonoBehaviour
             ninjaLogic.currentHealth = ninjaLogic.maxHealth;
             Debug.Log("HEALTH SET TO MAX");
         }
+
 
         ninjaLogic.healthText.text = "Health: " + ninjaLogic.currentHealth;
 

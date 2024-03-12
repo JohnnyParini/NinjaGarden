@@ -46,7 +46,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         Object.Destroy(gameObject);
         curScore = lvlData.lvls[curLvl].Item3;
-        Debug.Log(curScore);
+        Debug.Log(curLvl + " is the current level");
         lvlData.lvls[curLvl] = new (lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, curScore += score);
         Debug.Log(lvlData.lvls[curLvl] + " ALL THE DATA HERE");
         //Debug.Log(curLvl + " IS THE CURRET LEVEL");
