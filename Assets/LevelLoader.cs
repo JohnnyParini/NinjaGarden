@@ -67,6 +67,7 @@ public class LevelLoader : MonoBehaviour
 
         //load scene
         //SceneManager.LoadScene(LevelIndex);
+        //disable everything here
         SceneManager.LoadScene(LevelIndex, LoadSceneMode.Additive);
     }
 
