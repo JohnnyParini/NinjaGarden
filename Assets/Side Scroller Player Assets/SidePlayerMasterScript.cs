@@ -57,7 +57,7 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     void Start()
     {
-
+    
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
@@ -67,6 +67,19 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
 
+        canAttack = true;
+        currentHealth = maxHealth;
+
+        healthText.text = "Health: " + maxHealth;
+        if (healthText.text == null) { healthText.text = maxHealth.ToString(); }
+        curLvl = GetActiveLevel.curLvl;
+        Debug.Log(healthText + " this is health text");
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log(healthText); 
+        //healthText = GameObject.FindGameObjectWithTag("HealthText")
         canAttack = true;
         currentHealth = maxHealth;
 
@@ -232,7 +245,7 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         //GetComponent<Collider2D>().enabled = false;
         lvlData.lvls[curLvl] = new(lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, 0);
-        Debug.Log(curLvl + " WHAT COULD IT BE? ANOTHER BUG, NATURALLY");
+        Debug.Log(curLvl + " WHAT COULD IT BE? WHY, ANOTHER BUG, NATURALLY");
         SceneManager.LoadScene("Level [" + curLvl + "] Scene (1)");
 
     }

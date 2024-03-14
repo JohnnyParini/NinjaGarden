@@ -67,7 +67,7 @@ public class EnemyAIRanged : MonoBehaviour
     public bool dummy;
     public Vector3 force;
 
-    private void Awake()
+    private void Start()
     {
        // Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("whatIsEnemy"), LayerMask.NameToLayer("whatIsEnemy"), true);
         firstDetect = true;

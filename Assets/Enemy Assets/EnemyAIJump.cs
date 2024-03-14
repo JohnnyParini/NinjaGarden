@@ -76,7 +76,7 @@ public class EnemyAIJump : MonoBehaviour
     float disDif;
     
 
-    private void Awake()
+    private void Start()
     {
       
         //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("whatIsEnemy"), LayerMask.NameToLayer("whatIsEnemy"), true);
@@ -85,6 +85,7 @@ public class EnemyAIJump : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        //Debug.Log(player);
         time = 0;
         playerLogic = player.GetComponent<SidePlayerMasterScript>();
         
@@ -108,7 +109,7 @@ public class EnemyAIJump : MonoBehaviour
         //Debug.Log(disDif +" DISTANCE IS ALL I HAVE");
        // Debug.Log(rb.velocity.y + " AND SPEED IS ALL I NEED");
 
-        float distance = this.transform.position.x - player.transform.position.x;
+        float distance = this.transform.position.x - player.transform.position.x;   
         /*
         Debug.Log(rb.velocity.y + " SPEED IS ALL I NEED");
         Debug.Log(this.transform.position.y + " AND DISTANCE IS ALL I HAVE");

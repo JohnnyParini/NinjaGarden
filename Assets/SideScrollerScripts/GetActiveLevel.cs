@@ -32,7 +32,7 @@ public class GetActiveLevel : MonoBehaviour
     }
     public void GetLevel(Scene current, Scene next)
     {
-        ninjaLogic.healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<TextMeshProUGUI>();
+
         //winConditionLogic = winCondition.GetComponent<WinCondition>();
         sceneName = next.name;
         strLvl = StringParsing.getBetween(sceneName, startTokenL, endTokenL);
@@ -63,7 +63,7 @@ public class GetActiveLevel : MonoBehaviour
             ninjaLogic.currentHealth = ninjaLogic.maxHealth;
             Debug.Log("HEALTH SET TO MAX");
         }
-
+        ninjaLogic.healthText = GameObject.FindGameObjectWithTag("HealthText").GetComponent<TextMeshProUGUI>();
 
         ninjaLogic.healthText.text = "Health: " + ninjaLogic.currentHealth;
 
