@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3459170016830076250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.82, y: -0.18, z: 0}
+  m_LocalPosition: {x: -4, y: 2, z: 99.96342}
   m_LocalScale: {x: 0.18940103, y: 0.15380877, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -171,14 +171,20 @@ MonoBehaviour:
     m_Bits: 512
   arOffset: 0.6
   maxHealth: 100
+  currentHealth: 100
   atkDownOffset: {x: 0, y: 1, z: 0}
   attackInterval: 0
+  lvlData: {fileID: 0}
+  gameManager: {fileID: 0}
   KBCounter: 0
   KBTotalTime: 1
   KnockFromRight: 0
   invincible: 0
   whatIsPlayer: 9
   enemies: 10
+  healthText: {fileID: 0}
+  lvl: {fileID: 0}
+  curLvl: 1
 --- !u!95 &3459170016830076224
 Animator:
   serializedVersion: 4

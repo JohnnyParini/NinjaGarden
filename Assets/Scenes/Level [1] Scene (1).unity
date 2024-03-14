@@ -673,6 +673,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b217c7b254a19d646b538bf12b74d745, type: 3}
+--- !u!1 &167453119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3459170016830076250, guid: b217c7b254a19d646b538bf12b74d745, type: 3}
+  m_PrefabInstance: {fileID: 167453118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &389418017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,10 +1392,9 @@ MonoBehaviour:
   startTokenS: (
   endTokenS: )
   strLvl: 
-  curLvl: 1
   strScene: 
   curScene: 0
-  ninjaPlayer: {fileID: 0}
+  ninjaPlayer: {fileID: 167453119}
   ninjaLogic: {fileID: 0}
   winCondition: {fileID: 0}
   winScreen: {fileID: 0}
