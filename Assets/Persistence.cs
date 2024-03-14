@@ -8,13 +8,13 @@ public class Persistence : MonoBehaviour
     public static Persistence instance;
 
 
-    private void Awake()
+     private void Awake()
     {
 
         //if level.buildIndex == 0 {
         //disable this;
         //}
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
        
         if(instance == null)
         {
@@ -37,6 +37,6 @@ public class Persistence : MonoBehaviour
         {
             gameObject.SetActive(true);
             Debug.Log(gameObject.name + " is being set Active");
-        }
+        } 
     }
 }
