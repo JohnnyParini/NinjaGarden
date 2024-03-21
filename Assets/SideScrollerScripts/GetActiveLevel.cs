@@ -68,6 +68,7 @@ public class GetActiveLevel : MonoBehaviour
         ninjaLogic.healthText.text = "Health: " + ninjaLogic.currentHealth;
 
         winScreen = GameObject.FindGameObjectWithTag("CompletionScreen");
+        Debug.Log(winScreen);
         //winScreen = 
         winScreen.SetActive(false);
     }

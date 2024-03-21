@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 297402622}
   - component: {fileID: 297402621}
   m_Layer: 6
-  m_Name: Canvas (1)
+  m_Name: Completion Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &347514053
 RectTransform:
   m_ObjectHideFlags: 0
@@ -978,7 +978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &806153901
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5673,7 +5673,7 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 256
-  damage: 100
+  damage: 0
   numOflvlCompleted: 0
   whatIsEnemy:
     serializedVersion: 2
@@ -5719,7 +5719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1361050311
 RectTransform:
   m_ObjectHideFlags: 0

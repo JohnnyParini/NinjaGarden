@@ -28,6 +28,7 @@ public static class WinCondition
 
         TextMeshProUGUI st = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI hst = GameObject.Find("High Score Text").GetComponent<TextMeshProUGUI>();
+
         st.text = "Score: " + lvlData.lvls[curLvl].Item3;
         //winScreen.GetComponentInChildren<TextMeshProUGUI>().text
 
