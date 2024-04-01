@@ -15,6 +15,8 @@ public class GardenItemManager : MonoBehaviour
 
     private Dictionary<string, Item> nameToItemDict = new Dictionary<string, Item>(); //allows for the assosiation of Keys and Values
     //matchs a string and an item
+    // something? idks
+     //
 
     private void Awake()
     {
