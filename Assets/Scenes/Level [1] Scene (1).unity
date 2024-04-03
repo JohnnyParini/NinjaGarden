@@ -1131,6 +1131,18 @@ PrefabInstance:
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5506352181076925456, guid: e7b1b2628acadf34192bd9859868e93f, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506352181076925456, guid: e7b1b2628acadf34192bd9859868e93f, type: 3}
+      propertyPath: jumpDetect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506352181076925456, guid: e7b1b2628acadf34192bd9859868e93f, type: 3}
+      propertyPath: attackDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5506352181076925458, guid: e7b1b2628acadf34192bd9859868e93f, type: 3}
       propertyPath: m_Size.x
       value: 6.416054

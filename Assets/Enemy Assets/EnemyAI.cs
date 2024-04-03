@@ -49,6 +49,8 @@ public class EnemyAI : MonoBehaviour
     public float preChargePos;
     public Transform boundryLeft;
     public Transform boundryRight;
+    public float jumpDetect;
+    public float jumpForce;
 
     public Transform detectOrigin;
 
@@ -74,6 +76,7 @@ public class EnemyAI : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
     public bool dummy;
     public Vector3 force;
+
 
     
     
@@ -153,10 +156,25 @@ public class EnemyAI : MonoBehaviour
         yVel = rb.velocity.y;
         vel = new Vector3(baseSpeed, yVel, 0);
         rb.velocity = new Vector3(baseSpeed * orientation, yVel, 0);
+
+        if (Physics2D.BoxCast(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y-0.1f), 0f, direction, jumpDetect, whatIsGround))
+        {
+            rb.velocity = new Vector3(0, jumpForce, 0);
+            Debug.Log("JUMP");
+        }
+
+
+
+        /*
+        if (Physics2D.Raycast(this.transform.position, direction, jumpDetect, whatIsGround))
+        {
+
+        }
+        */
         //Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
-    
+
 
     private void ChargePlayer()
     {
