@@ -10,6 +10,7 @@ public class swiitch : MonoBehaviour
 
     //THIS IS THE REAL SLIDESHOW SCRIPT USE THIS SCRIPT TO EDIT THE SLIDESHOW CODING
 
+    public ScrollingTextExample textInstance;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,20 @@ public class swiitch : MonoBehaviour
             index = 0; //loop
         }
 
-
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            escapeLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            backImage();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            nextImage();
+            
+            Debug.Log("right");
+        }
 
     }
 
@@ -40,6 +54,7 @@ public class swiitch : MonoBehaviour
         if (index < background.Length-1)
         {
             index += 1;
+            textInstance.upTextNum();
             backgroundLoad();
         }
     }
@@ -49,6 +64,7 @@ public class swiitch : MonoBehaviour
         if (index > 0)
         {
             index -= 1;
+            textInstance.downTextNum();
             backgroundLoad();
         }
     }
