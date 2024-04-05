@@ -157,7 +157,7 @@ public class EnemyAI : MonoBehaviour
         vel = new Vector3(baseSpeed, yVel, 0);
         rb.velocity = new Vector3(baseSpeed * orientation, yVel, 0);
 
-        if (Physics2D.BoxCast(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y-0.1f), 0f, direction, jumpDetect, whatIsGround))
+        if (Physics2D.BoxCast(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y-0.1f), 0f, Vector2.right, jumpDetect, whatIsGround) && IsGrounded())
         {
             rb.velocity = new Vector3(0, jumpForce, 0);
             Debug.Log("JUMP");
@@ -261,6 +261,11 @@ public class EnemyAI : MonoBehaviour
         alreadyAttacked = false;
     }
 
+    private bool IsGrounded()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, whatIsGround);
+    }
+
 
 
     void OnDrawGizmos()
@@ -268,7 +273,9 @@ public class EnemyAI : MonoBehaviour
         // Draw a yellow sphere at the transform's position
         if (dummy == false)
         {
-            Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
+          //  Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
+          //  Gizmos.DrawWireSphere(coll.bounds.center, attackRange);
+            Gizmos.DrawCube(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y - 0.1f));
         }
         
     }
