@@ -69,7 +69,11 @@ public class GetActiveLevel : MonoBehaviour
 
         winScreen = GameObject.FindGameObjectWithTag("CompletionScreen");
         Debug.Log(winScreen);
-        //winScreen = 
-        winScreen.SetActive(false);
+        
+        if (winScreen != null)
+        {
+            winScreen.SetActive(false);
+        }
+        
     }
 }

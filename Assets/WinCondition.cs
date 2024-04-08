@@ -28,6 +28,7 @@ public static class WinCondition
 
         TextMeshProUGUI st = GameObject.Find("Score Text").GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI hst = GameObject.Find("High Score Text").GetComponent<TextMeshProUGUI>();
+        Debug.Log(hst);
 
         st.text = "Score: " + lvlData.lvls[curLvl].Item3;
         //winScreen.GetComponentInChildren<TextMeshProUGUI>().text
@@ -40,8 +41,10 @@ public static class WinCondition
         {
             hs = lvlData.lvls[curLvl].Item2; //old high score is still the high score
         }
-        hst.text = "High Score: " + hs;
+        
         lvlData.lvls[curLvl] = new(completed, hs, 0);
+        Debug.Log(hs + " high score");
+        hst.text = "High Score: " + hs;
         Debug.Log(lvlData.lvls[curLvl] + " VICTORY DATA");
 
         completed = false;
