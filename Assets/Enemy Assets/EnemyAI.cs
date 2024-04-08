@@ -49,7 +49,7 @@ public class EnemyAI : MonoBehaviour
     public float preChargePos;
     public Transform boundryLeft;
     public Transform boundryRight;
-    public float jumpDetect;
+    public float jumpDetectDist;
     public float jumpForce;
 
     public Transform detectOrigin;
@@ -101,14 +101,14 @@ public class EnemyAI : MonoBehaviour
         if (distance < 0 && !charge)
         {
             orientation = 1;//run right
-            detectOrigin.transform.position = new Vector3(this.transform.position.x + doOffset, this.transform.position.y, 0);
+            detectOrigin.transform.position = new Vector3(this.transform.position.x + doOffset, this.transform.position.y, 0); //flip attack pos origin orientation
 
         }
 
         else if (distance > 0 && !charge)
         {
             orientation = -1; //run left
-            detectOrigin.transform.position = new Vector3(this.transform.position.x - doOffset, this.transform.position.y, 0);
+            detectOrigin.transform.position = new Vector3(this.transform.position.x - doOffset, this.transform.position.y, 0); //flip attack pos origin orientation
         }
 
         direction = new Vector2(orientation, this.transform.position.y);
@@ -128,7 +128,8 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
-        if (charge) ChargePlayer();
+        if (charge && IsGrounded()) ChargePlayer();
+
         time += Time.deltaTime;
 
         if (dummy == false && charge)
@@ -141,12 +142,19 @@ public class EnemyAI : MonoBehaviour
 
             
         }
-
+        Debug.Log(charge + " charge");
         if (charge == false && Mathf.Abs(distance) >= attackDistance)
         {
             ChasePlayer();
         }
 
+        //the following if statement allows the enemy to jump over obstacles
+        if (Physics2D.BoxCast(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y - 0.4f), 0f, new Vector2(orientation, 0), jumpDetectDist, whatIsGround) && IsGrounded() && !charge)
+        {
+            rb.velocity = new Vector3(0, jumpForce, 0);
+
+            Debug.Log("JUMP");
+        }
 
     }
 
@@ -156,29 +164,13 @@ public class EnemyAI : MonoBehaviour
         yVel = rb.velocity.y;
         vel = new Vector3(baseSpeed, yVel, 0);
         rb.velocity = new Vector3(baseSpeed * orientation, yVel, 0);
-
-        if (Physics2D.BoxCast(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y-0.1f), 0f, Vector2.right, jumpDetect, whatIsGround) && IsGrounded())
-        {
-            rb.velocity = new Vector3(0, jumpForce, 0);
-            Debug.Log("JUMP");
-        }
-
-
-
-        /*
-        if (Physics2D.Raycast(this.transform.position, direction, jumpDetect, whatIsGround))
-        {
-
-        }
-        */
-        //Debug.Log("LOOOOOOOOOOOOOOOOOL");
     }
 
 
 
     private void ChargePlayer()
     {
-        //Mathf.Abs(chargeDisplacement) <= chargeDistance
+        //Mathf.Abs(chargeDisplacement) <= chargeDistance   
         //Mathf.Abs(chargeDisplacement) >= chargeDistance
         chargePDistance = Mathf.Abs(this.transform.position.x - player.transform.position.x);
 
@@ -275,7 +267,8 @@ public class EnemyAI : MonoBehaviour
         {
           //  Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
           //  Gizmos.DrawWireSphere(coll.bounds.center, attackRange);
-            Gizmos.DrawCube(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y - 0.1f));
+            Gizmos.DrawWireCube(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y - 0.4f));
+            Gizmos.DrawRay(this.transform.position, Vector2.right);
         }
         
     }
