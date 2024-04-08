@@ -1027,6 +1027,8 @@ MonoBehaviour:
   textSpeed: 0.01
   itemInfoText: {fileID: 812793085}
   currentlyDisplayingText: 1
+  transition: 0
+  textActive: 0
 --- !u!114 &788521410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2128,6 +2130,7 @@ MonoBehaviour:
   - {fileID: 154905398}
   - {fileID: 163290275}
   - {fileID: 1273184662}
+  exampleText: {fileID: 812793083}
   textInstance: {fileID: 1680641419}
 --- !u!4 &1680641418
 Transform:
@@ -2163,9 +2166,23 @@ MonoBehaviour:
   - 'This is the second itemInfo box
 
 '
-  textSpeed: 0.01
+  - 'This is the third itemInfo box
+
+'
+  - 'This is the fourth itemInfo box
+
+'
+  - 'This is the fifth itemInfo box
+
+'
+  - 'This is the sixth itemInfo box
+
+'
+  textSpeed: 0.05
   itemInfoText: {fileID: 812793085}
   currentlyDisplayingText: 1
+  transition: 0
+  textActive: 0
 --- !u!1 &1910527929
 GameObject:
   m_ObjectHideFlags: 0
