@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class swiitch : MonoBehaviour
 {
     public GameObject[] background;
+    [SerializeField] GameObject exampleText;
     int index;
 
     //THIS IS THE REAL SLIDESHOW SCRIPT USE THIS SCRIPT TO EDIT THE SLIDESHOW CODING
@@ -56,6 +57,7 @@ public class swiitch : MonoBehaviour
             index += 1;
             textInstance.upTextNum();
             backgroundLoad();
+            
         }
     }
 
