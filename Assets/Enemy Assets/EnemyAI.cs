@@ -61,6 +61,7 @@ public class EnemyAI : MonoBehaviour
     bool alreadyAttacked;
     public GameObject projectile;
     public float doOffset;
+    public bool recovering;
     /*
     public float KBForce;
     public float KBCounter;
@@ -85,6 +86,7 @@ public class EnemyAI : MonoBehaviour
     {
        // Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("whatIsEnemy"), LayerMask.NameToLayer("whatIsEnemy"), true);
         firstDetect = true;
+        recovering = false;
         baseSpeed = speed;
         player = GameObject.FindGameObjectWithTag("Player");
         playerLogic = player.GetComponent<SidePlayerMasterScript>();
@@ -142,16 +144,16 @@ public class EnemyAI : MonoBehaviour
 
             
         }
-        Debug.Log(charge + " charge");
+//        Debug.Log(charge + " charge");
         if (charge == false && Mathf.Abs(distance) >= attackDistance)
         {
             ChasePlayer();
         }
 
         //the following if statement allows the enemy to jump over obstacles
-        if (Physics2D.BoxCast(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y - 0.4f), 0f, new Vector2(orientation, 0), jumpDetectDist, whatIsGround) && IsGrounded() && !charge)
+        if (wallAdjacent() && IsGrounded() && !charge && !recovering)
         {
-            rb.velocity = new Vector3(0, jumpForce, 0);
+            rb.velocity = new Vector3(jumpForce/2 * orientation, jumpForce, 0);
 
             Debug.Log("JUMP");
         }
@@ -170,33 +172,25 @@ public class EnemyAI : MonoBehaviour
 
     private void ChargePlayer()
     {
-        //Mathf.Abs(chargeDisplacement) <= chargeDistance   
-        //Mathf.Abs(chargeDisplacement) >= chargeDistance
         chargePDistance = Mathf.Abs(this.transform.position.x - player.transform.position.x);
 
         charge = true;
-       // Debug.Log(speed);
-        //Debug.Log(Mathf.Abs(chargeDisplacement) + "DISTANCE HERE");
+
         if (chargeTime - time > 0 && speed <= maxSpeed)
         {
-            //Debug.Log("NOW ACCELERATING: " + speed);
             speed += acceleration;
         }
         else if (chargeTime - time <= 0 && speed > 0)
         {
-            //Debug.Log("NOW DECELERATING: " + speed);
-            //Debug.Log(speed);
             speed -= deceleration;
             if (speed <= 0)
             {
-                //Debug.Log("LMAO");
                 speed = 0;
                 charge = false;
+                recovering = true;
                 Invoke("chargeRecover", 2.0f);
             }
         }
-        // this.transform.position += chargeDir * speed * Time.deltaTime;
-        // chargeDisplacement += chargeDir.x * speed * Time.deltaTime;
         chargeDisplacement = preChargePos - this.transform.position.x;
         yVel = rb.velocity.y;
         vel = new Vector3(speed, yVel, 0);
@@ -208,7 +202,7 @@ public class EnemyAI : MonoBehaviour
     {
         speed = baseSpeed;
         firstDetect = true;
-        //Debug.Log("FUCK");
+        recovering = false;
     }
 
     private void AttackPlayer()
@@ -216,30 +210,21 @@ public class EnemyAI : MonoBehaviour
         
         if (!alreadyAttacked)
         {
-            //Attack code here
-            //Debug.Log("We hit " + player.name);
             playerLogic.takeDamage(damage);
             playerLogic.KBCounter = playerLogic.KBTotalTime;
             
             if (orientation == 1)
             {
                 playerLogic.KnockFromRight = true;
-
-                // playerLogic.rb.gravityScale *= 2;
-                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
                 force = new Vector3(KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-                //Debug.Log("ATTACK ENTER");
             }
+
             else if(orientation == -1)
             {
                 playerLogic.KnockFromRight = false;
-                //  playerLogic.rb.gravityScale *= 2;
-                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
                 force = new Vector3(-KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-                //Debug.Log("ATTACK ENTER");
-                //rb.velocity = new Vector3(0, jumpForce, 0);
             }
             
             
@@ -258,15 +243,17 @@ public class EnemyAI : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, whatIsGround);
     }
 
+    private bool wallAdjacent()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y - 0.4f), 0f, new Vector2(orientation, 0), jumpDetectDist, whatIsGround);
+    }
+
 
 
     void OnDrawGizmos()
     {
-        // Draw a yellow sphere at the transform's position
         if (dummy == false)
         {
-          //  Gizmos.DrawWireSphere(detectOrigin.position, attackRange);
-          //  Gizmos.DrawWireSphere(coll.bounds.center, attackRange);
             Gizmos.DrawWireCube(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y - 0.4f));
             Gizmos.DrawRay(this.transform.position, Vector2.right);
         }

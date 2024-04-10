@@ -100,7 +100,7 @@ public class EnemyAIJump : MonoBehaviour
     {
         if (IsGrounded())
         {
-           // Debug.Log("I weep. for I remain chained to this material world");
+           // Debug.Log("I weep, for I remain chained to this material world");
         }
         distanceNew = this.transform.position.y;
         disDif = distanceNew - distanceOld;
@@ -142,7 +142,7 @@ public class EnemyAIJump : MonoBehaviour
         if (Mathf.Abs(distance) <= attackRange && IsGrounded() && !alreadyAttacked)
         {
             rb.velocity = noVel;
-            //Debug.Log("FIRE IN THE HOLE");
+            Debug.Log("FIRE IN THE HOLE");
             AttackPlayer();
             
             
@@ -164,14 +164,20 @@ public class EnemyAIJump : MonoBehaviour
                 ResetAttack();
             }
         }
-
+        Debug.Log(IsGrounded());
+        
+        if (rb.velocity.y <= 0 && IsGrounded()) ;
+        {
+            print(rb.velocity.y);
+        }
+             
         if (alreadyAttacked && IsGrounded() && firstDetect && rb.velocity.y <= 0)
         {
             // Instantiate(splashDMG, dmgPoint.position, transform.rotation);
+            Debug.Log("SPLASH");
             splashDamage();
             //Debug.Log("HAHAHAHAHAHAHAHAHAHAHAHAHAHAHA");
-            firstDetect = false;
-            // firstDetect = false;
+            firstDetect = false; //necessary variable to ensure boxcast does not persist beyond one instance of casting
         }
 
 
@@ -215,33 +221,23 @@ public class EnemyAIJump : MonoBehaviour
 
     private void splashDamage()
     {
-        //Debug.Log("Splash damage called");
         Collider2D[] hitPlayer = Physics2D.OverlapBoxAll(dmgPoint.position, splashDmgAOE, 0, whatIsPlayer);
         foreach (Collider2D player in hitPlayer)
         {
-            //Debug.Log("We hit " + player.name);
             playerLogic.takeDamage(damage);
             playerLogic.KBCounter = playerLogic.KBTotalTime;
             
             if (orientation == 1)
             {
                 playerLogic.KnockFromRight = true;
-
-                // playerLogic.rb.gravityScale *= 2;
-                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0); //u might want to change to forcemode impulse
                 force = new Vector3(KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-                //Debug.Log("ATTACK ENTER");
             }
             else if (orientation == -1)
             {
                 playerLogic.KnockFromRight = false;
-                //  playerLogic.rb.gravityScale *= 2;
-                // playerLogic.rb.velocity = new Vector3(KBHForce, KBVForce, 0);
                 force = new Vector3(-KBHForce, KBVForce, 0);
                 playerLogic.rb.AddForce(force, ForceMode2D.Impulse);
-               // Debug.Log("ATTACK ENTER");
-                //rb.velocity = new Vector3(0, jumpForce, 0);
             }
         }
 
@@ -258,6 +254,7 @@ public class EnemyAIJump : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
+      
         Gizmos.DrawWireCube(dmgPoint.position, splashDmgAOE);
 
     }
