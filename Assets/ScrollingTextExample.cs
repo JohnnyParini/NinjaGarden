@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScrollingTextExample : MonoBehaviour
 {
@@ -15,10 +16,17 @@ public class ScrollingTextExample : MonoBehaviour
     public int currentlyDisplayingText = 0; //find ways to adjust this to get differnt dialogue to play
     public bool transition = false;
     public bool textActive = false;
+    public GameObject[] background;
+    [SerializeField] GameObject exampleText;
+    int index;
+
 
     private void Start()
     {
         currentlyDisplayingText = 0;
+        itemInfoText.text = "";
+        index = 0;
+        ActivateText();
     }
     private void Update()
     {
@@ -28,7 +36,35 @@ public class ScrollingTextExample : MonoBehaviour
             transition = false;
             ActivateText();
         }
-        
+        /*if(currentlyDisplayingText == 0)
+        {
+            ActivateText();
+        }*/
+
+        if (index < 0)
+        {
+            index = background.Length; //loop
+        }
+
+        if (index > background.Length)
+        {
+            index = 0; //loop
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            escapeLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            backImage();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            nextImage();
+
+            //Debug.Log("right");
+        }
     }
     public void upTextNum()
     {
@@ -36,6 +72,7 @@ public class ScrollingTextExample : MonoBehaviour
         currentlyDisplayingText++;
         setTextBlank();
         stopTextScroll();
+
         //transition = false;
         //ActivateText();
         //stop on transition
@@ -56,6 +93,7 @@ public class ScrollingTextExample : MonoBehaviour
     }
 
     public void stopTextScroll() {
+        itemInfoText.text = "";
         transition = true;
     }
 
@@ -67,6 +105,44 @@ public class ScrollingTextExample : MonoBehaviour
         {
             StartCoroutine(AnimateText()); //make this stop on transition
         }
+    }
+
+    public void nextImage()
+    {
+        if (index < background.Length - 1)
+        {
+            index += 1;
+            upTextNum();
+            backgroundLoad();
+            ActivateText();
+
+        }
+    }
+
+    public void backImage()
+    {
+        if (index > 0)
+        {
+            index -= 1;
+            downTextNum();
+            backgroundLoad();
+
+        }
+    }
+
+    public void backgroundLoad()
+    {
+        for (int i = 0; i < background.Length; i++)
+        {
+            background[i].SetActive(false);
+            background[index].SetActive(true);
+            //Debug.Log(index);
+        }
+    }
+
+    public void escapeLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator AnimateText()
@@ -87,3 +163,14 @@ public class ScrollingTextExample : MonoBehaviour
     }
 
 }
+
+//THIS IS THE REAL SLIDESHOW SCRIPT USE THIS SCRIPT TO EDIT THE SLIDESHOW CODING
+
+//public ScrollingTextExample textInstance;
+// Start is called before the first frame update
+
+// Update is called once per frame
+
+
+
+

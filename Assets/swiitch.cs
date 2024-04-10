@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class swiitch : MonoBehaviour
+/*public class swiitch : MonoBehaviour
 {
     public GameObject[] background;
     [SerializeField] GameObject exampleText;
@@ -45,7 +45,7 @@ public class swiitch : MonoBehaviour
         {
             nextImage();
             
-            Debug.Log("right");
+            //Debug.Log("right");
         }
 
     }
@@ -58,6 +58,7 @@ public class swiitch : MonoBehaviour
             textInstance.upTextNum();
             backgroundLoad();
             
+            
         }
     }
 
@@ -68,6 +69,7 @@ public class swiitch : MonoBehaviour
             index -= 1;
             textInstance.downTextNum();
             backgroundLoad();
+            
         }
     }
 
@@ -77,7 +79,7 @@ public class swiitch : MonoBehaviour
         {
             background[i].SetActive(false);
             background[index].SetActive(true);
-            Debug.Log(index);
+            //Debug.Log(index);
         }
     }
 
@@ -85,5 +87,4 @@ public class swiitch : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-
-}
+*/
