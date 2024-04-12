@@ -1029,6 +1029,7 @@ MonoBehaviour:
   currentlyDisplayingText: 1
   transition: 0
   textActive: 0
+  finishedLoad: 0
   background: []
   exampleText: {fileID: 0}
 --- !u!114 &788521410
@@ -2218,9 +2219,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo:
-  - 'This is the first itemInfo box
-
-'
+  - In the mystical land of Ebonwood, where shadows danced in the moonlight and whispers
+    of ancient secrets lingered in the air, there lived a legendary ninja known only
+    as Hikari. Clad in midnight black garb, with blades as swift as lightning and
+    a heart as silent as the night, Hikari was renowned for their unparalleled skill
+    and unwavering resolve.
   - 'This is the second itemInfo box
 
 '
@@ -2242,11 +2245,12 @@ MonoBehaviour:
   - 'This is the eigth itemInfo box
 
 '
-  textSpeed: 0.1
+  textSpeed: 0.01
   itemInfoText: {fileID: 812793085}
   currentlyDisplayingText: 1
   transition: 0
   textActive: 0
+  finishedLoad: 0
   background:
   - {fileID: 1922789608}
   - {fileID: 630250523}
