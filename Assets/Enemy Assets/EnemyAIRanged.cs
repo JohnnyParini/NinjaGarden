@@ -36,6 +36,8 @@ public class EnemyAIRanged : MonoBehaviour
     public bool bounded;
     float yVel;
     Vector3 vel;
+    public float jumpDetectDist;
+    public float jumpForce;
 
     //attack variables
     public GameObject projectile;
@@ -125,8 +127,15 @@ public class EnemyAIRanged : MonoBehaviour
         {
             ChasePlayer();
         }
-        
-       
+
+        if (wallAdjacent() && IsGrounded() && Bounded())
+        {
+            rb.velocity = new Vector3(jumpForce / 2 * orientation, jumpForce, 0);
+
+           // Debug.Log("JUMP");
+        }
+
+
     }
 
     
@@ -191,5 +200,16 @@ public class EnemyAIRanged : MonoBehaviour
             //this.transform.position += direction * speed * Time.deltaTime;
             rb.velocity = new Vector3(speed * -1, yVel, 0);
         }
+    }
+
+
+    private bool IsGrounded()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, whatIsGround);
+    }
+
+    private bool wallAdjacent()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, new Vector2(coll.bounds.size.x, coll.bounds.size.y - 0.4f), 0f, new Vector2(orientation, 0), jumpDetectDist, whatIsGround);
     }
 }
