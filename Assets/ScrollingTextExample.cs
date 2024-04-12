@@ -114,7 +114,8 @@ public class ScrollingTextExample : MonoBehaviour
             index += 1;
             upTextNum();
             backgroundLoad();
-            ActivateText();
+            //ActivateText();
+
 
         }
     }
