@@ -74,6 +74,8 @@ public class EnemyAIJump : MonoBehaviour
     float distanceNew;
     float distanceOld;
     float disDif;
+    public bool groundChecking;
+    bool groundExitReturn;
     
 
     private void Start()
@@ -144,9 +146,23 @@ public class EnemyAIJump : MonoBehaviour
             rb.velocity = noVel;
             Debug.Log("FIRE IN THE HOLE");
             AttackPlayer();
+            groundChecking = true; //tells code that it should begin checking to see if the enemy has left the ground after jumping (seen in below if statement)
             
             
         }
+
+        /*
+        if (groundChecking)
+        {
+            if (!IsGrounded())
+            {
+                groundExitReturn = true; //confirms that the enemy has lifted off the ground after jumping
+                                         //prevents splashDamage() from being called before the enemy leaps into the air when attacking
+            }
+        }
+        */
+
+
 
         else //if (!alreadyAttacked)
         {
@@ -164,11 +180,13 @@ public class EnemyAIJump : MonoBehaviour
                 ResetAttack();
             }
         }
-        Debug.Log(IsGrounded());
+//        Debug.Log(IsGrounded());
         
-        if (rb.velocity.y <= 0 && IsGrounded()) ;
+        if (rb.velocity.y <= 0 && IsGrounded())
         {
-            print(rb.velocity.y);
+            //print(rb.velocity.y + " y");
+            Debug.Log(rb.velocity.y + " y");
+            //print(rb.velocity.x + " x");
         }
              
         if (alreadyAttacked && IsGrounded() && firstDetect && rb.velocity.y <= 0)
@@ -178,6 +196,8 @@ public class EnemyAIJump : MonoBehaviour
             splashDamage();
             //Debug.Log("HAHAHAHAHAHAHAHAHAHAHAHAHAHAHA");
             firstDetect = false; //necessary variable to ensure boxcast does not persist beyond one instance of casting
+            //groundChecking = false; //var
+            //groundExitReturn = false;
         }
 
 
