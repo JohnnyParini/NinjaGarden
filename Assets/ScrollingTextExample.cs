@@ -16,6 +16,7 @@ public class ScrollingTextExample : MonoBehaviour
     public int currentlyDisplayingText = 0; //find ways to adjust this to get differnt dialogue to play
     public bool transition = false;
     public bool textActive = false;
+    public bool finishedLoad = false;
     public GameObject[] background;
     [SerializeField] GameObject exampleText;
     int index;
@@ -103,7 +104,10 @@ public class ScrollingTextExample : MonoBehaviour
         //add some if statement to avoid out of bounds
         if (!textActive)
         {
+            Debug.Log("Starting text animation");
+            //ActualAnimateText();
             StartCoroutine(AnimateText()); //make this stop on transition
+            Debug.Log("Text has been animated");
         }
     }
 
@@ -112,9 +116,13 @@ public class ScrollingTextExample : MonoBehaviour
         if (index < background.Length - 1)
         {
             index += 1;
-            upTextNum();
             backgroundLoad();
-            //ActivateText();
+            upTextNum();
+            
+            //DoDelayAction(1);
+            Debug.Log("starting text call");
+            ActivateText();
+            Debug.Log("text has been called");
 
 
         }
@@ -125,8 +133,9 @@ public class ScrollingTextExample : MonoBehaviour
         if (index > 0)
         {
             index -= 1;
-            downTextNum();
             backgroundLoad();
+            downTextNum();
+            
 
         }
     }
@@ -143,21 +152,66 @@ public class ScrollingTextExample : MonoBehaviour
 
     public void escapeLevel()
     {
+        
         SceneManager.LoadScene(0);
+    }
+
+    public void ActualAnimateText()
+    {
+        textActive = true;
+        for (int i = 0; i < itemInfo[currentlyDisplayingText].Length+1; i++)
+        {
+            itemInfoText.text = itemInfo[currentlyDisplayingText].Substring(0, i);
+            if(i == itemInfo[currentlyDisplayingText].Length)
+            {
+                Debug.Log("text finished loading");
+                //return;
+            }
+            DoDelayAction(textSpeed);
+            if (transition)
+            {
+                Debug.Log("transition detected");
+            }
+        }
+    }
+
+    void DoDelayAction(float delayTime)
+    {
+        
+        StartCoroutine(DelayAction(delayTime));
+    }
+
+    IEnumerator DelayAction(float delayTime)
+    {
+        Debug.Log("delaying a call");
+        //Wait for the specified delay time before continuing.
+        yield return new WaitForSeconds(delayTime);
+
+        //Do the action after the delay time has finished.
     }
 
     IEnumerator AnimateText()
 
     {
+        Debug.Log("Beginning of the actual animation");
         textActive = true;
         for (int i = 0; i < itemInfo[currentlyDisplayingText].Length +1; i++)
         {
             //yield return new WaitForSeconds(.05f);
             itemInfoText.text = itemInfo[currentlyDisplayingText].Substring(0, i);
-            yield return new WaitForSeconds(textSpeed);
-            if (transition)
+            if(i == itemInfo[currentlyDisplayingText].Length)
             {
+                Debug.Log("text finished loading"); //found out that this is being called twice 
                 yield break;
+            }
+            yield return new WaitForSeconds(textSpeed);
+            if (transition) //detecting a transition when there isn't one
+            {
+                Debug.Log("transition detected");
+                setTextBlank();
+                
+                yield break;
+             
             }
         }
 
