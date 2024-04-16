@@ -53,7 +53,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (State == spawnState.waiting)
 
-            //{
+            {
             //Debug.Log(EnemyIsAlive());
             if (EnemyIsAlive() == false) //if enemies are not alive
             {
@@ -67,7 +67,7 @@ public class WaveSpawner : MonoBehaviour
                 return; //wait for player to kill the enemies
             }
 
-        // }
+         }
 
         if (waveCountdown <= 0)
         {

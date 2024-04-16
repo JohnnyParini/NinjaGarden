@@ -12,11 +12,17 @@ public class SpawnEnemies : MonoBehaviour
 
     public GameObject[] existingEnemies;
 
+    public GameObject enemy;
+
     public enum spawnState { spawning, waiting, counting };
 
-    public float timeBetweenSpawn = 1f;
+    public float timeBetweenSpawn;
 
-    public float searchCountdown = 1f;
+    public float spawnCountdown;
+
+    public float searchCountdown;
+
+    //public Transform spawnCoords = Transform.posit
 
     public spawnState State = spawnState.counting;
 
@@ -33,6 +39,17 @@ public class SpawnEnemies : MonoBehaviour
             if (existingEnemies.Length == 0)
             {
                 Debug.Log("No active enemies");
+
+                if (spawnCountdown <= 0)
+                {
+                    if (State != spawnState.spawning)
+                    {
+                        Spawn();
+                    }
+                   
+                }
+                
+
             }
 
             else
@@ -40,5 +57,17 @@ public class SpawnEnemies : MonoBehaviour
                 return;
             }
         }
+
+        spawnCountdown -= Time.deltaTime;
+    }
+
+
+    void Spawn()
+    {
+        spawnCountdown = timeBetweenSpawn;
+
+        //Instantiate(enemy, this.GetComponent<Transform>().position.x, this.GetComponent<Transform>().position.y, 0)
+
+        State = spawnState.waiting;
     }
 }
