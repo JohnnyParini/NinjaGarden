@@ -179,8 +179,9 @@ public class inventory
         Slot fromSlot = slots[fromIndex];
         Slot toSlot = toInventory.slots[toIndex];
 
-        if (toSlot.isEmpty() || toSlot.canAddItem(fromSlot.itemName)); 
-        {
+        if (toSlot.isEmpty()) { 
+        //if (toSlot.isEmpty() && toSlot.canAddItem(fromSlot.itemName)) 
+       //{
             for (int i = 0; i < numToMove; i++)
             {
                 toSlot.addItem(fromSlot.itemName, fromSlot.icon, fromSlot.maxAllowed);

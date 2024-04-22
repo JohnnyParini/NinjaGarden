@@ -10,7 +10,7 @@ public class CutsceneManage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enableCutscene();
+        //enableCutscene();
     }
 
     // Update is called once per frame

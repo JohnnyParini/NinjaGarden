@@ -6,7 +6,13 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
 
+    //USE THE SCENEINFO SCRIPTABLE OBJECT TO MAKE ENTRANCES TO DIFFERNT WORLDS
+
     public Animator transition;
+
+    public bool isNextLevel = true;
+
+    [SerializeField] SceneInfo sceneInfo;
 
     [SerializeField] public int LevelToLoad;
 
@@ -36,6 +42,7 @@ public class LevelLoader : MonoBehaviour
     
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        sceneInfo.isNextScene = isNextLevel;
         player.transform.position = startPosition;
         Debug.Log("I have reset the player position");
         LoadLevelByNumber(LevelToLoad);
@@ -68,7 +75,7 @@ public class LevelLoader : MonoBehaviour
         //load scene
         //SceneManager.LoadScene(LevelIndex);
         //disable everything here
-        SceneManager.LoadScene(LevelIndex, LoadSceneMode.Additive);
+        SceneManager.LoadScene(LevelIndex); //(levelIndex, loadscenemode.additive)
     }
 
 

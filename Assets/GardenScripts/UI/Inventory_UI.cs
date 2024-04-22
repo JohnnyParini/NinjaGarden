@@ -51,9 +51,9 @@ public class Inventory_UI : MonoBehaviour
     {
         ///Debug.Log(Inventory.slots.Count + "player slots");
         //Debug.Log(slots.Count + "Slots");
-        if(slots.Count == Inventory.slots.Count) //if the player and the slots have the same number
-        {
-            Debug.Log("TRUE TRUE TRUE");
+        //if(slots.Count == Inventory.slots.Count) //if the player and the slots have the same number
+        //{
+            //Debug.Log("TRUE TRUE TRUE");
             for(int i = 0; i<slots.Count; i++)
             {
                 //Debug.Log("iteration " + i + " of" + Inventory.slots.Count);
@@ -71,7 +71,7 @@ public class Inventory_UI : MonoBehaviour
                     //Debug.Log("Setting empty slot " + i);
                 }
 
-            }
+          //  }
         }
       
     }
