@@ -27,7 +27,8 @@ public class ScrollingTextExample : MonoBehaviour
         currentlyDisplayingText = 0;
         itemInfoText.text = "";
         index = 0;
-        ActivateText();
+        //ActivateText();
+        
     }
     private void Update()
     {

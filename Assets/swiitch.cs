@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
     [SerializeField] GameObject exampleText;
     int index;
 
-    //THIS IS THE REAL SLIDESHOW SCRIPT USE THIS SCRIPT TO EDIT THE SLIDESHOW CODING
+    //THIS IS NOTTTTTTTT THE REAL SLIDESHOW SCRIPT DON:TTTTTTTTTT USE THIS SCRIPT TO EDIT THE SLIDESHOW CODING
 
     public ScrollingTextExample textInstance;
     // Start is called before the first frame update
