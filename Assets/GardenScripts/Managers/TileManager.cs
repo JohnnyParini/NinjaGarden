@@ -46,7 +46,7 @@ public class TileManager : MonoBehaviour
     public float tilePosY;
     public float tilePosZ;
 
-    private void OnLevelWasLoaded(int level)
+    /*private void OnLevelWasLoaded(int level)
     {
         inventoryManager = GetComponent<InventoryManager>();
         mouseInput = new MouseInput();
@@ -54,7 +54,7 @@ public class TileManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         dataFromTiles = new Dictionary<TileBase, TileData>();
 
-    }
+    }*/
     private void Awake()
     {
         inventoryManager = GetComponent<InventoryManager>();
@@ -109,7 +109,7 @@ public class TileManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0)) //change to .GetMouseButtonDown(for only one)
         {
             Debug.Log("mouseClick is being called");
             MouseClick();
@@ -234,6 +234,7 @@ public class TileManager : MonoBehaviour
         
             Debug.Log("this area is plantable");
             interactableMap.SetTile(position, firstPlantedTile);
+        //find way to make this save between scenes
             //get something from inventory and remove it
         
     }
