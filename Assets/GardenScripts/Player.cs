@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        
+        //DontDestroyOnLoad(this);
         inventory = GetComponent<InventoryManager>();
         tileManager = GetComponent<TileManager>();
         toolbarUI = GetComponent<Toolbar_UI>();

@@ -26,14 +26,14 @@ public class GameManager : MonoBehaviour
 
    
 
-    private void OnLevelWasLoaded(int level)
+   /* private void OnLevelWasLoaded(int level)
     {
         if(level == 1)
         {
             Debug.Log("Actually Loaded level 1");
             setLevelAwake();
         }
-    }
+    }*/
     private void setLevelAwake()
     {
         player.setAwake();
