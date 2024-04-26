@@ -14,15 +14,16 @@ public class CropTile
 
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] private Tilemap interactableMap;
+    [SerializeField] private Tilemap interactableMap, unitMap;
     //[SerializeField] private Tilemap alphaTilemap;
+    [SerializeField] private int levelIndex;
 
     [SerializeField] private Tile hiddenInteractableTile;
     [SerializeField] private Tile plowedTile;
     [SerializeField] private Tile plantableTile;
     [SerializeField] private Tile firstPlantedTile;
     [SerializeField] private Tile secondPlantedTile;
-    [SerializeField] private Tile thirdPlantedTile;
+    [SerializeField]     private Tile thirdPlantedTile;
     [SerializeField] private Tile growntile;
     [SerializeField] List<TileData> tileDatas;
     Dictionary<TileBase, TileData> dataFromTiles;
@@ -62,6 +63,43 @@ public class TileManager : MonoBehaviour
         UI = GetComponent<UI_Manager>();
         player = FindObjectOfType<Player>();
         dataFromTiles = new Dictionary<TileBase, TileData>();
+
+    }
+
+    public void saveMap()
+    {
+        var newLevel = ScriptableObject.CreateInstance<ScriptableLevel>();
+
+        newLevel.LevelIndex = levelIndex;
+        newLevel.name = $"Level {levelIndex}";
+
+        //newLevel.GroundTiles
+
+        /*IEnumerable<Tile> GetTilesFromMap(Tilemap map)
+        {
+            foreach (var pos in map.cellBounds.allPositionsWithin)
+            {
+                if (map.HasTile(pos))
+                {
+                    var levelTile = map.GetTile<Tile>(pos);
+                    //yield return new SavedTile()
+                    //{
+                      //  Position = pos,
+                        
+
+                    //};
+                }
+            }
+        }*/
+    }
+
+    public void clearMap()
+    {
+
+    }
+
+    public void loadMap()
+    {
 
     }
 
@@ -110,7 +148,7 @@ public class TileManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButton(0)) //change to .GetMouseButtonDown(for only one)
-        {
+        {   
             Debug.Log("mouseClick is being called");
             MouseClick();
             //GetTileBase(Input.mousePosition);
