@@ -161,6 +161,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  isBoss: 0
+  win: 0
+  lvlData: {fileID: 0}
+  gameManager: {fileID: 0}
+  score: 100
+  curScore: 0
+  curLvl: 0
+  lvl: {fileID: 0}
+  scoreText: {fileID: 0}
 --- !u!50 &3779408957337697370
 Rigidbody2D:
   serializedVersion: 4
@@ -213,9 +222,17 @@ MonoBehaviour:
   speed: 4
   baseSpeed: 3
   firstDetect: 0
+  boundryLeft: {fileID: 0}
+  boundryRight: {fileID: 0}
+  ePosition: {x: 0, y: 0, z: 0}
+  bounded: 0
+  jumpDetectDist: 0
+  jumpForce: 0
   projectile: {fileID: 3407108643878726506, guid: 15f4c0d4a08b10d469305d027a6b5b69, type: 3}
   shootPoint: {fileID: 3779408956930830951}
   activeProjectile: {fileID: 0}
+  rb: {fileID: 3779408957337697370}
+  coll: {fileID: 3779408957337697372}
   timeBetweenAttacks: 1
   KnockFromRight: 0
   KBHForce: 2

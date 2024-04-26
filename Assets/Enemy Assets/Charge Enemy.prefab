@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5506352181076925471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.8483, y: -0.2895, z: 0}
-  m_LocalScale: {x: 0.63694924, y: 0.6715192, z: 1}
+  m_LocalScale: {x: 0.32730272, y: 0.34506685, z: 0.51386}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5506352182671137860}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: -470500587
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fe770e8e7c14a3243bc151e3125cc72d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 253a6ec90e10cdc4e863db44b2effdf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,22 +100,22 @@ BoxCollider2D:
   m_GameObject: {fileID: 5506352181076925471}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cf30cb49f2632ac46bcb156b9bc46ed4, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.03204739, y: 0.2716887}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.25, y: 2.25}
+    oldSize: {x: 6.55, y: 6.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.25, y: 2.25}
+  m_Size: {x: 6.416054, y: 5.8983893}
   m_EdgeRadius: 0
 --- !u!114 &5506352181076925459
 MonoBehaviour:
@@ -130,6 +130,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  isBoss: 0
+  win: 0
+  lvlData: {fileID: 0}
+  gameManager: {fileID: 0}
+  score: 100
+  curScore: 0
+  curLvl: 0
+  lvl: {fileID: 0}
+  scoreText: {fileID: 0}
 --- !u!114 &5506352181076925456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +159,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024
-  damage: 1
+  damage: 10
   attackPoint: {fileID: 0}
   whatIsEnemy:
     serializedVersion: 2
@@ -175,12 +184,17 @@ MonoBehaviour:
   rb: {fileID: 5506352181076925457}
   coll: {fileID: 5506352181076925458}
   preChargePos: 0
+  boundryLeft: {fileID: 0}
+  boundryRight: {fileID: 0}
+  jumpDetectDist: 2
+  jumpForce: 8
   detectOrigin: {fileID: 5506352182671137860}
   timeBetweenAttacks: 1
   time: 0
   chargeTime: 1
   projectile: {fileID: 3407108643878726506, guid: 15f4c0d4a08b10d469305d027a6b5b69, type: 3}
   doOffset: 1.4
+  recovering: 0
   KnockFromRight: 0
   KBHForce: 0
   KBVForce: 5

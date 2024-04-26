@@ -16,70 +16,56 @@ public class SpawnEnemies : MonoBehaviour
 
 
 
-    public GameObject[] existingEnemies;
-    public List<GameObject> enemies;
+    //public GameObject[] existingEnemies;
+    public List<GameObject> enemies = new List<GameObject>();
 
     public GameObject enemy;
     public GameObject curEnemy;
 
     public int maxEnemies;
 
-    public enum spawnState { spawning, waiting, counting };
-
-
     public float timeBetweenSpawn;
 
-    public float spawnCountdown;
+    float spawnCountdown;
 
-    public float searchCountdown;
+    public float spawnRange;
 
-    //public Transform spawnCoords = Transform.posit
-
-    public spawnState State = spawnState.counting;
+    public GameObject player;
 
     void Start()
     {
         spawnCountdown = 0;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemies[i] = null)
+            Debug.Log(enemies[i]);
+            if (enemies[i] == null)
             {
+                Debug.Log("BEGONE");
                 enemies.RemoveAt(i);
             }
         }
 
-        if (State == spawnState.waiting)
+        if (enemies.Count < maxEnemies)
         {
-            if (enemies.Count < maxEnemies)
+            //if player.transform.position.x == this.transform.position.x+spawnRange
+            if (spawnCountdown <= 0)
             {
-                Debug.Log("More enemies can be spawned");
-
-                if (spawnCountdown <= 0)
-                {
-                    if (State != spawnState.spawning)
-                    {
-                        Spawn();
-                    }
-                   
-                }
+                Debug.Log("Instantiate");
+                Spawn();
+                    
+            }
                 
 
-            }
-
-            else
-            {
-                return;
-            }
         }
-
+    
         spawnCountdown -= Time.deltaTime;
-
-        
     }
 
 
@@ -87,10 +73,9 @@ public class SpawnEnemies : MonoBehaviour
     {
         spawnCountdown = timeBetweenSpawn;
 
-        curEnemy = Instantiate(enemy, this.transform.position, transform.rotation);
+        enemies.Add(Instantiate(enemy, this.transform.position, transform.rotation));
 
-        enemies.Add(curEnemy);
+        Debug.Log(enemies[enemies.Count-1]);
 
-        State = spawnState.waiting;
     }
 }
