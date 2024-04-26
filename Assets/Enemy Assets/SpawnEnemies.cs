@@ -28,7 +28,11 @@ public class SpawnEnemies : MonoBehaviour
 
     float spawnCountdown;
 
-    public float spawnRange;
+    float pPosX;
+
+    [SerializeField] float spawnRangeMin;
+
+    [SerializeField] float spawnRangeMax;
 
     public GameObject player;
 
@@ -44,7 +48,6 @@ public class SpawnEnemies : MonoBehaviour
 
         for (int i = 0; i < enemies.Count; i++)
         {
-            Debug.Log(enemies[i]);
             if (enemies[i] == null)
             {
                 Debug.Log("BEGONE");
@@ -54,15 +57,19 @@ public class SpawnEnemies : MonoBehaviour
 
         if (enemies.Count < maxEnemies)
         {
-            //if player.transform.position.x == this.transform.position.x+spawnRange
-            if (spawnCountdown <= 0)
-            {
-                Debug.Log("Instantiate");
-                Spawn();
-                    
-            }
-                
+            pPosX = Mathf.Abs(this.transform.position.x - player.transform.position.x);
 
+            if (pPosX <= spawnRangeMax && pPosX >= spawnRangeMin){
+
+                if (spawnCountdown <= 0)
+                {
+                    Debug.Log("Instantiate");
+                    Spawn();
+
+                }
+
+            }
+            
         }
     
         spawnCountdown -= Time.deltaTime;

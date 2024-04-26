@@ -119,7 +119,6 @@ public class BossJumping : MonoBehaviour
             if (timeBetweenAttacks - time <= 0 && IsGrounded())
             {
                 
-                
                 for (int i = 0; i < 3; i++)
                 {
                     activeProjectile = Instantiate(projectile, dmgPoint.position + projectileDisplacement, transform.rotation);
