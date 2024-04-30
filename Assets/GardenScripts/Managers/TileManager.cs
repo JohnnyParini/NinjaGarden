@@ -68,10 +68,10 @@ public class TileManager : MonoBehaviour
 
     public void saveMap()
     {
-        var newLevel = ScriptableObject.CreateInstance<ScriptableLevel>();
+        //var newLevel = ScriptableObject.CreateInstance<ScriptableLevel>();
 
-        newLevel.LevelIndex = levelIndex;
-        newLevel.name = $"Level {levelIndex}";
+//        newLevel.LevelIndex = levelIndex;
+  //      newLevel.name = $"Level {levelIndex}";
 
         //newLevel.GroundTiles
 
