@@ -104314,7 +104314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3459170016830076231, guid: b217c7b254a19d646b538bf12b74d745, type: 3}
       propertyPath: maxHealth
-      value: 99999999
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3459170016830076231, guid: b217c7b254a19d646b538bf12b74d745, type: 3}
       propertyPath: healthText
@@ -105140,6 +105140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableMap: {fileID: 0}
+  unitMap: {fileID: 0}
+  levelIndex: 0
   hiddenInteractableTile: {fileID: 0}
   plowedTile: {fileID: 0}
   plantableTile: {fileID: 0}
