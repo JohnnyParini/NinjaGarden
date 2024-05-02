@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Persistence : MonoBehaviour
+/* public class Persistence : MonoBehaviour
 {
     public static Persistence instance;
 
@@ -39,4 +39,4 @@ public class Persistence : MonoBehaviour
             Debug.Log(gameObject.name + " is being set Active");
         } 
     }
-}
+*/
