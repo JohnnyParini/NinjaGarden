@@ -169,7 +169,9 @@ public class TileManager : MonoBehaviour
         Debug.Log("mousePosition is " + mousePosition);
         Vector3Int gridPosition = interactableMap.WorldToCell(mousePosition); //converts to tilemap coordinates
         Debug.Log("the world position is " + gridPosition);
+
         if (IsInteractable(gridPosition)) //also need to check the player distance
+
         {
 
             string tileName = GetTileName(gridPosition);
@@ -217,6 +219,7 @@ public class TileManager : MonoBehaviour
             Debug.Log(player.inventory.toolbar.selectedSlot.itemName + " has been ticked down");
             Debug.Log("Planted then removed");
         }
+
         
         //if (interactableMap.HasTile(gridPosition)) { }
     }

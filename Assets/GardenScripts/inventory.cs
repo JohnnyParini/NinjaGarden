@@ -110,7 +110,7 @@ public class inventory
         {
             Slot slot = new Slot();
             slots.Add(slot);
-            
+           
         }
     }
 
