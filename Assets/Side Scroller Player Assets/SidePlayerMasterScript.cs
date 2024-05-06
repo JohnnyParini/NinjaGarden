@@ -23,7 +23,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     private bool isGrounded;
     private bool isOnWall;
     public float wallSlideSpeed;
-    private Vector2 orientation;
+    public Vector2 orientation;
     public Transform groundCheck;
     public Transform wallCheck;
     public Transform attackPoint;
@@ -55,6 +55,8 @@ public class SidePlayerMasterScript : MonoBehaviour
     public GameObject lvl;
     public int curLvl;
 
+    //attack
+    public GameObject boomerang;
     void Start()
     {
     
@@ -128,6 +130,11 @@ public class SidePlayerMasterScript : MonoBehaviour
             }
 
             Invoke("AttackReset", attackInterval);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Instantiate(boomerang, this.transform.position + new Vector3(1 * orientation.x, 0, 0), transform.rotation);
         }
 
         WallSlide();
