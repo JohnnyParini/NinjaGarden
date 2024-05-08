@@ -134,7 +134,7 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Instantiate(boomerang, this.transform.position + new Vector3(1 * orientation.x, 0, 0), transform.rotation);
+            Instantiate(boomerang, this.transform.position + new Vector3(3 * orientation.x, 0, 0), transform.rotation);
         }
 
         WallSlide();
