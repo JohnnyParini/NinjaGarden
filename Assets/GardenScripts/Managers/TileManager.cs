@@ -30,6 +30,7 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tile Strawberry;
     [SerializeField] private Tile Turnip;
     [SerializeField] private Tile Melon;
+    [SerializeField] private Tile[] secretTiles;
 
 
     public MouseInput mouseInput;
@@ -42,7 +43,7 @@ public class TileManager : MonoBehaviour
 
     public Player player;
 
-    private int testNum;
+    private int secretNum1 = 0;
     public float tilePosX;
     public float tilePosY;
     public float tilePosZ;
@@ -121,7 +122,7 @@ public class TileManager : MonoBehaviour
 
         mouseInput.Mouse.MouseClick.performed += _ => MouseClick();
 
-        testNum = 0;
+        secretNum1 = 0;
         foreach(var position in interactableMap.cellBounds.allPositionsWithin) //will return all positions within the bounds of the tilemap
         {
             //set each tile in the position to be the hiddenInteractableTile (sets invis and interactable)
@@ -148,12 +149,28 @@ public class TileManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButton(0)) //change to .GetMouseButtonDown(for only one)
-        {   
-            Debug.Log("mouseClick is being called");
-            MouseClick();
-            //GetTileBase(Input.mousePosition);
+        {
+            if (!Input.GetKey(KeyCode.RightShift))
+            {
+                Debug.Log("mouseClick is being called");
+                MouseClick();
+                //GetTileBase(Input.mousePosition);
+            }
+
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Input.GetKey(KeyCode.RightShift))
+            {
+                Debug.Log("singleClick is being called");
+                MouseClick();
+            }
+            
+        }
+        
     }
+
+   
     public void MouseClick()
     {
         if (player.inventory.toolbar.selectedSlot.itemName != "" && player.inventory.toolbar.selectedSlot.itemName != null)
@@ -219,8 +236,22 @@ public class TileManager : MonoBehaviour
             Debug.Log(player.inventory.toolbar.selectedSlot.itemName + " has been ticked down");
             Debug.Log("Planted then removed");
         }
-
+        if (isSecret(gridPosition))
+        {
         
+            Debug.Log("secretNum1 increased");
+            if(secretNum1 >= 4)
+            {
+                winSecret();
+            }
+        }
+        else
+        {
+            secretNum1 = 0;
+            Debug.Log("secretNum1 reset to 0");
+        }
+
+
         //if (interactableMap.HasTile(gridPosition)) { }
     }
 
@@ -314,6 +345,36 @@ public class TileManager : MonoBehaviour
         return "";
     }
 
+    public bool isSecret(Vector3Int position)
+    {
+        for (int i = 0; i < secretNum1+1; i++)
+        {
+            if (interactableMap.GetTile(position) == secretTiles[i])
+            {
+                Debug.Log("This is a secret tile");
+                if (Input.GetKey(KeyCode.RightShift))
+                {
+                    secretNum1++;
+                    Debug.Log("secretNum is " + secretNum1);
+                }
+             
+                
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void winSecret()
+    {
+        Debug.Log("You found the secret");
+    }
+
+    public void curse()
+    {
+        Debug.Log("You've been cursed");
+    }
 
     public void plantType(Vector3Int position, string type)
     {
