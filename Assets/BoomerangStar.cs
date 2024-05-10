@@ -51,13 +51,14 @@ public class BoomerangStar : MonoBehaviour
 
         pDistance = this.transform.position - player.transform.position;
 
-        if (pDistance.y * velocityY > 0 && Mathf.Abs(rb.velocity.x) <= 0.1) //check if the two numbers are the same sign
+        if (pDistance.y * velocityY > 0 && Mathf.Abs(rb.velocity.x) <= 0.1) //check if the two numbers are the same sign and if velocity is approximately 0
         {
             velocityY *= -1;
             
         }
 
-        if (pDistance.x * acceleration > 0 || Mathf.Abs(rb.velocity.x) >= maxVelocity) //check if the two numbers are the same sign
+        
+        if (Mathf.Abs(rb.velocity.x) >= maxVelocity && pDistance.x * acceleration > 0) 
         {
             acceleration *= -1;
             

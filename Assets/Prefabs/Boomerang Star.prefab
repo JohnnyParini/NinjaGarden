@@ -109,7 +109,7 @@ MonoBehaviour:
   baseAcceleration: 0.01
   velocityX: 15
   velocityY: 2
-  maxVelocity: 37
+  maxVelocity: 8
   player: {fileID: 0}
   pDistance: {x: 0, y: 0}
   pDistanceNew: {x: 0, y: 0}
