@@ -11,30 +11,28 @@ public class BoomerangStar : MonoBehaviour
     public int projectileLayer = 11;
     public int playerLayer = 10;
     public float acceleration;
-    public float baseAcceleration;// acceleration should be positive to the right, negative to the left.
     public float velocityX;
     public float velocityY;
     public float maxVelocity;
     public GameObject player;
     public Vector2 pDistance;
-    public Vector2 pDistanceNew;
-    public float speedXOld;
-    public float speedXNew;
     // Start is called before the first frame update
     void Start()
     {
+        velocityX = maxVelocity;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         rb.velocity = new Vector2(velocityX * player.GetComponent<SidePlayerMasterScript>().orientation.x, 0);
         pDistance = this.transform.position - player.transform.position;
         pRb = player.GetComponent<Rigidbody2D>();
-        
-        
+       
 
+        /*
         if (pDistance.x > 0)
         {
             acceleration *= -1;
         }
+        */
 
     }
 
@@ -42,40 +40,32 @@ public class BoomerangStar : MonoBehaviour
     void Update()
     {
 
-        
-        rb.velocity = new Vector2(velocityX += acceleration, velocityY);
-        
-
-        //Debug.Log(rb.velocity);
-        
+        if (Mathf.Abs(velocityX) >= maxVelocity)
+        {
+            Debug.Log("MAX VELOCITY");
+        }
 
         pDistance = this.transform.position - player.transform.position;
 
-        if (pDistance.y * velocityY > 0 && Mathf.Abs(rb.velocity.x) <= 0.1) //check if the two numbers are the same sign and if velocity is approximately 0
+        
+        if (pDistance.y * velocityY > 0 && Mathf.Abs(rb.velocity.x) <= 0.1) //check if the two numbers are the same sign and if x velocity is approximately 0
         {
             velocityY *= -1;
-            
         }
 
-        
-        if (Mathf.Abs(rb.velocity.x) >= maxVelocity && pDistance.x * acceleration > 0) 
+        if (acceleration * pDistance.x > 0 && Mathf.Abs(velocityX) >= maxVelocity)
         {
             acceleration *= -1;
-            
         }
-
-
-        /*
-        if (rb.velocity.x == 0)
-        {
-            acceleration *= 2;
-        }
-        else if (rb.velocity.x >= maxVelocity)
-        {
-            acceleration = baseAcceleration;
-        }
-        */
         
+        if (acceleration * velocityX <= 0 || acceleration * velocityX > 0 && Mathf.Abs(velocityX) < maxVelocity)
+        {
+            velocityX += acceleration;
+        }
+   
+
+        rb.velocity = new Vector2(velocityX, velocityY);
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -84,6 +74,7 @@ public class BoomerangStar : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyHealth>().takeDamage(damage);
         }
+        
         
     }
 }
