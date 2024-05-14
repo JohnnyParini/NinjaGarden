@@ -200,14 +200,14 @@ public class TileManager : MonoBehaviour
                 if (tileName == "Interactable_Invis")
                 {
                     
-                    Debug.Log("Truly a coding savant");
+//                    Debug.Log("Truly a coding savant");
 
                     if ( player.inventory.toolbar.selectedSlot.itemName== "FarmingStaff") //&& if holding the farming staff)
                     {
                         Debug.Log("farming staff being held");
                         if (!UI.inventoryIsOn)
                         {
-                            Debug.Log("Everything working as planned");
+                          //  Debug.Log("Everything working as planned");
                             SetInteracted(gridPosition);
                         }
                     }

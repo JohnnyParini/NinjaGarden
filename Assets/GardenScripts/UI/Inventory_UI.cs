@@ -185,7 +185,7 @@ public class Inventory_UI : MonoBehaviour
             slot.SlotID = counter;
             counter++;
             slot.Inventory = Inventory;
-            Debug.Log("Slot " + slot + " has been set up");
+           // Debug.Log("Slot " + slot + " has been set up");
         }
     }
 

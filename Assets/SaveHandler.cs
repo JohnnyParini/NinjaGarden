@@ -57,6 +57,9 @@ public class SaveHandler : MonoBehaviour
             }
             data.Add(mapData);
         }
+
+        //save here
+        FileHandler.SaveToJSON<TilemapData>(data, filename);
     }
 
     public void OnLoad()
