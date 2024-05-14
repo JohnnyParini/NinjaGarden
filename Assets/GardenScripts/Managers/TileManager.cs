@@ -207,7 +207,7 @@ public class TileManager : MonoBehaviour
                         Debug.Log("farming staff being held");
                         if (!UI.inventoryIsOn)
                         {
-                          //  Debug.Log("Everything working as planned");
+                          //f  Debug.Log("Everything working as planned");
                             SetInteracted(gridPosition);
                         }
                     }

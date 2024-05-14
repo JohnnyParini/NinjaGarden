@@ -65,6 +65,31 @@ public class SaveHandler : MonoBehaviour
     public void OnLoad()
     {
         Debug.Log("OnLoad has been called");
+
+        List<TilemapData> data = FileHandler.ReadListFromJSON<TilemapData>(filename);
+
+        foreach(var mapData in data)
+        {
+            if (!tilemaps.ContainsKey(mapData.key))
+            {
+                Debug.LogError("found saved data for tilemap called " + mapData.key + ", but tilemaps doesn't exists. Skip.");
+                continue;
+            }
+
+            var map = tilemaps[mapData.key];
+
+            //might need to remove this or add it to a different function
+            map.ClearAllTiles();
+
+            if(mapData.tiles != null && mapData.tiles.Count >0)
+            {
+                foreach(TileInfo tile in mapData.tiles)
+                {
+                    map.SetTile(tile.position, tile.tile);
+                }
+            }
+
+        }
     }
 
 }
