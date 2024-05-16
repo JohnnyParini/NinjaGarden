@@ -19,12 +19,19 @@ public class BoomerangStar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         velocityX = maxVelocity;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-        rb.velocity = new Vector2(velocityX * player.GetComponent<SidePlayerMasterScript>().orientation.x, 0);
-        pDistance = this.transform.position - player.transform.position;
         pRb = player.GetComponent<Rigidbody2D>();
+        Debug.Log(player.GetComponent<SidePlayerMasterScript>().orientation.x + " player direction thing");
+        acceleration *= player.GetComponent<SidePlayerMasterScript>().orientation.x * -1;
+        velocityX *= player.GetComponent<SidePlayerMasterScript>().orientation.x;
+        rb.velocity = new Vector2(velocityX, 0);
+        Debug.Log(rb.velocity + " boomerang speed thing");
+        Debug.Log(acceleration + " boomerang acc thing");
+        pDistance = this.transform.position - player.transform.position;
+        
        
 
         /*
@@ -39,12 +46,7 @@ public class BoomerangStar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Mathf.Abs(velocityX) >= maxVelocity)
-        {
-            Debug.Log("MAX VELOCITY");
-        }
-
+        Debug.Log(rb.velocity + " BIG SPEED");
         pDistance = this.transform.position - player.transform.position;
 
         
@@ -66,6 +68,8 @@ public class BoomerangStar : MonoBehaviour
 
         rb.velocity = new Vector2(velocityX, velocityY);
 
+        //gameObject.transform.Rotate(0f, 0f, 1f, Space.Self);
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -73,6 +77,10 @@ public class BoomerangStar : MonoBehaviour
         if (collision.gameObject.layer == enemyLayer)
         {
             collision.gameObject.GetComponent<EnemyHealth>().takeDamage(damage);
+        }
+        else if (collision.gameObject == player && velocityX * pDistance.x <= 0)
+        {
+            Destroy(gameObject);
         }
         
         

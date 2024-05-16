@@ -93,6 +93,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(rb.velocity + " HUGE VELOCITY");
         if (!PauseMenu.isPaused)
         {
             horizontal = Input.GetAxisRaw("Horizontal"); //a,d,left,right
@@ -134,7 +135,7 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Instantiate(boomerang, this.transform.position + new Vector3(3 * orientation.x, 0, 0), transform.rotation);
+            Instantiate(boomerang, this.transform.position + new Vector3(1 * orientation.x, 0, 0), transform.rotation);
         }
 
         WallSlide();
