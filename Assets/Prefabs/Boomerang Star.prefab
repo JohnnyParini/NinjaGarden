@@ -108,7 +108,7 @@ MonoBehaviour:
   acceleration: 0.3
   velocityX: 30
   velocityY: 2
-  maxVelocity: 40
+  maxVelocity: 50
   player: {fileID: 0}
   pDistance: {x: 0, y: 0}
 --- !u!50 &4872912817145674245

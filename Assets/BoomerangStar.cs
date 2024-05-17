@@ -24,22 +24,13 @@ public class BoomerangStar : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         pRb = player.GetComponent<Rigidbody2D>();
-        Debug.Log(player.GetComponent<SidePlayerMasterScript>().orientation.x + " player direction thing");
+        //Debug.Log(player.GetComponent<SidePlayerMasterScript>().orientation.x + " player direction thing");
         acceleration *= player.GetComponent<SidePlayerMasterScript>().orientation.x * -1;
         velocityX *= player.GetComponent<SidePlayerMasterScript>().orientation.x;
         rb.velocity = new Vector2(velocityX, 0);
-        Debug.Log(rb.velocity + " boomerang speed thing");
-        Debug.Log(acceleration + " boomerang acc thing");
+        //Debug.Log(rb.velocity + " boomerang speed thing");
+        //Debug.Log(acceleration + " boomerang acc thing");
         pDistance = this.transform.position - player.transform.position;
-        
-       
-
-        /*
-        if (pDistance.x > 0)
-        {
-            acceleration *= -1;
-        }
-        */
 
     }
 
@@ -49,10 +40,11 @@ public class BoomerangStar : MonoBehaviour
         Debug.Log(rb.velocity + " BIG SPEED");
         pDistance = this.transform.position - player.transform.position;
 
-        
-        if (pDistance.y * velocityY > 0 && Mathf.Abs(rb.velocity.x) <= 0.1) //check if the two numbers are the same sign and if x velocity is approximately 0
+        //0.3 is the error bound because finding a value of exacty 0 for the velocity is unrealistic, so code checks an approximate value
+        if (pDistance.y * velocityY > 0 && Mathf.Abs(rb.velocity.x) <= 0.3) //check if the two numbers are the same sign and if x velocity is approximately 0
         {
             velocityY *= -1;
+            Debug.Log("Assumption");
         }
 
         if (acceleration * pDistance.x > 0 && Mathf.Abs(velocityX) >= maxVelocity)
