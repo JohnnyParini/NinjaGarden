@@ -57,6 +57,9 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     //attack
     public GameObject boomerang;
+    public List<GameObject> boomerangs = new List<GameObject>();
+    public int boomerangCount;
+
     void Start()
     {
     
@@ -93,6 +96,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(rb.velocity + " HUGE VELOCITY");
         if (!PauseMenu.isPaused)
         {
             horizontal = Input.GetAxisRaw("Horizontal"); //a,d,left,right
@@ -122,7 +126,6 @@ public class SidePlayerMasterScript : MonoBehaviour
             }
             else
             {
-                //Debug.Log("ATTACKING RN");
                 anim.SetTrigger("Attack");
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
                 enemyTrack(hitEnemies);
@@ -132,9 +135,11 @@ public class SidePlayerMasterScript : MonoBehaviour
             Invoke("AttackReset", attackInterval);
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && boomerangs.Count > 0)
         {
-            Instantiate(boomerang, this.transform.position + new Vector3(3 * orientation.x, 0, 0), transform.rotation);
+            boomerangs[0].GetComponent<BoomerangStar>().thrown = true;
+            Instantiate(boomerangs[0], this.transform.position + new Vector3(1 * orientation.x, 0, 0), transform.rotation);
+            boomerangs.RemoveAt(0);
         }
 
         WallSlide();
@@ -254,7 +259,6 @@ public class SidePlayerMasterScript : MonoBehaviour
         lvlData.lvls[curLvl] = new(lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, 0);
 //        Debug.Log(curLvl + " WHAT COULD IT BE? WHY, ANOTHER BUG, NATURALLY");
         SceneManager.LoadScene("Level [" + curLvl + "] Scene (1)");
-
     }
 
     public void setHealthTxt()
@@ -268,4 +272,5 @@ public class SidePlayerMasterScript : MonoBehaviour
         // Draw a sphere at the transform's position
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
 }
