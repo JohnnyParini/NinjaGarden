@@ -185,7 +185,7 @@ public class EnemyAIJump : MonoBehaviour
         if (rb.velocity.y <= 0 && IsGrounded())
         {
             //print(rb.velocity.y + " y");
-            Debug.Log(rb.velocity.y + " y");
+//            Debug.Log(rb.velocity.y + " y");
             //print(rb.velocity.x + " x");
         }
              
