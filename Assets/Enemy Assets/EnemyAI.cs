@@ -155,7 +155,7 @@ public class EnemyAI : MonoBehaviour
         {
             rb.velocity = new Vector3(jumpForce/2 * orientation, jumpForce, 0);
 
-            Debug.Log("JUMP");
+//            Debug.Log("JUMP");
         }
 
     }
