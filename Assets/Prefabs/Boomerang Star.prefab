@@ -111,6 +111,9 @@ MonoBehaviour:
   maxVelocity: 40
   player: {fileID: 0}
   pDistance: {x: 0, y: 0}
+  thrown: 0
+  pScript: {fileID: 0}
+  maxBoomerangs: 3
 --- !u!50 &4872912817145674245
 Rigidbody2D:
   serializedVersion: 4

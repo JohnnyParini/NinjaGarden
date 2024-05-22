@@ -16,8 +16,9 @@ public class BoomerangStar : MonoBehaviour
     public float maxVelocity;
     public GameObject player;
     public Vector2 pDistance;
-    public bool thrown = false;
+    public bool thrown;
     public SidePlayerMasterScript pScript;
+    public int maxBoomerangs;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,15 +29,11 @@ public class BoomerangStar : MonoBehaviour
         {
             velocityX = maxVelocity;
             pRb = player.GetComponent<Rigidbody2D>();
-            //Debug.Log(player.GetComponent<SidePlayerMasterScript>().orientation.x + " player direction thing");
             acceleration *= player.GetComponent<SidePlayerMasterScript>().orientation.x * -1;
             velocityX *= player.GetComponent<SidePlayerMasterScript>().orientation.x;
             rb.velocity = new Vector2(velocityX, 0);
-            //Debug.Log(rb.velocity + " boomerang speed thing");
-            //Debug.Log(acceleration + " boomerang acc thing");
             pDistance = this.transform.position - player.transform.position;
         }
-
     }
 
     // Update is called once per frame
@@ -86,7 +83,7 @@ public class BoomerangStar : MonoBehaviour
         {
             Debug.Log("CHECK 1");
             Debug.Log(collision.gameObject);
-            if (collision.gameObject == player)
+            if (collision.gameObject == player && pScript.boomerangs.Count < maxBoomerangs)
             {
                 Debug.Log("CHECK 2");
                 pScript.boomerangs.Add(pScript.boomerang);
