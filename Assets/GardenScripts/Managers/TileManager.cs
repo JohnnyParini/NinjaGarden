@@ -35,7 +35,6 @@ public class TileManager : MonoBehaviour
 
     public MouseInput mouseInput;
 
-   
 
     public UI_Manager UI;
 
@@ -96,7 +95,7 @@ public class TileManager : MonoBehaviour
 
     public void clearMap()
     {
-
+        interactableMap.ClearAllTiles();
     }
 
     public void loadMap()
@@ -370,6 +369,7 @@ public class TileManager : MonoBehaviour
     public void winSecret()
     {
         Debug.Log("You found the secret");
+        //player.inventory.Add()
     }
 
     public void curse()

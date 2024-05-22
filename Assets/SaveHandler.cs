@@ -84,6 +84,7 @@ public class SaveHandler : MonoBehaviour
 
             //might need to remove this or add it to a different function
             map.ClearAllTiles();
+           
 
             //if(mapData.tiles != null && mapData.tiles.Count >0)
             //{
