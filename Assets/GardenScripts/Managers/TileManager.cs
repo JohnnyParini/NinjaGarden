@@ -263,10 +263,11 @@ public class TileManager : MonoBehaviour
         
         TileBase tile = interactableMap.GetTile(position); //will need to get the tile at the position to determine interactability
         Debug.Log("the tile being checked is at " + position);
-
+        
         if (tile != null) //if the tile isn't null
         {
             Debug.Log("the tile's name is " + tile.name);
+
             if (tile.name == "Interactable_Invis")
             {
                 return true;
