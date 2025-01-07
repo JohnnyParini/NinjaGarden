@@ -57,6 +57,9 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     //attack
     public GameObject boomerang;
+    public List<GameObject> boomerangs = new List<GameObject>();
+    public int boomerangCount;
+
     void Start()
     {
     
@@ -90,10 +93,9 @@ public class SidePlayerMasterScript : MonoBehaviour
         curLvl = GetActiveLevel.curLvl;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        //Debug.Log(rb.velocity + " HUGE VELOCITY");
         if (!PauseMenu.isPaused)
         {
             horizontal = Input.GetAxisRaw("Horizontal"); //a,d,left,right
@@ -123,7 +125,6 @@ public class SidePlayerMasterScript : MonoBehaviour
             }
             else
             {
-                //Debug.Log("ATTACKING RN");
                 anim.SetTrigger("Attack");
                 Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
                 enemyTrack(hitEnemies);
@@ -133,15 +134,17 @@ public class SidePlayerMasterScript : MonoBehaviour
             Invoke("AttackReset", attackInterval);
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && boomerangs.Count > 0)
         {
-            Instantiate(boomerang, this.transform.position + new Vector3(1 * orientation.x, 0, 0), transform.rotation);
+            boomerangs[0].GetComponent<BoomerangStar>().thrown = true;
+            Instantiate(boomerangs[0], this.transform.position + new Vector3(1 * orientation.x, 0, 0), transform.rotation);
+            boomerangs.RemoveAt(0);
         }
 
         WallSlide();
 
-        if (direction.x > 0){
-            //Debug.Log("flip false");
+        if (direction.x > 0)
+        {
             spriteR.flipX = false;
             orientation = Vector2.right;
             attackPoint.transform.position = new Vector3(this.transform.position.x + arOffset, this.transform.position.y, 0);
@@ -150,7 +153,6 @@ public class SidePlayerMasterScript : MonoBehaviour
 
         else if (direction.x < 0)
         {
-            //Debug.Log("flip true");
             spriteR.flipX = true;
             orientation = Vector2.left;
             attackPoint.transform.position = new Vector3(this.transform.position.x - arOffset, this.transform.position.y, 0);
@@ -167,7 +169,6 @@ public class SidePlayerMasterScript : MonoBehaviour
     {
         foreach (Collider2D enemy in hitEnemies)
         {
-            //Debug.Log("We hit " + enemy.name);
             enemy.GetComponent<EnemyHealth>().takeDamage(attackDamage);
         }
     }
@@ -217,16 +218,12 @@ public class SidePlayerMasterScript : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        
-        //Debug.Log(damage + " this is dmg");
-        //Debug.Log(currentHealth);
+
         if (invincible == false)
         {
             currentHealth -= damage;
         }
-        
-        //Debug.Log(currentHealth);
-        //PlayerPrefs.SetInt("Health", currentHealth);
+
         healthText.text = "Health: " + currentHealth;
 
         if (currentHealth <= 0)
@@ -250,12 +247,8 @@ public class SidePlayerMasterScript : MonoBehaviour
     void death()
     {
         Debug.Log("ded");
-
-        //GetComponent<Collider2D>().enabled = false;
         lvlData.lvls[curLvl] = new(lvlData.lvls[curLvl].Item1, lvlData.lvls[curLvl].Item2, 0);
-//        Debug.Log(curLvl + " WHAT COULD IT BE? WHY, ANOTHER BUG, NATURALLY");
         SceneManager.LoadScene("Level [" + curLvl + "] Scene (1)");
-
     }
 
     public void setHealthTxt()
@@ -266,7 +259,7 @@ public class SidePlayerMasterScript : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        // Draw a sphere at the transform's position
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
 }

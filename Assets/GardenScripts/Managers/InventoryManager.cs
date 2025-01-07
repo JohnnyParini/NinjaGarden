@@ -44,6 +44,17 @@ public class InventoryManager : MonoBehaviour
         return null; 
 
     }
+    
+    /*public void SaveOnLoad() //OMG I got the code working!!!!!!!
+    {
+        //save the inventory between loads
+    }
+    public void RetrieveOnLoad()
+    {
+        //retrieve the contents of the inventory
 
+        //attach to object (Player.inventory)
+    }
+    */
 
 }

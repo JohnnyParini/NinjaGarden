@@ -8,7 +8,9 @@ public class SaveHandler : MonoBehaviour
 {
     public SaveHandler saveInstance;
 
+    //need to make it so that it only changes the interactable timemap
     Dictionary<string, Tilemap> tilemaps = new Dictionary<string, Tilemap>();
+    [SerializeField] Tilemap realTilemap;
     [SerializeField] BoundsInt bounds;
     [SerializeField] string filename = "tilemapData.json";
 
@@ -76,18 +78,25 @@ public class SaveHandler : MonoBehaviour
                 continue;
             }
 
-            var map = tilemaps[mapData.key];
+            var map = realTilemap;
+
+            //var map = tilemaps[mapData.key];
 
             //might need to remove this or add it to a different function
-            //map.ClearAllTiles();
+            map.ClearAllTiles();
+           
 
-            if(mapData.tiles != null && mapData.tiles.Count >0)
-            {
+            //if(mapData.tiles != null && mapData.tiles.Count >0)
+            //{
                 foreach(TileInfo tile in mapData.tiles)
                 {
+                //not working
+                //tile.tile is the problem
                     map.SetTile(tile.position, tile.tile);
+                Debug.Log("The tile position is " + tile.position + ", and the tile type is " + tile.tile);
+                map.RefreshTile(tile.position);
                 }
-            }
+            //}
 
         }
     }

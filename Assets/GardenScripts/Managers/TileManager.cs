@@ -35,7 +35,6 @@ public class TileManager : MonoBehaviour
 
     public MouseInput mouseInput;
 
-   
 
     public UI_Manager UI;
 
@@ -96,7 +95,7 @@ public class TileManager : MonoBehaviour
 
     public void clearMap()
     {
-
+        interactableMap.ClearAllTiles();
     }
 
     public void loadMap()
@@ -263,10 +262,11 @@ public class TileManager : MonoBehaviour
         
         TileBase tile = interactableMap.GetTile(position); //will need to get the tile at the position to determine interactability
         Debug.Log("the tile being checked is at " + position);
-
+        
         if (tile != null) //if the tile isn't null
         {
             Debug.Log("the tile's name is " + tile.name);
+
             if (tile.name == "Interactable_Invis")
             {
                 return true;
@@ -369,6 +369,7 @@ public class TileManager : MonoBehaviour
     public void winSecret()
     {
         Debug.Log("You found the secret");
+        //player.inventory.Add()
     }
 
     public void curse()
