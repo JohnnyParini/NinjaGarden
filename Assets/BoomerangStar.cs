@@ -44,7 +44,6 @@ public class BoomerangStar : MonoBehaviour
         if (pDistance.y * velocityY > 0 && Mathf.Abs(rb.velocity.x) <= 0.3) //check if the two numbers are the same sign and if x velocity is approximately 0
         {
             velocityY *= -1;
-            Debug.Log("Assumption");
         }
 
         if (acceleration * pDistance.x > 0 && Mathf.Abs(velocityX) >= maxVelocity)
